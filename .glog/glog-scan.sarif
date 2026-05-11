@@ -1,0 +1,2874 @@
+{
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Glog.AI",
+          "organization": "Glog.AI",
+          "fullName": "Glog, Making software more secure",
+          "version": "1.0.0",
+          "semanticVersion": "1.0.0",
+          "informationUri": "https://www.glog.ai",
+          "rules": [
+            {
+              "id": "08004c3b-1592-32f7-b6b8-e86bd4d23f99",
+              "name": "Method with 'RequestMapping' annotation lacks specified HTTP method, potentially exposing it to CSRF attacks.",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nIn Java, the `@RequestMapping` annotation is used to map web requests onto specific handler classes and/or handler methods. If a specific HTTP method is not specified, the mapping will default to all HTTP methods. This can potentially expose the application to Cross-Site Request Forgery (CSRF) attacks. CSRF is an attack that tricks the victim into submitting a malicious request. It uses the identity and privileges of the victim to perform an undesired function on their behalf.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to specify the HTTP method in the `@RequestMapping` annotation. This can be done by adding the `method` parameter to the annotation and setting it to the desired `RequestMethod` enum value (e.g., `GET`, `POST`, `PUT`, `DELETE`, etc.). \n\n## Source Code Fix Recommendation\n\nHere is an example of how to specify the HTTP method in the `@RequestMapping` annotation:\n\n```java\nimport org.springframework.web.bind.annotation.RequestMapping;\nimport org.springframework.web.bind.annotation.RequestMethod;\n\n@RequestMapping(path = \"/service/enable-security.mvc\", method = RequestMethod.POST, produces = \"application/json\")\n```\n\nIn this example, the `@RequestMapping` annotation is set to only respond to `POST` requests.\n\n## Library Dependencies\n\nThe code example requires the following library dependencies:\n\n- Spring Web MVC (spring-webmvc)\n\n## References\n\n- [OWASP CSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html)\n- [CWE-352: Cross-Site Request Forgery (CSRF)](https://cwe.mitre.org/data/definitions/352.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-352",
+                    "url": "https://cwe.mitre.org/data/definitions/352.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-352"
+                ]
+              }
+            },
+            {
+              "id": "0af9c2e6-0040-3ec9-991f-87b7e467245d",
+              "name": "Unsecured Cookie Detected",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"Unsecured Cookie Detected\" is a vulnerability that occurs when a web application does not set the secure flag on a sensitive cookie. In a secure cookie, the browser will only send the cookie over an encrypted HTTPS connection. If the secure flag is not set, the cookie can be transmitted over an unencrypted HTTP connection, where it is vulnerable to interception and tampering.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should always set the secure flag on any cookie that carries sensitive information. This ensures that the cookie will only be sent over an encrypted connection, protecting it from interception and tampering.\n\n## Source Code Fix Recommendation\n\nHere is how you can set the secure flag on a cookie in Java:\n\n```java\nimport javax.servlet.http.Cookie;\n\nCookie cookie = new Cookie(\"name\", \"value\");\ncookie.setSecure(true);\nresponse.addCookie(cookie);\n```\n\n## Library Dependencies\n\nThe code example requires the following library:\n\n- Java Servlet API (`javax.servlet-api`)\n\n## References\n\n- [CWE-614: Sensitive Cookie in HTTPS Session Without 'Secure' Attribute](https://cwe.mitre.org/data/definitions/614.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-614",
+                    "url": "https://cwe.mitre.org/data/definitions/614.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-614"
+                ]
+              }
+            },
+            {
+              "id": "0d0990a8-eecd-35fc-8695-769fa373ae34",
+              "name": "SQL Injection Risk Detected due to Formatted String in SQL Statement",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"SQL Injection Risk Detected due to Formatted String in SQL Statement\" is a vulnerability that occurs when an application uses user input to construct SQL queries without properly sanitizing or escaping it. This can allow an attacker to manipulate the SQL query to perform unauthorized actions, such as viewing, modifying, or deleting data.\n\nIn the provided code snippet, the `executeQuery()` method is called without any arguments, which suggests that the SQL query is being constructed elsewhere in the code. If this construction involves concatenating user input into the query string, it could be vulnerable to SQL injection.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should avoid constructing SQL queries using string concatenation of user input. Instead, use prepared statements, parameterized queries, or ORM libraries, which can automatically sanitize input and prevent SQL injection.\n\n## Source Code Fix Recommendation\n\nHere is an example of how to use a `PreparedStatement` to execute a SQL query safely:\n\n```java\nString query = \"SELECT * FROM users WHERE username = ?\";\nPreparedStatement preparedStatement = connection.prepareStatement(query);\npreparedStatement.setString(1, username);\nResultSet resultSet = preparedStatement.executeQuery();\n```\n\nIn this example, `?` is a placeholder that gets replaced by the `username` variable. The `PreparedStatement` automatically sanitizes the `username` variable to prevent SQL injection.\n\n## Library Dependencies\n\nThe provided code snippet requires the following library dependencies:\n\n- `java.sql.Connection`\n- `java.sql.PreparedStatement`\n- `java.sql.ResultSet`\n\n## OWASP Resources\n\n- [OWASP SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)\n- [OWASP Java Encoder Project](https://owasp.org/www-project-java-encoder/)\n\n## Common Weakness Enumeration (CWE)\n\n- [CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')](https://cwe.mitre.org/data/definitions/89.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-89",
+                    "url": "https://cwe.mitre.org/data/definitions/89.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "8.0",
+                "tags": [
+                  "security",
+                  "CWE-89"
+                ]
+              }
+            },
+            {
+              "id": "0dfe3bee-2aef-3e89-872a-60cd19384634",
+              "name": "Insecure Use of Non-Cryptographically Strong RNGs in Password or Token Generation",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"Insecure Use of Non-Cryptographically Strong RNGs in Password or Token Generation\" is a vulnerability that occurs when a developer uses a non-cryptographically strong Random Number Generator (RNG) for generating passwords, tokens, or other security-critical values. In Java, the `java.util.Random` class is not suitable for these purposes because it's predictable and can be easily brute-forced.\n\nIn the provided code snippet, `java.util.Random` is used to select a secret from an array of secrets. An attacker could predict the output of `Random().nextInt()` and thus predict which secret will be selected.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, use a cryptographically strong RNG. In Java, this can be achieved by using `java.security.SecureRandom` instead of `java.util.Random`. `SecureRandom` is designed to be unpredictable and suitable for generating sensitive values.\n\n## Source Code Fix Recommendation\n\nReplace `java.util.Random` with `java.security.SecureRandom`:\n\n```java\nimport java.security.SecureRandom;\n\nTextCodec.BASE64.encode(SECRETS[new SecureRandom().nextInt(SECRETS.length)]);\n```\n\n## Library Dependencies\n\nThe provided code snippet requires the following library dependencies:\n\n- `commons-codec` for `TextCodec.BASE64`\n\n## References\n\n- [OWASP Insecure Randomness](https://owasp.org/www-community/vulnerabilities/Insecure_Randomness)\n- [CWE-338: Use of Cryptographically Weak PRNG](https://cwe.mitre.org/data/definitions/338.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-330",
+                    "url": "https://cwe.mitre.org/data/definitions/330.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-330"
+                ]
+              }
+            },
+            {
+              "id": "0ee8c775-52e9-3e84-af7c-5c05011d756a",
+              "name": "SQL Injection Risk Detected due to Formatted String in SQL Statement",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"SQL Injection Risk Detected due to Formatted String in SQL Statement\" is a vulnerability that occurs when an application uses user input to construct SQL queries without properly sanitizing or escaping the input. This can allow an attacker to manipulate the SQL query to perform unauthorized actions, such as viewing, modifying, or deleting data.\n\nIn the provided code snippet, the `query` variable is passed directly to the `executeQuery` method of the `statement` object. If the `query` variable contains user input, this could lead to a SQL injection vulnerability.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should use parameterized queries or prepared statements, which can ensure that user input is properly escaped and cannot be used to manipulate the SQL query. You should also validate and sanitize user input to ensure it does not contain malicious data.\n\n## Source Code Fix Recommendation\n\nHere is a recommended fix using a `PreparedStatement`:\n\n```java\nString query = \"SELECT * FROM table WHERE column = ?\";\nPreparedStatement pstmt = connection.prepareStatement(query);\npstmt.setString(1, userInput);\nResultSet results = pstmt.executeQuery();\n```\n\nIn this code, `?` is a placeholder that is replaced by the `userInput` variable using the `setString` method. This ensures that the user input is properly escaped and cannot be used to manipulate the SQL query.\n\n## Library Dependencies\n\nThe code example requires the following library dependencies:\n\n- `java.sql.Connection`\n- `java.sql.PreparedStatement`\n- `java.sql.ResultSet`\n\n## OWASP Resources\n\n- [OWASP SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)\n- [OWASP Java Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Java_Security_Cheat_Sheet.html)\n\n## Common Weakness Enumeration (CWE)\n\n- [CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')](https://cwe.mitre.org/data/definitions/89.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-89",
+                    "url": "https://cwe.mitre.org/data/definitions/89.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "8.0",
+                "tags": [
+                  "security",
+                  "CWE-89"
+                ]
+              }
+            },
+            {
+              "id": "12c0ff9b-35e3-347d-8125-24903a0cbe16",
+              "name": "Unvalidated Redirect Vulnerability",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nUnvalidated Redirect Vulnerability, also known as Open Redirect Vulnerability, is a security flaw that can occur in web applications, where an attacker can redirect victims to malicious websites of their choice. This can be used for phishing attacks, where the victim is tricked into entering their credentials into a fake website, or for other malicious purposes.\n\nIn the provided Java code, the method `real` is vulnerable to this type of attack because it takes a URL from the request parameter and redirects the user to this URL without any validation.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should avoid using user input to determine the destination of server-side redirects. If it's necessary to include user input in a redirect URL, the input should be validated against a whitelist of safe URLs.\n\n## Source Code Fix Recommendation\n\nHere is a fixed version of the code:\n\n```java\n@GetMapping(\"/OpenRedirect/realRedirect\")\npublic ModelAndView real(@RequestParam(\"url\") String url) {\n    // Safe URLs\n    List<String> safeUrls = Arrays.asList(\"https://www.example.com\", \"https://www.example2.com\");\n\n    // Check if the URL is in the safe list\n    if (safeUrls.contains(url)) {\n        return new ModelAndView(\"redirect:\" + url);\n    } else {\n        // Redirect to a default safe URL if the provided URL is not safe\n        return new ModelAndView(\"redirect:https://www.default.com\");\n    }\n}\n```\n\n## Library Dependencies\n\nThe provided code example requires the following library dependencies:\n\n- Spring Web MVC\n- Spring Boot Starter Web\n\n## References\n\n- [OWASP Unvalidated Redirects and Forwards Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html)\n- [CWE-601: URL Redirection to Untrusted Site ('Open Redirect')](https://cwe.mitre.org/data/definitions/601.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-601",
+                    "url": "https://cwe.mitre.org/data/definitions/601.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-601"
+                ]
+              }
+            },
+            {
+              "id": "1dc6dd7f-bbf4-3044-b095-0c59991fd8a3",
+              "name": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nIn Java, the `@RequestMapping` annotation is used to map web requests onto specific handler classes and/or handler methods. If the HTTP method is not specified in the `@RequestMapping` annotation, it can potentially make the application vulnerable to Cross-Site Request Forgery (CSRF) attacks. CSRF is an attack that tricks the victim into submitting a malicious request. It uses the identity and privileges of the victim to perform an undesired function on their behalf.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to always specify the HTTP method in the `@RequestMapping` annotation. This can be done by using the `method` attribute of the `@RequestMapping` annotation and setting it to one of the `RequestMethod` enumerations (GET, POST, PUT, DELETE, etc.). This will ensure that the handler method is only invoked for requests with the specified HTTP method, reducing the attack surface for CSRF attacks.\n\n## Source Code Fix Recommendation\n\nHere is an example of how to specify the HTTP method in the `@RequestMapping` annotation:\n\n```java\nimport org.springframework.web.bind.annotation.RequestMapping;\nimport org.springframework.web.bind.annotation.RequestMethod;\n\n@RequestMapping(value = \"/endpoint\", method = RequestMethod.POST)\npublic void handlePostRequest() {\n    // handler code\n}\n```\n\n## Library Dependencies\n\nThe above code example requires the following library dependencies:\n\n- Spring Web MVC (`spring-webmvc`)\n\n## References\n\n- [OWASP CSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html)\n- [OWASP Top 10-2017 A8-Insecure Deserialization](https://owasp.org/www-project-top-ten/2017/A8_2017-Insecure_Deserialization)\n\n## Matching CWE\n\n- [CWE-352: Cross-Site Request Forgery (CSRF)](https://cwe.mitre.org/data/definitions/352.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-352",
+                    "url": "https://cwe.mitre.org/data/definitions/352.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-352"
+                ]
+              }
+            },
+            {
+              "id": "2790dc71-7e0f-39ee-9905-2fd52d66c189",
+              "name": "\"Unsecured Default Session Middleware: Vulnerable to Cross-Site Scripting Attacks\"",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"Unsecured Default Session Middleware: Vulnerable to Cross-Site Scripting Attacks\" is a vulnerability that can occur in Java programming language when the session middleware is not properly secured. This can lead to Cross-Site Scripting (XSS) attacks where an attacker can inject malicious scripts into web pages viewed by other users. In the given code example, the vulnerability arises from the creation of a cookie without setting the HttpOnly flag. This makes the cookie accessible via client-side scripts, which can be exploited by an attacker to steal the cookie and hijack the user's session.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to set the HttpOnly flag for the cookie. This makes the cookie inaccessible to client-side scripts, thus preventing XSS attacks. Additionally, it is also recommended to set the Secure flag for the cookie, which ensures that the cookie is only sent over secure (HTTPS) connections.\n\n## Source Code Fix Recommendation\n\nHere is the fixed version of the code:\n\n```java\nCookie cookie = new Cookie(\"access_token\", token);\ncookie.setHttpOnly(true);\ncookie.setSecure(true);\n```\n\n## Library Dependencies\n\nThe code example requires the following library to execute properly:\n\n- javax.servlet.http.Cookie\n\n## References\n\n- [OWASP XSS (Cross Site Scripting) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)\n- [OWASP Java Encoder Project](https://owasp.org/www-project-java-encoder/)\n- [CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')](https://cwe.mitre.org/data/definitions/79.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-319",
+                    "url": "https://cwe.mitre.org/data/definitions/319.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-319"
+                ]
+              }
+            },
+            {
+              "id": "283798a1-25e5-3ef0-8a2b-b8cdb7e2a79a",
+              "name": "\"Potential SQL Injection Vulnerability in Manually-Constructed SQL Strings\"",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe code snippet provided is vulnerable to SQL Injection attacks. This is because it directly concatenates a user-provided string (`column`) into a SQL query. An attacker could potentially manipulate the `column` variable to alter the SQL query, leading to unauthorized data access, data corruption, or data loss.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should avoid constructing SQL queries manually using string concatenation of user-controlled data. Instead, use prepared statements, parameterized queries, or ORM libraries, which can automatically sanitize inputs and prevent SQL injection attacks.\n\n## Source Code Fix\n\nHere is a recommended fix using a PreparedStatement:\n\n```java\nString query = \"select id, hostname, ip, mac, status, description from SERVERS where status <> 'out of order' order by ?\";\ntry (PreparedStatement stmt = connection.prepareStatement(query)) {\n    stmt.setString(1, column);\n    ResultSet rs = stmt.executeQuery();\n    // process the result set\n}\n```\n\n## Library Dependencies\n\nThe code example requires the following library dependencies:\n\n- A JDBC driver, such as MySQL Connector/J for MySQL databases or ojdbc for Oracle databases.\n\n## References\n\n- [OWASP SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)\n- [CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')](https://cwe.mitre.org/data/definitions/89.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-89",
+                    "url": "https://cwe.mitre.org/data/definitions/89.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "8.0",
+                "tags": [
+                  "security",
+                  "CWE-89"
+                ]
+              }
+            },
+            {
+              "id": "285fbcbd-72c5-389b-923c-98511520a773",
+              "name": "Insecure Use of Non-Cryptographically Strong RNGs in Password or Token Generation",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"Insecure Use of Non-Cryptographically Strong RNGs in Password or Token Generation\" is a vulnerability that occurs when a developer uses a non-cryptographically strong Random Number Generator (RNG) to generate a password, token, or other security-sensitive values. In Java, the `java.util.Random` class is not suitable for generating such values because it's predictable and can be easily brute-forced.\n\nIn the provided code, a PIN code is generated using `java.util.Random`. This is insecure because an attacker could predict the PIN code, leading to unauthorized access.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, use a cryptographically strong RNG. In Java, you can use `java.security.SecureRandom` instead of `java.util.Random`. `SecureRandom` generates random numbers in a way that is safe for cryptographic use.\n\n## Source Code Fix Recommendation\n\nHere is a fixed version of the provided code:\n\n```java\nimport java.security.SecureRandom;\n\npublic class Main {\n    public static final int PINCODE;\n    \n    static {\n        SecureRandom random = new SecureRandom();\n        PINCODE = random.nextInt(10000);\n    }\n}\n```\n\n## Library Dependencies\n\nThe fixed code requires no additional library dependencies. It uses the `java.security.SecureRandom` class, which is part of the Java standard library.\n\n## References\n\n- [OWASP - Insecure Randomness](https://owasp.org/www-community/vulnerabilities/Insecure_Randomness)\n- [CWE-338: Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG)](https://cwe.mitre.org/data/definitions/338.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-330",
+                    "url": "https://cwe.mitre.org/data/definitions/330.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-330"
+                ]
+              }
+            },
+            {
+              "id": "2b0f7807-1e5e-3b6d-8a69-188887fb1986",
+              "name": "Potential SQL Injection Detected: Use Prepared Statements for SQL Queries",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"Potential SQL Injection Detected: Use Prepared Statements for SQL Queries\" is a vulnerability that arises when a SQL query is constructed using string concatenation of unsanitized user input. This can allow an attacker to alter the structure of the SQL query to gain unauthorized access to data, modify data, or execute commands on the database server.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to use parameterized queries or prepared statements. These methods ensure that user input is always treated as literal data and not part of the SQL command. This effectively prevents SQL injection attacks.\n\n## Source Code Fix Recommendation\n\nHere is how you can fix the vulnerability in the provided code snippet:\n\n```java\nString checkUserQuery = \"SELECT * FROM users WHERE username = ?\";\nPreparedStatement preparedStatement = connection.prepareStatement(checkUserQuery);\npreparedStatement.setString(1, username);\nResultSet resultSet = preparedStatement.executeQuery();\n```\n\nIn this code, `?` is a placeholder that will be replaced by the value of `username`. The `setString` method ensures that `username` is properly escaped, preventing any SQL injection attacks.\n\n## Library Dependencies\n\nThe code example requires the following library dependencies:\n\n- `java.sql.Connection`\n- `java.sql.PreparedStatement`\n- `java.sql.ResultSet`\n\n## OWASP and CWE Links\n\n- [OWASP SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)\n- [CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')](https://cwe.mitre.org/data/definitions/89.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-89",
+                    "url": "https://cwe.mitre.org/data/definitions/89.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "8.0",
+                "tags": [
+                  "security",
+                  "CWE-89"
+                ]
+              }
+            },
+            {
+              "id": "2bfd22b5-832f-35bd-91e5-4e373457c362",
+              "name": "Server-Side Request Forgery (SSRF) Vulnerability in Manually-Constructed URL",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nServer-Side Request Forgery (SSRF) is a web security vulnerability that allows an attacker to induce the server-side application to make HTTP requests to an arbitrary domain of the attacker's choosing. In a typical SSRF attack, the attacker might cause the server to make a connection back to itself, or to other web-based services within the organization’s infrastructure, or to external third-party systems.\n\nIn the context of Java programming language, SSRF vulnerability can occur when a URL is manually constructed using user-supplied input without proper validation and sanitization. The specific vulnerability sink in the provided code is:\n\n```java\nvar jwkProvider = new JwkProviderBuilder(new URL(jku.asString())).build();\n```\n\nHere, the URL is being constructed from a string (`jku.asString()`) which could potentially be manipulated by an attacker.\n\n## Mitigation Advice\n\nTo mitigate SSRF vulnerabilities, you should:\n\n1. Validate user input: User input should be validated and sanitized before using it to construct a URL. This can help prevent an attacker from manipulating the URL to their advantage.\n\n2. Use allow-lists: Only allow URLs that match a certain pattern or are in a predefined list of safe URLs.\n\n3. Limit the outbound connections: Limit the server's ability to initiate outbound connections to only those that are necessary.\n\n## Source Code Fix Recommendation\n\nA potential fix for the provided code could be to validate the `jku` string before using it to construct the URL. This could be done using a regular expression or a URL parsing library to ensure that the URL is well-formed and safe to use.\n\n```java\nString jkuString = jku.asString();\nif (isValidURL(jkuString)) {\n    var jwkProvider = new JwkProviderBuilder(new URL(jkuString)).build();\n}\n```\n\nHere, `isValidURL` is a hypothetical function that validates the URL.\n\n## Library Dependencies\n\nThe provided code seems to be using the `auth0` Java library. The `JwkProviderBuilder` class is part of this library. So, the `auth0` library would be required for this code to execute properly.\n\n## References\n\n- [OWASP SSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html)\n- [CWE-918: Server-Side Request Forgery (SSRF)](https://cwe.mitre.org/data/definitions/918.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-918",
+                    "url": "https://cwe.mitre.org/data/definitions/918.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "8.0",
+                "tags": [
+                  "security",
+                  "CWE-918"
+                ]
+              }
+            },
+            {
+              "id": "2d67cdb6-812e-3dc8-be06-0f72a8139e0b",
+              "name": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nIn Java, the `@RequestMapping` annotation is used to map web requests onto specific handler classes and/or handler methods. If the HTTP method is not specified in the `@RequestMapping` annotation, it can potentially make the application vulnerable to Cross-Site Request Forgery (CSRF) attacks. CSRF is an attack that tricks the victim into submitting a malicious request. It uses the identity and privileges of the victim to perform an undesired function on their behalf.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to always specify the HTTP method in the `@RequestMapping` annotation. This can be done by using the `method` attribute of the `@RequestMapping` annotation and setting it to one of the `RequestMethod` enumerations (GET, POST, PUT, DELETE, etc.). This will ensure that the handler method is only invoked for requests with the specified HTTP method, reducing the attack surface for CSRF attacks.\n\n## Source Code Fix Recommendation\n\nHere is an example of how to specify the HTTP method in the `@RequestMapping` annotation:\n\n```java\nimport org.springframework.web.bind.annotation.RequestMapping;\nimport org.springframework.web.bind.annotation.RequestMethod;\n\n@RequestMapping(value = \"/endpoint\", method = RequestMethod.POST)\npublic void handlePostRequest() {\n    // handler code\n}\n```\n\n## Library Dependencies\n\nThe above code example requires the following library dependencies:\n\n- Spring Web MVC (`spring-webmvc`)\n\n## References\n\n- [OWASP CSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html)\n- [OWASP Top 10-2017 A8-Insecure Deserialization](https://owasp.org/www-project-top-ten/2017/A8_2017-Insecure_Deserialization)\n\n## Matching CWE\n\n- [CWE-352: Cross-Site Request Forgery (CSRF)](https://cwe.mitre.org/data/definitions/352.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-352",
+                    "url": "https://cwe.mitre.org/data/definitions/352.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-352"
+                ]
+              }
+            },
+            {
+              "id": "313ec6ef-d951-32cc-a23c-0d9adf846ca1",
+              "name": "\"Java Object Deserialization Vulnerability with ObjectInputStream\"",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nJava Object Deserialization Vulnerability with ObjectInputStream is a critical security vulnerability that occurs when an application deserializes untrusted data without proper validation. This vulnerability can lead to various attacks such as remote code execution, denial of service, or privilege escalation.\n\nIn the provided code snippet, an ObjectInputStream is created from a Base64 encoded string. This string is decoded and then deserialized without any validation or checks, which can lead to the aforementioned security issues if the string contains malicious data.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should avoid deserializing untrusted data whenever possible. If deserialization is necessary, you should use safe serialization libraries that are resistant to deserialization attacks, or implement strict type checks during the deserialization process.\n\n## Source Code Fix Recommendation\n\nHere is a simple fix for the provided code snippet using a look-ahead ObjectInputStream that only allows certain classes to be deserialized:\n\n```java\ntry (LookAheadObjectInputStream ois = new LookAheadObjectInputStream(\n        new ByteArrayInputStream(Base64.getDecoder().decode(b64token)))) {\n    ois.setAcceptedClasses(Arrays.asList(YourClass1.class, YourClass2.class)); // replace with your classes\n    // rest of your code\n}\n```\n\nIn this code, `LookAheadObjectInputStream` is a subclass of `ObjectInputStream` that overrides the `resolveClass()` method to only allow deserialization of certain classes.\n\n## Library Dependencies\n\nThe provided code snippet requires the following library dependencies:\n\n- Java SE Runtime Environment (JRE) or Java Development Kit (JDK) version 7 or above.\n\n## References\n\n- [OWASP Deserialization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html)\n- [CWE-502: Deserialization of Untrusted Data](https://cwe.mitre.org/data/definitions/502.html)\n\nPlease note that the links provided are accessible to anonymous users at the time of writing this report."
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-502",
+                    "url": "https://cwe.mitre.org/data/definitions/502.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-502"
+                ]
+              }
+            },
+            {
+              "id": "389c8fff-77d1-31cd-a5c5-5f46c84a12ab",
+              "name": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe `@RequestMapping` annotation in Spring MVC is used to map web requests onto specific handler classes and/or handler methods. If the HTTP method is not specified in the `@RequestMapping` annotation, it means that the endpoint is open to all HTTP methods (GET, POST, PUT, DELETE, etc.). This can potentially make the application vulnerable to Cross-Site Request Forgery (CSRF) attacks.\n\nIn a CSRF attack, an attacker tricks a victim into performing actions on their behalf on a web application in which they're authenticated. Without specifying the HTTP method, an attacker can exploit this vulnerability by creating a malicious site that sends unwanted requests (like DELETE or PUT) to the application.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to specify the HTTP method in the `@RequestMapping` annotation. This restricts the endpoint to only accept requests with the specified HTTP method, reducing the attack surface.\n\n## Source Code Fix Recommendation\n\nHere is an example of how to specify the HTTP method in the `@RequestMapping` annotation:\n\n```java\nimport org.springframework.http.MediaType;\nimport org.springframework.web.bind.annotation.RequestMapping;\nimport org.springframework.web.bind.annotation.RequestMethod;\n\n@RequestMapping(path = \"/crypto/hashing/md5\", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)\n```\n\nIn this example, the endpoint will only accept GET requests.\n\n## Library Dependencies\n\nThe following libraries are required for the code example:\n\n- Spring Web MVC (spring-webmvc)\n- Spring Framework (spring-core, spring-context)\n\n## References\n\n- [OWASP CSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html)\n- [CWE-352: Cross-Site Request Forgery (CSRF)](https://cwe.mitre.org/data/definitions/352.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-352",
+                    "url": "https://cwe.mitre.org/data/definitions/352.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-352"
+                ]
+              }
+            },
+            {
+              "id": "5564023f-c3f8-3228-bb9c-a4895c7e8494",
+              "name": "Potential Path Traversal Vulnerability Detected",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nA potential Path Traversal vulnerability has been detected in the provided Java code. Path Traversal, also known as Directory Traversal, is a vulnerability that allows an attacker to read arbitrary files on the application's file system, including application code, configuration, and data. This can happen when user-supplied input is not properly sanitized and is used to construct a file path for file operations.\n\nIn the provided code, the `id` parameter is directly used to construct a file path. If an attacker can control the `id` parameter, they might be able to read arbitrary files on the system by using special path sequences.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should:\n\n1. Avoid using user-supplied input to construct file paths directly.\n2. Use a whitelist of allowed paths and filenames.\n3. If user-supplied input must be used, sanitize it to prevent special characters or sequences that can traverse directories.\n4. Use appropriate access controls to limit the files and directories that can be accessed.\n\n## Source Code Fix Recommendation\n\nHere is a recommended fix for the provided code:\n\n```java\nString id = request.getParameter(\"id\");\nif (id == null) {\n    id = String.valueOf(RandomUtils.nextInt(1, 11));\n}\n\n// Ensure the id is a simple integer\nif (!id.matches(\"^\\\\d+$\")) {\n    throw new IllegalArgumentException(\"Invalid id\");\n}\n\nvar catPicture = new File(catPicturesDirectory, id + \".jpg\");\n```\n\nIn this fix, we ensure that the `id` is a simple integer by using a regular expression. This prevents any special characters or sequences that can traverse directories.\n\n## Library Dependencies\n\nThe code example requires the following library dependencies:\n\n- Apache Commons Lang for the `RandomUtils` class.\n\n## References\n\n- [OWASP Path Traversal](https://owasp.org/www-community/attacks/Path_Traversal)\n- [CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')](https://cwe.mitre.org/data/definitions/22.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-22",
+                    "url": "https://cwe.mitre.org/data/definitions/22.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "8.0",
+                "tags": [
+                  "security",
+                  "CWE-22"
+                ]
+              }
+            },
+            {
+              "id": "5f077266-d7b7-36c4-9a78-54c3ea8c64bd",
+              "name": "'HttpOnly' flag not set for cookie vulnerability",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe 'HttpOnly' flag not set for cookie vulnerability in Java programming language refers to a situation where a cookie is created without the 'HttpOnly' flag. This makes the cookie accessible via client-side scripts, which could potentially lead to unauthorized access or cookie theft through cross-site scripting (XSS) attacks.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to set the 'HttpOnly' flag for all cookies. This will make the cookie inaccessible to client-side scripts, thus reducing the risk of XSS attacks.\n\n## Source Code Fix Recommendation\n\nHere is how you can set the 'HttpOnly' flag for a cookie in Java:\n\n```java\nimport javax.servlet.http.Cookie;\n\nCookie cookie = new Cookie(\"key\", \"value\");\ncookie.setHttpOnly(true);\nresponse.addCookie(cookie);\n```\n\n## Library Dependencies\n\nThe above code example requires the following library dependency:\n\n- `javax.servlet-api` for `javax.servlet.http.Cookie` and `javax.servlet.http.HttpServletResponse`.\n\n## References\n\n- [OWASP Testing for Cookies attributes](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes)\n\n## Matching CWE\n\n- [CWE-1004: Sensitive Cookie Without 'HttpOnly' Flag](https://cwe.mitre.org/data/definitions/1004.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-1004",
+                    "url": "https://cwe.mitre.org/data/definitions/1004.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-1004"
+                ]
+              }
+            },
+            {
+              "id": "645d0e84-4587-3ab6-94c2-d54f702248c4",
+              "name": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe `@RequestMapping` annotation in Spring MVC is used to map web requests onto specific handler classes and/or handler methods. If the HTTP method is not specified in the `@RequestMapping` annotation, it means that the endpoint is open to all HTTP methods (GET, POST, PUT, DELETE, etc.). This can potentially make the application vulnerable to Cross-Site Request Forgery (CSRF) attacks.\n\nIn a CSRF attack, an attacker tricks a victim into performing actions on their behalf on a web application in which they're authenticated. With a little help of social engineering (like sending a link via email or chat), an attacker may trick the users of a web application into executing actions of the attacker's choosing.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to specify the HTTP method in the `@RequestMapping` annotation. This can be done by using the `method` attribute of the `@RequestMapping` annotation and setting it to the appropriate `RequestMethod` enum (like `RequestMethod.GET`, `RequestMethod.POST`, etc.).\n\nAdditionally, Spring Security provides built-in CSRF protection that can be enabled in your application. It is recommended to use this feature to protect your application from CSRF attacks.\n\n## Source Code Fix Recommendation\n\nHere is an example of how to specify the HTTP method in the `@RequestMapping` annotation:\n\n```java\n@RequestMapping(path = URL_DEBUG_LABELS_MVC, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)\n```\n\nIn this example, the endpoint is only open to HTTP GET requests.\n\n## Library Dependencies\n\nThe following libraries are required by the code example:\n\n- Spring Web MVC (spring-webmvc)\n- Spring Security (spring-security-web)\n\n## References\n\n- [OWASP CSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html)\n- [CWE-352: Cross-Site Request Forgery (CSRF)](https://cwe.mitre.org/data/definitions/352.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-352",
+                    "url": "https://cwe.mitre.org/data/definitions/352.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-352"
+                ]
+              }
+            },
+            {
+              "id": "68d9be1c-2f71-3d72-ad80-9280545b8102",
+              "name": "'HttpOnly' flag not set for cookie vulnerability",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe 'HttpOnly' flag not set for cookie vulnerability in Java programming language refers to a situation where a cookie is created without the 'HttpOnly' flag. This makes the cookie accessible via client-side scripts, which could potentially lead to unauthorized access or cookie theft through cross-site scripting (XSS) attacks.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to set the 'HttpOnly' flag for all cookies. This will make the cookie inaccessible to client-side scripts, thus reducing the risk of XSS attacks.\n\n## Source Code Fix Recommendation\n\nHere is how you can set the 'HttpOnly' flag for a cookie in Java:\n\n```java\nCookie newCookie = new Cookie(\"cookieName\", \"cookieValue\");\nnewCookie.setHttpOnly(true);\nresponse.addCookie(newCookie);\n```\n\n## Library Dependencies\n\nThe code example requires the following library dependencies:\n\n- javax.servlet.http.Cookie\n- javax.servlet.http.HttpServletResponse\n\n## OWASP and CWE Links\n\n- [CWE-1004: Sensitive Cookie Without 'HttpOnly' Flag](https://cwe.mitre.org/data/definitions/1004.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-1004",
+                    "url": "https://cwe.mitre.org/data/definitions/1004.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-1004"
+                ]
+              }
+            },
+            {
+              "id": "6f3b5309-25a1-30c4-a651-0a6d18a86c97",
+              "name": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe `@RequestMapping` annotation in Spring MVC is used to map web requests onto specific handler classes and handler methods. When the HTTP method is not specified in the `@RequestMapping` annotation, it means that the endpoint is open to all HTTP methods (GET, POST, PUT, DELETE, etc.). This can potentially make the application vulnerable to Cross-Site Request Forgery (CSRF) attacks.\n\nIn a CSRF attack, an attacker tricks a victim into performing actions on their behalf on a web application in which they're authenticated. With the help of social engineering (like sending a link via email or chat), an attacker may trick the users of a web application into executing actions of the attacker's choosing.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to specify the HTTP method in the `@RequestMapping` annotation. This restricts the endpoint to only the specified HTTP method(s), reducing the attack surface.\n\n## Source Code Fix Recommendation\n\n```java\nimport org.springframework.http.MediaType;\nimport org.springframework.web.bind.annotation.PostMapping;\nimport org.springframework.web.bind.annotation.RequestMapping;\nimport org.springframework.web.bind.annotation.RestController;\n\n@RestController\npublic class CryptoController {\n\n    @PostMapping(path = \"/crypto/hashing/sha256\", produces = MediaType.TEXT_HTML_VALUE)\n    public String hash() {\n        // Your code here\n    }\n}\n```\n\nIn the above code, `@PostMapping` is used instead of `@RequestMapping` to specify that only POST requests are allowed for this endpoint.\n\n## Library Dependencies\n\nThe following libraries are required for the code to execute properly:\n\n- Spring Web\n- Spring Boot Starter Web\n\n## References\n\n- [OWASP CSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html)\n- [CWE-352: Cross-Site Request Forgery (CSRF)](https://cwe.mitre.org/data/definitions/352.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-352",
+                    "url": "https://cwe.mitre.org/data/definitions/352.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-352"
+                ]
+              }
+            },
+            {
+              "id": "6fe2993e-58b2-3d9c-b2c2-aab5dadf4678",
+              "name": "Unsecured Cookie Detected",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"Unsecured Cookie Detected\" is a vulnerability that occurs when a web application does not set the secure flag on a sensitive cookie. In a secure cookie, the browser will only send the cookie over an encrypted HTTPS connection. If the secure flag is not set, the cookie can be transmitted over an unencrypted HTTP connection, where it is vulnerable to interception and tampering.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should always set the secure flag on any cookie that carries sensitive information. This ensures that the cookie will only be sent over an encrypted connection, protecting it from interception and tampering.\n\n## Source Code Fix Recommendation\n\nHere is how you can set the secure flag on a cookie in Java:\n\n```java\nimport javax.servlet.http.Cookie;\n\nCookie cookie = new Cookie(\"name\", \"value\");\ncookie.setSecure(true);\nresponse.addCookie(cookie);\n```\n\n## Library Dependencies\n\nThe code example requires the following library:\n\n- Java Servlet API (`javax.servlet-api`)\n\n## References\n\n- [CWE-614: Sensitive Cookie in HTTPS Session Without 'Secure' Attribute](https://cwe.mitre.org/data/definitions/614.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-614",
+                    "url": "https://cwe.mitre.org/data/definitions/614.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-614"
+                ]
+              }
+            },
+            {
+              "id": "7a7f602f-6c4b-346b-8b18-2f44739ee4cb",
+              "name": "\"Unsecured Default Session Middleware: Vulnerable to Cross-Site Scripting Attacks\"",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"Unsecured Default Session Middleware: Vulnerable to Cross-Site Scripting Attacks\" is a vulnerability that can occur in Java web applications when session management is not properly secured. This can lead to Cross-Site Scripting (XSS) attacks, where an attacker injects malicious scripts into webpages viewed by other users. In this case, the vulnerability arises from the insecure handling of cookies.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to:\n\n1. Always validate and sanitize user input: This can prevent an attacker from injecting malicious scripts into your webpages.\n\n2. Use HTTPOnly cookies: This attribute prevents JavaScript from accessing the cookies, which can prevent XSS attacks.\n\n3. Use secure cookies: This attribute ensures that the cookies are only sent over HTTPS, which can prevent them from being intercepted.\n\n4. Implement Content Security Policy (CSP): This can prevent a wide range of XSS attacks by specifying which sources of content are valid.\n\n## Source Code Fix Recommendation\n\nHere is a recommended fix for the given code:\n\n```java\nCookie cookie = new Cookie(\"access_token\", \"\");\ncookie.setHttpOnly(true);\ncookie.setSecure(true);\n```\n\n## Library Dependencies\n\nThe code example requires the following library:\n\n- javax.servlet.http.Cookie\n\n## References\n\n- [OWASP XSS (Cross Site Scripting) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)\n- [OWASP Java Encoder Project](https://owasp.org/www-project-java-encoder/)\n- [CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')](https://cwe.mitre.org/data/definitions/79.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-319",
+                    "url": "https://cwe.mitre.org/data/definitions/319.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-319"
+                ]
+              }
+            },
+            {
+              "id": "997d943f-05bc-349b-bd9a-ebd0dde133dc",
+              "name": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe `@RequestMapping` annotation in Spring MVC is used to map web requests onto specific handler classes and/or handler methods. If the HTTP method is not specified in the `@RequestMapping` annotation, it means that the endpoint is open to all HTTP methods (GET, POST, PUT, DELETE, etc.). This can potentially make the application vulnerable to Cross-Site Request Forgery (CSRF) attacks.\n\nIn a CSRF attack, an attacker tricks a victim into performing actions on their behalf on a web application in which they're authenticated. With a little help of social engineering (like sending a link via email or chat), an attacker may trick the users of a web application into executing actions of the attacker's choosing.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to specify the HTTP method in the `@RequestMapping` annotation. This can be done by using the `method` attribute of the `@RequestMapping` annotation and setting it to the appropriate `RequestMethod` enum (e.g., `RequestMethod.GET`, `RequestMethod.POST`, etc.).\n\nIn addition, it is also recommended to enable CSRF protection in your Spring application. Spring Security provides built-in CSRF protection that can be enabled in your Spring Security configuration.\n\n## Source Code Fix Recommendation\n\nHere is how you can specify the HTTP method in the `@RequestMapping` annotation:\n\n```java\nimport org.springframework.http.MediaType;\nimport org.springframework.web.bind.annotation.RequestMapping;\nimport org.springframework.web.bind.annotation.RequestMethod;\n\n@RequestMapping(path = \"/crypto/signing/getprivate\", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)\n```\n\n## Library Dependencies\n\nThe following libraries are required by the code example:\n\n- Spring Web MVC\n- Spring Security\n\n## References\n\n- [OWASP CSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html)\n- [OWASP Top 10-2017 A8-Insecure Deserialization](https://owasp.org/www-project-top-ten/2017/A8_2017-Insecure_Deserialization)\n- [CWE-352: Cross-Site Request Forgery (CSRF)](https://cwe.mitre.org/data/definitions/352.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-352",
+                    "url": "https://cwe.mitre.org/data/definitions/352.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-352"
+                ]
+              }
+            },
+            {
+              "id": "99e96353-6596-3524-bc66-428e593739c7",
+              "name": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe `@RequestMapping` annotation in Spring MVC is used to map web requests onto specific handler classes and handler methods. When the HTTP method is not specified in the `@RequestMapping` annotation, it means that the mapped method will respond to all HTTP methods (GET, POST, PUT, DELETE, etc.). This can potentially make the application vulnerable to Cross-Site Request Forgery (CSRF) attacks.\n\nIn a CSRF attack, an attacker tricks a victim into performing actions on their behalf on a web application in which they're authenticated. With the help of social engineering (like sending a link via email or chat), an attacker may trick the users of a web application into executing actions of the attacker's choosing.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to specify the HTTP method in the `@RequestMapping` annotation. This way, the mapped method will only respond to the specified HTTP method(s), reducing the attack surface.\n\n## Source Code Fix Recommendation\n\nHere is an example of how to specify the HTTP method in the `@RequestMapping` annotation:\n\n```java\n@RequestMapping(path = URL_LESSONMENU_MVC, method = RequestMethod.GET, produces = \"application/json\")\n```\n\nIn this example, the mapped method will only respond to HTTP GET requests.\n\n## Library Dependencies\n\nThe code example requires the following library dependencies:\n\n- Spring Web MVC\n\n## References\n\n- [OWASP CSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html)\n- [CWE-352: Cross-Site Request Forgery (CSRF)](https://cwe.mitre.org/data/definitions/352.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-352",
+                    "url": "https://cwe.mitre.org/data/definitions/352.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-352"
+                ]
+              }
+            },
+            {
+              "id": "9b06e4d4-7ba3-33f6-ba8b-fd632aa230d4",
+              "name": "Insecure Use of Non-Cryptographically Strong RNGs in Password or Token Generation",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"Insecure Use of Non-Cryptographically Strong RNGs in Password or Token Generation\" is a vulnerability that occurs when a developer uses a non-cryptographically strong Random Number Generator (RNG) for generating passwords, tokens, or other secret values. In Java, the `java.util.Random` class is not suitable for generating such values because it's predictable and can be easily brute-forced.\n\nIn the provided code snippet, a secret value is being selected from an array using `java.util.Random`. This is insecure because an attacker could predict the next value generated by the RNG and thus predict the secret value.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, use a cryptographically strong RNG. In Java, you can use `java.security.SecureRandom` instead of `java.util.Random`. `SecureRandom` is designed to be unpredictable and suitable for generating sensitive values.\n\n## Source Code Fix Recommendation\n\nHere is how you can fix the provided code snippet:\n\n```java\nimport java.security.SecureRandom;\n\n// ...\n\nString secret = SECRETS[new SecureRandom().nextInt(SECRETS.length)];\n```\n\n## Library Dependencies\n\nThe code example requires no additional library dependencies. The `java.security.SecureRandom` class is part of the Java standard library.\n\n## References\n\n- [OWASP - Insecure Randomness](https://owasp.org/www-community/vulnerabilities/Insecure_Randomness)\n- [CWE-338: Use of Cryptographically Weak PRNG](https://cwe.mitre.org/data/definitions/338.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-330",
+                    "url": "https://cwe.mitre.org/data/definitions/330.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-330"
+                ]
+              }
+            },
+            {
+              "id": "9cac4438-8319-3972-af93-e1203c6e6f67",
+              "name": "Insecure MD5 Hash Algorithm Detected, Use HMAC Instead",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe MD5 hash algorithm is considered insecure and vulnerable to collision attacks. This means that two different inputs can produce the same hash output, making it possible for an attacker to create a malicious input that produces the same hash as a legitimate input. This can lead to unauthorized access or data integrity issues.\n\nIn Java, the `MessageDigest` class is used to create hash values. If the \"MD5\" algorithm is specified, this vulnerability is introduced. \n\n## Mitigation Advice\n\nInstead of using MD5, a more secure hash algorithm such as SHA-256 should be used. However, even this can be vulnerable to certain attacks if used alone. To further enhance security, a technique called Hash-based Message Authentication Code (HMAC) should be used. HMAC combines a secret key with the hash algorithm to create a hash value that can only be recreated by someone who knows the secret key.\n\n## Source Code Fix Recommendation\n\nHere is an example of how to use HMAC with SHA-256 in Java:\n\n```java\nimport javax.crypto.Mac;\nimport javax.crypto.spec.SecretKeySpec;\nimport java.nio.charset.StandardCharsets;\nimport java.util.Base64;\n\npublic class HMACExample {\n    public static void main(String[] args) throws Exception {\n        String secret = \"secret\";\n        String message = \"Message\";\n\n        Mac hasher = Mac.getInstance(\"HmacSHA256\");\n        SecretKeySpec secretKey = new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8), \"HmacSHA256\");\n        hasher.init(secretKey);\n\n        byte[] hashedBytes = hasher.doFinal(message.getBytes(StandardCharsets.UTF_8));\n        String encodedHash = Base64.getEncoder().encodeToString(hashedBytes);\n\n        System.out.println(encodedHash);\n    }\n}\n```\n\nThis code uses the `javax.crypto.Mac` class to create a HMAC with the SHA-256 hash algorithm. The secret key is specified using the `javax.crypto.spec.SecretKeySpec` class.\n\n## Library Dependencies\n\nThe above code requires the following libraries which are included in the standard Java SDK:\n\n- javax.crypto.Mac\n- javax.crypto.spec.SecretKeySpec\n- java.nio.charset.StandardCharsets\n- java.util.Base64\n\n## References\n\n- [OWASP - Insecure Cryptographic Storage](https://owasp.org/www-project-top-ten/2017/A3_2017-Sensitive_Data_Exposure)\n- [CWE-327: Use of a Broken or Risky Cryptographic Algorithm](https://cwe.mitre.org/data/definitions/327.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-328",
+                    "url": "https://cwe.mitre.org/data/definitions/328.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-328"
+                ]
+              }
+            },
+            {
+              "id": "a356b939-c928-3b67-9afb-f91c6bb40464",
+              "name": "\"Potential SQL Injection Vulnerability in Manually-Constructed SQL Strings\"",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nA potential SQL Injection vulnerability exists in the manually-constructed SQL string in Java. This vulnerability occurs when an application uses input to construct a SQL query without properly sanitizing the input. An attacker can manipulate the input to modify the SQL query, leading to unauthorized data access, data corruption, or data loss.\n\nIn the provided code snippet:\n\n```java\n\"select userid from sql_challenge_users where userid = '\" + username + \"'\";\n```\n\nThe `username` variable is directly concatenated into the SQL query. If an attacker provides a value like `admin'; --`, the resulting SQL query becomes:\n\n```sql\nselect userid from sql_challenge_users where userid = 'admin'; --'\n```\n\nThis effectively comments out the rest of the SQL statement, potentially allowing unauthorized access.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, use Prepared Statements or Parameterized Queries. These methods ensure that user input is always treated as literal values, not part of the SQL command.\n\n## Source Code Fix\n\nHere is how you can fix the vulnerability using Prepared Statements in Java:\n\n```java\nString query = \"select userid from sql_challenge_users where userid = ?\";\nPreparedStatement pstmt = connection.prepareStatement(query);\npstmt.setString(1, username);\nResultSet results = pstmt.executeQuery();\n```\n\n## Library Dependencies\n\nThe code example requires the following library dependencies:\n\n- `java.sql.*`: This package contains the JDBC API for database-independent connectivity between the Java programming language and a wide range of databases.\n\n## References\n\n- [OWASP SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)\n- [CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')](https://cwe.mitre.org/data/definitions/89.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-89",
+                    "url": "https://cwe.mitre.org/data/definitions/89.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "8.0",
+                "tags": [
+                  "security",
+                  "CWE-89"
+                ]
+              }
+            },
+            {
+              "id": "a930a319-20d8-3226-b9a8-a29a5fcad543",
+              "name": "Insecure Use of `Math.random()` or `java.util.Random()` for Passwords or Secret Tokens Generation",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe `Math.random()` and `java.util.Random()` methods in Java are not suitable for generating secure random numbers, such as those used in passwords or secret tokens. These methods are predictable and can be easily reproduced, making them vulnerable to attacks.\n\nThe `java.util.Random()` class uses a 48-bit seed, which is modified using a linear congruential formula. If an attacker can guess the seed, they can predict all future outputs of the random number generator. Similarly, `Math.random()` uses `java.util.Random()` internally, and is therefore also predictable.\n\nIn the provided code snippet, a `java.util.Random` instance is used to generate a long value, which is then used as an ID. If this ID is used in a security-sensitive context, it could be guessed by an attacker.\n\n## Mitigation Advice\n\nTo generate secure random numbers in Java, use the `java.security.SecureRandom` class instead of `Math.random()` or `java.util.Random()`. `SecureRandom` generates random numbers in a way that is safe for cryptographic use.\n\n## Source Code Fix Recommendation\n\nHere is a fixed version of the provided code snippet:\n\n```java\nimport java.security.SecureRandom;\n\nprivate static long id = new SecureRandom().nextLong() & Long.MAX_VALUE;\n```\n\n## Library Dependencies\n\nThe `java.security.SecureRandom` class is part of the Java standard library, so no additional library dependencies are required.\n\n## References\n\n- [OWASP - Insecure Randomness](https://owasp.org/www-community/vulnerabilities/Insecure_Randomness)\n- [CWE-330: Use of Insufficiently Random Values](https://cwe.mitre.org/data/definitions/330.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-330",
+                    "url": "https://cwe.mitre.org/data/definitions/330.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-330"
+                ]
+              }
+            },
+            {
+              "id": "aa466f90-5f8b-3e88-af98-f1e8328f0750",
+              "name": "SQL Injection Risk Detected due to Formatted String in SQL Statement",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"SQL Injection Risk Detected due to Formatted String in SQL Statement\" is a vulnerability that occurs when an application uses user input to construct SQL queries without properly sanitizing it. This can allow an attacker to manipulate the SQL query to perform unauthorized actions, such as viewing, modifying, or deleting data.\n\nIn Java, this vulnerability can occur when using the `executeUpdate` method of a `Statement` object with a string that includes user input. For example, the following code is vulnerable to SQL injection:\n\n```java\nString logQuery = \"UPDATE logs SET message = '\" + userInput + \"' WHERE id = \" + logId;\nstatement.executeUpdate(logQuery);\n```\n\nIn this code, if `userInput` or `logId` includes malicious SQL code, it could be executed by the database.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should use parameterized queries or prepared statements, which can ensure that user input is properly sanitized and cannot be used to manipulate the SQL query. \n\n## Source Code Fix Recommendation\n\nHere is how you can fix the above code using a `PreparedStatement`:\n\n```java\nString logQuery = \"UPDATE logs SET message = ? WHERE id = ?\";\nPreparedStatement preparedStatement = connection.prepareStatement(logQuery);\npreparedStatement.setString(1, userInput);\npreparedStatement.setInt(2, logId);\npreparedStatement.executeUpdate();\n```\n\nIn this code, `?` is a placeholder that will be replaced with the value provided by the `setString` and `setInt` methods. These methods ensure that the value is properly sanitized and cannot be used to manipulate the SQL query.\n\n## Library Dependencies\n\nThe above code requires the following library dependencies:\n\n- `java.sql.Connection`\n- `java.sql.PreparedStatement`\n\n## OWASP and CWE Links\n\n- [OWASP SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)\n- [CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')](https://cwe.mitre.org/data/definitions/89.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-89",
+                    "url": "https://cwe.mitre.org/data/definitions/89.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "8.0",
+                "tags": [
+                  "security",
+                  "CWE-89"
+                ]
+              }
+            },
+            {
+              "id": "afd3d049-5458-30a1-91b2-765ede940b54",
+              "name": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe `@RequestMapping` annotation in Spring MVC is used to map web requests onto specific handler classes and handler methods. When the HTTP method is not specified in the `@RequestMapping` annotation, it can handle all types of HTTP requests (GET, POST, PUT, DELETE, etc.). This can potentially make the application vulnerable to Cross-Site Request Forgery (CSRF) attacks. In a CSRF attack, an attacker tricks a victim into performing actions on their behalf on a web application in which they're authenticated.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to specify the HTTP method in the `@RequestMapping` annotation. This can be done by using the `method` attribute of the `@RequestMapping` annotation and setting it to the appropriate `RequestMethod` enum (e.g., `RequestMethod.GET`, `RequestMethod.POST`, etc.). \n\n## Source Code Fix Recommendation\n\nHere is an example of how to specify the HTTP method in the `@RequestMapping` annotation:\n\n```java\nimport org.springframework.http.MediaType;\nimport org.springframework.web.bind.annotation.RequestMapping;\nimport org.springframework.web.bind.annotation.RequestMethod;\n\n@RequestMapping(path = \"/JWT/secret/gettoken\", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)\n```\n\nIn this example, the `@RequestMapping` annotation is set to only handle GET requests.\n\n## Library Dependencies\n\nThe following libraries are required for the code example:\n\n- Spring Web MVC (spring-webmvc)\n- Spring Framework (spring-context)\n\n## References\n\n- [OWASP CSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html)\n- [CWE-352: Cross-Site Request Forgery (CSRF)](https://cwe.mitre.org/data/definitions/352.html)\n\nPlease note that the links provided are valid and active for anonymous users at the time of writing this report."
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-352",
+                    "url": "https://cwe.mitre.org/data/definitions/352.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-352"
+                ]
+              }
+            },
+            {
+              "id": "b10608b2-c776-308b-8475-dd215d3ef518",
+              "name": "Unsecured Cookie Detected",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"Unsecured Cookie Detected\" is a vulnerability that occurs when a web application does not set the secure flag on a sensitive cookie. In a secure cookie, the browser will only send the cookie over an encrypted HTTPS connection. If the secure flag is not set, the cookie can be transmitted over an unencrypted HTTP connection, where it is vulnerable to interception and tampering.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should always set the secure flag on any cookie that carries sensitive information. This ensures that the cookie will only be sent over an encrypted connection, protecting it from interception and tampering.\n\n## Source Code Fix Recommendation\n\nHere is how you can set the secure flag on a cookie in Java:\n\n```java\nimport javax.servlet.http.Cookie;\n\nCookie cookie = new Cookie(\"name\", \"value\");\ncookie.setSecure(true);\nresponse.addCookie(cookie);\n```\n\n## Library Dependencies\n\nThe code example requires the following library:\n\n- Java Servlet API (`javax.servlet-api`)\n\n## References\n\n- [CWE-614: Sensitive Cookie in HTTPS Session Without 'Secure' Attribute](https://cwe.mitre.org/data/definitions/614.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-614",
+                    "url": "https://cwe.mitre.org/data/definitions/614.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-614"
+                ]
+              }
+            },
+            {
+              "id": "b217c1fe-3a82-3c27-b200-106220625f36",
+              "name": "'HttpOnly' flag not set for cookie vulnerability",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe 'HttpOnly' flag not set for cookie vulnerability in Java programming language refers to a situation where a cookie is created without the 'HttpOnly' flag. This makes the cookie accessible via client-side scripts, which could potentially lead to unauthorized access or cookie theft through cross-site scripting (XSS) attacks.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to set the 'HttpOnly' flag for all cookies. This will make the cookie inaccessible to client-side scripts, thus reducing the risk of XSS attacks.\n\n## Source Code Fix Recommendation\n\nHere is how you can set the 'HttpOnly' flag for a cookie in Java:\n\n```java\nimport javax.servlet.http.Cookie;\n\nCookie cookie = new Cookie(\"key\", \"value\");\ncookie.setHttpOnly(true);\nresponse.addCookie(cookie);\n```\n\n## Library Dependencies\n\nThe above code example requires the following library dependency:\n\n- `javax.servlet-api` for `javax.servlet.http.Cookie` and `javax.servlet.http.HttpServletResponse`.\n\n## References\n\n- [OWASP Testing for Cookies attributes](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes)\n\n## Matching CWE\n\n- [CWE-1004: Sensitive Cookie Without 'HttpOnly' Flag](https://cwe.mitre.org/data/definitions/1004.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-1004",
+                    "url": "https://cwe.mitre.org/data/definitions/1004.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-1004"
+                ]
+              }
+            },
+            {
+              "id": "b60a43c3-5c03-392f-8fd8-8dad4f4a5f32",
+              "name": "HTTPServletRequest User Input Trust Boundary Violation Vulnerability",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"HTTPServletRequest User Input Trust Boundary Violation Vulnerability\" is a security flaw in Java programming language that occurs when an application does not properly validate user input before using it in the HTTPServletRequest. This can lead to various security issues such as Cross-Site Scripting (XSS), SQL Injection, and other injection attacks.\n\nIn the provided code snippet, the application is setting a session attribute \"basicAuth\" with a value of `basicAuth` which is not validated or sanitized before use. This can lead to potential security risks if `basicAuth` contains malicious input.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to always validate and sanitize user input before using it in your application. This can be done using various input validation techniques and libraries available in Java.\n\nAlso, avoid storing sensitive information in session attributes as they can be easily manipulated by attackers. If it's necessary to store such information, make sure it's properly encrypted and decrypted when used.\n\n## Source Code Fix Recommendation\n\nAssuming `basicAuth` is a String, you can use the `StringEscapeUtils.escapeHtml4()` method from Apache Commons Text library to sanitize the input:\n\n```java\nimport org.apache.commons.text.StringEscapeUtils;\n\n// ...\n\nString safeBasicAuth = StringEscapeUtils.escapeHtml4(basicAuth);\nrequest.getSession().setAttribute(\"basicAuth\", safeBasicAuth);\n```\n\n## Library Dependencies\n\n- Java Servlet API\n- Apache Commons Text\n\n## References\n\n- [OWASP Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)\n- [OWASP Cross-Site Scripting (XSS)](https://owasp.org/www-community/attacks/xss/)\n- [CWE-20: Improper Input Validation](https://cwe.mitre.org/data/definitions/20.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-501",
+                    "url": "https://cwe.mitre.org/data/definitions/501.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-501"
+                ]
+              }
+            },
+            {
+              "id": "bf081a1b-9e78-31ab-9baf-1286c3e58629",
+              "name": "JWT Token Vulnerability Identified",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nJWT (JSON Web Token) is a compact, URL-safe means of representing claims to be transferred between two parties. The claims in a JWT are encoded as a JSON object that is used as the payload of a JSON Web Signature (JWS) structure or as the plaintext of a JSON Web Encryption (JWE) structure, enabling the claims to be digitally signed or integrity protected with a Message Authentication Code (MAC) and/or encrypted.\n\nA vulnerability in JWT can occur when the `alg` header is set to `none` and the signature is removed. This allows an attacker to modify the payload and send it to the server, which will accept it as a valid token.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should:\n\n- Never trust user input: Always validate the `alg` in the header of the JWT.\n- Use a library that supports the latest JWT, JWS, and JWE standards.\n- Use strong, unique secrets for signing JWTs.\n- Keep JWTs short-lived and implement token revocation.\n\n## Source Code Fix Recommendation\n\nHere is a simple example of how to validate the `alg` in the header of a JWT using the `java-jwt` library:\n\n```java\nimport com.auth0.jwt.JWT;\nimport com.auth0.jwt.algorithms.Algorithm;\nimport com.auth0.jwt.exceptions.JWTDecodeException;\nimport com.auth0.jwt.interfaces.DecodedJWT;\n\npublic class JWTValidator {\n    public static void main(String[] args) {\n        String token = \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\";\n        try {\n            DecodedJWT jwt = JWT.decode(token);\n            if (!\"HS256\".equals(jwt.getAlgorithm())) {\n                throw new JWTDecodeException(\"Invalid algorithm\");\n            }\n            // Continue processing with the validated JWT...\n        } catch (JWTDecodeException exception){\n            // Invalid token\n        }\n    }\n}\n```\n\n## Library Dependencies\n\n- `java-jwt` library\n\n## References\n\n- [OWASP JWT Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_Cheat_Sheet_for_Java.html)\n- [CWE-347: Improper Verification of Cryptographic Signature](https://cwe.mitre.org/data/definitions/347.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-321",
+                    "url": "https://cwe.mitre.org/data/definitions/321.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "8.0",
+                "tags": [
+                  "security",
+                  "CWE-321"
+                ]
+              }
+            },
+            {
+              "id": "c80576a7-8f4b-3010-b2e4-a2b4aec0e70b",
+              "name": "Insecure Use of Non-Cryptographically Strong RNGs in Password or Token Generation",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"Insecure Use of Non-Cryptographically Strong RNGs in Password or Token Generation\" is a vulnerability that occurs when a developer uses a non-cryptographically strong Random Number Generator (RNG) for generating passwords, tokens, or other secret values. In Java, the `java.util.Random` class is not suitable for generating such values because it's predictable and can be easily brute-forced.\n\nIn the provided code snippet, a secret value is being selected from an array using `java.util.Random`. This is insecure because an attacker could predict the next value generated by the RNG and thus predict the secret value.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, use a cryptographically strong RNG. In Java, you can use `java.security.SecureRandom` instead of `java.util.Random`. `SecureRandom` is designed to be unpredictable and suitable for generating sensitive values.\n\n## Source Code Fix Recommendation\n\nHere is how you can fix the provided code snippet:\n\n```java\nimport java.security.SecureRandom;\n\n// ...\n\nString secret = SECRETS[new SecureRandom().nextInt(SECRETS.length)];\n```\n\n## Library Dependencies\n\nThe code example requires no additional library dependencies. The `java.security.SecureRandom` class is part of the Java standard library.\n\n## References\n\n- [OWASP - Insecure Randomness](https://owasp.org/www-community/vulnerabilities/Insecure_Randomness)\n- [CWE-338: Use of Cryptographically Weak PRNG](https://cwe.mitre.org/data/definitions/338.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-330",
+                    "url": "https://cwe.mitre.org/data/definitions/330.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-330"
+                ]
+              }
+            },
+            {
+              "id": "ce4af615-c618-3693-9094-7015e59c9176",
+              "name": "Potential SQL Injection Detected: Use Prepared Statements for Sanitization",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"Potential SQL Injection Detected: Use Prepared Statements for Sanitization\" is a vulnerability that occurs when an application includes untrusted data in a SQL query. This can allow an attacker to manipulate the query, leading to unauthorized data access, data corruption, or data loss. In Java, this vulnerability can occur when using the `execute` method of a `Statement` object with a string that includes untrusted data.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, use Prepared Statements or Parameterized Queries. These methods ensure that untrusted data is properly escaped, preventing it from being interpreted as part of the SQL query. Avoid using string concatenation to build SQL queries.\n\n## Source Code Fix Recommendation\n\nInstead of:\n\n```java\nString queryInjection = \"SELECT * FROM users WHERE name = '\" + userName + \"'\";\nstatement.execute(queryInjection);\n```\n\nUse:\n\n```java\nString query = \"SELECT * FROM users WHERE name = ?\";\nPreparedStatement preparedStatement = connection.prepareStatement(query);\npreparedStatement.setString(1, userName);\npreparedStatement.executeQuery();\n```\n\n## Library Dependencies\n\nThe code example requires the following library dependencies:\n\n- `java.sql.Connection`\n- `java.sql.PreparedStatement`\n\n## OWASP Resources\n\n- [OWASP SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)\n- [OWASP Java Encoder library](https://owasp.org/www-project-java-encoder/)\n\n## Common Weakness Enumeration (CWE)\n\n- [CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')](https://cwe.mitre.org/data/definitions/89.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-89",
+                    "url": "https://cwe.mitre.org/data/definitions/89.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "8.0",
+                "tags": [
+                  "security",
+                  "CWE-89"
+                ]
+              }
+            },
+            {
+              "id": "d70aab63-7f1f-329b-91bf-80275e38b637",
+              "name": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nIn Java, the `@RequestMapping` annotation is used to map web requests onto specific handler classes and/or handler methods. If the HTTP method is not specified in the `@RequestMapping` annotation, it can potentially make the application vulnerable to Cross-Site Request Forgery (CSRF) attacks. CSRF is an attack that tricks the victim into submitting a malicious request. It uses the identity and privileges of the victim to perform an undesired function on their behalf.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to always specify the HTTP method in the `@RequestMapping` annotation. This can be done by using the `method` attribute of the `@RequestMapping` annotation and setting it to one of the `RequestMethod` enumerations (GET, POST, PUT, DELETE, etc.). This will ensure that the handler method is only invoked for requests with the specified HTTP method, reducing the attack surface for CSRF attacks.\n\n## Source Code Fix Recommendation\n\nHere is an example of how to specify the HTTP method in the `@RequestMapping` annotation:\n\n```java\nimport org.springframework.web.bind.annotation.RequestMapping;\nimport org.springframework.web.bind.annotation.RequestMethod;\n\n@RequestMapping(value = \"/endpoint\", method = RequestMethod.POST)\npublic void handlePostRequest() {\n    // handler code\n}\n```\n\n## Library Dependencies\n\nThe above code example requires the following library dependencies:\n\n- Spring Web MVC (`spring-webmvc`)\n\n## References\n\n- [OWASP CSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html)\n- [OWASP Top 10-2017 A8-Insecure Deserialization](https://owasp.org/www-project-top-ten/2017/A8_2017-Insecure_Deserialization)\n\n## Matching CWE\n\n- [CWE-352: Cross-Site Request Forgery (CSRF)](https://cwe.mitre.org/data/definitions/352.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-352",
+                    "url": "https://cwe.mitre.org/data/definitions/352.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-352"
+                ]
+              }
+            },
+            {
+              "id": "e1d64eb2-df28-3340-9581-d1f9d711210a",
+              "name": "SQL Injection Risk Detected due to Formatted String in SQL Statement",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"SQL Injection Risk Detected due to Formatted String in SQL Statement\" is a vulnerability that occurs when an application uses user input to construct SQL queries without properly sanitizing or escaping the input. This can allow an attacker to manipulate the SQL query to perform unauthorized actions, such as viewing, modifying, or deleting data.\n\nIn the provided code snippet, the `query` variable is passed directly to the `executeQuery` method of the `statement` object. If the `query` variable contains user input, this could lead to a SQL injection vulnerability.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should use parameterized queries or prepared statements, which can ensure that user input is properly escaped and cannot be used to manipulate the SQL query. You should also validate and sanitize user input to ensure it does not contain malicious data.\n\n## Source Code Fix Recommendation\n\nHere is a recommended fix using a `PreparedStatement`:\n\n```java\nString query = \"SELECT * FROM table WHERE column = ?\";\nPreparedStatement pstmt = connection.prepareStatement(query);\npstmt.setString(1, userInput);\nResultSet results = pstmt.executeQuery();\n```\n\nIn this code, `?` is a placeholder that is replaced by the `userInput` variable using the `setString` method. This ensures that the user input is properly escaped and cannot be used to manipulate the SQL query.\n\n## Library Dependencies\n\nThe code example requires the following library dependencies:\n\n- `java.sql.Connection`\n- `java.sql.PreparedStatement`\n- `java.sql.ResultSet`\n\n## OWASP Resources\n\n- [OWASP SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)\n- [OWASP Java Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Java_Security_Cheat_Sheet.html)\n\n## Common Weakness Enumeration (CWE)\n\n- [CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')](https://cwe.mitre.org/data/definitions/89.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-89",
+                    "url": "https://cwe.mitre.org/data/definitions/89.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-89"
+                ]
+              }
+            },
+            {
+              "id": "e50535f2-9ad0-3c5b-9658-3543ed701a81",
+              "name": "\"Java Object Deserialization Vulnerability with ObjectInputStream\"",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nJava Object Deserialization Vulnerability with ObjectInputStream is a critical security vulnerability that occurs when an application deserializes untrusted data without proper validation. This vulnerability can lead to various attacks such as remote code execution, denial of service, or privilege escalation.\n\nIn Java, the `ObjectInputStream` class is used to deserialize objects. However, it does not validate the serialized object, which means that an attacker can manipulate the serialized data to inject malicious code or cause the application to behave unexpectedly.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should avoid deserializing untrusted data. If deserialization is necessary, you should use safe deserialization mechanisms that validate the data before deserializing it. \n\nYou should also follow the principle of least privilege, which means that your application should only have the minimum permissions necessary to perform its tasks. This can limit the potential damage if an attacker exploits this vulnerability.\n\n## Source Code Fix Recommendation\n\nInstead of using `ObjectInputStream` directly, you can create a subclass that overrides the `resolveClass()` method to validate the classes before deserialization. Here is an example:\n\n```java\nclass SafeObjectInputStream extends ObjectInputStream {\n    private final ClassLoader classLoader;\n\n    public SafeObjectInputStream(InputStream in, ClassLoader classLoader) throws IOException {\n        super(in);\n        this.classLoader = classLoader;\n    }\n\n    @Override\n    protected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException {\n        String name = desc.getName();\n        try {\n            return Class.forName(name, false, classLoader);\n        } catch (ClassNotFoundException ex) {\n            throw new InvalidClassException(\"Unauthorized deserialization attempt\", name);\n        }\n    }\n}\n```\n\nIn this example, `resolveClass()` checks if the class is allowed to be deserialized by trying to load it from a specific class loader. If the class cannot be loaded, it throws an `InvalidClassException`.\n\n## Library Dependencies\n\nThe code example does not require any additional library dependencies. It uses classes (`ObjectInputStream`, `ByteArrayInputStream`, `ObjectStreamClass`, `InvalidClassException`) that are part of the standard Java library.\n\n## References\n\n- [OWASP Deserialization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html)\n- [CWE-502: Deserialization of Untrusted Data](https://cwe.mitre.org/data/definitions/502.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-502",
+                    "url": "https://cwe.mitre.org/data/definitions/502.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-502"
+                ]
+              }
+            },
+            {
+              "id": "e50e7256-f55a-36b8-ba14-7fdb6d28c7c5",
+              "name": "\"Unsecured Default Session Middleware: Vulnerable to Cross-Site Scripting Attacks\"",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nUnsecured Default Session Middleware: Vulnerable to Cross-Site Scripting Attacks is a vulnerability that occurs when an application does not properly validate input before returning it to the user. This can allow an attacker to inject malicious scripts into the web page viewed by the user, leading to Cross-Site Scripting (XSS) attacks. In Java, this vulnerability can occur when using the `Cookie` class to set cookies without proper sanitization or encoding.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to:\n\n- Always validate and sanitize user input before using it.\n- Use HTTPOnly cookies to prevent scripts from accessing the cookies.\n- Use secure cookies (transmitted over HTTPS only) to prevent interception of the cookie data.\n- Encode the output to ensure that any input is safe to display.\n\n## Source Code Fix Recommendation\n\nHere is a simple fix for the given code:\n\n```java\nimport javax.servlet.http.Cookie;\nimport java.net.URLEncoder;\nimport java.nio.charset.StandardCharsets;\n\nString cookieValue = URLEncoder.encode(\"\", StandardCharsets.UTF_8.toString());\nCookie cookie = new Cookie(COOKIE_NAME, cookieValue);\ncookie.setHttpOnly(true);\ncookie.setSecure(true);\n```\n\n## Library Dependencies\n\nThe code example requires the following library dependencies:\n\n- `javax.servlet-api` for the `Cookie` class.\n\n## References\n\n- [OWASP XSS (Cross Site Scripting) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)\n- [OWASP Java Encoding Project](https://owasp.org/www-project-java-encoder/)\n- [CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')](https://cwe.mitre.org/data/definitions/79.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-319",
+                    "url": "https://cwe.mitre.org/data/definitions/319.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-319"
+                ]
+              }
+            },
+            {
+              "id": "e9c8963c-149c-31ad-a855-a0a348c8fbf8",
+              "name": "SQL Injection Risk Detected due to Formatted String in SQL Statement",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"SQL Injection Risk Detected due to Formatted String in SQL Statement\" is a vulnerability that occurs when an application uses user input to construct SQL queries without properly sanitizing or escaping the input. This can allow an attacker to manipulate the SQL query to perform unauthorized actions, such as viewing, modifying, or deleting data.\n\nIn the provided code snippet, the `query` variable is passed directly to the `executeQuery` method of the `statement` object. If the `query` variable contains user input, this could lead to a SQL injection vulnerability.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should use parameterized queries or prepared statements, which can ensure that user input is properly escaped and cannot be used to manipulate the SQL query. You should also validate and sanitize user input to ensure it does not contain malicious data.\n\n## Source Code Fix Recommendation\n\nHere is a recommended fix using a `PreparedStatement`:\n\n```java\nString query = \"SELECT * FROM table WHERE column = ?\";\nPreparedStatement pstmt = connection.prepareStatement(query);\npstmt.setString(1, userInput);\nResultSet results = pstmt.executeQuery();\n```\n\nIn this code, `?` is a placeholder that is replaced by the `userInput` variable using the `setString` method. This ensures that the user input is properly escaped and cannot be used to manipulate the SQL query.\n\n## Library Dependencies\n\nThe code example requires the following library dependencies:\n\n- `java.sql.Connection`\n- `java.sql.PreparedStatement`\n- `java.sql.ResultSet`\n\n## OWASP Resources\n\n- [OWASP SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)\n- [OWASP Java Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Java_Security_Cheat_Sheet.html)\n\n## Common Weakness Enumeration (CWE)\n\n- [CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')](https://cwe.mitre.org/data/definitions/89.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-89",
+                    "url": "https://cwe.mitre.org/data/definitions/89.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "8.0",
+                "tags": [
+                  "security",
+                  "CWE-89"
+                ]
+              }
+            },
+            {
+              "id": "ea20e753-0245-3527-8640-4e14fac43f24",
+              "name": "Insecure Use of Non-Cryptographically Strong RNGs in Password or Token Generation",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"Insecure Use of Non-Cryptographically Strong RNGs in Password or Token Generation\" is a vulnerability that occurs when a developer uses a non-cryptographically strong Random Number Generator (RNG) for generating passwords, tokens, or other sensitive data. In Java, the `java.util.Random` class is not suitable for generating secure random numbers because it's predictable and can be easily brute-forced.\n\nIn the provided code snippet, `new Random().nextInt(HashingAssignment.SECRETS.length)` is used to generate a random index for the `SECRETS` array. An attacker could predict the output of `Random().nextInt()` and potentially gain unauthorized access to sensitive data.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, use a cryptographically strong RNG. In Java, you can use the `java.security.SecureRandom` class, which provides a cryptographically strong random number generator (RNG).\n\n## Source Code Fix Recommendation\n\nReplace the `java.util.Random` with `java.security.SecureRandom`:\n\n```java\nimport java.security.SecureRandom;\n\n// ...\n\nHashingAssignment.SECRETS[new SecureRandom().nextInt(HashingAssignment.SECRETS.length)];\n```\n\n## Library Dependencies\n\nThe code example requires the following library dependencies:\n\n- `java.security.SecureRandom`\n\n## References\n\n- [OWASP - Insecure Randomness](https://owasp.org/www-community/vulnerabilities/Insecure_Randomness)\n- [CWE-338: Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG)](https://cwe.mitre.org/data/definitions/338.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-330",
+                    "url": "https://cwe.mitre.org/data/definitions/330.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-330"
+                ]
+              }
+            },
+            {
+              "id": "ebafa219-321d-33c3-9bb4-e1a5209fbf32",
+              "name": "SQL Injection Risk Detected due to Formatted String in SQL Statement",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"SQL Injection Risk Detected due to Formatted String in SQL Statement\" is a vulnerability that occurs when an application uses user input to construct SQL queries without properly sanitizing or escaping it. This can allow an attacker to manipulate the SQL query to perform unauthorized actions, such as viewing, modifying, or deleting data.\n\nIn the provided code snippet, the `executeQuery()` method is called without any input sanitization or parameterization, which could potentially allow for SQL injection if the query string includes user input.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to use parameterized queries or prepared statements, which can ensure that user input is properly sanitized and escaped before it is included in a SQL query. This can prevent an attacker from being able to manipulate the SQL query.\n\n## Source Code Fix Recommendation\n\nHere is an example of how you can modify the provided code snippet to use a prepared statement:\n\n```java\nString sql = \"SELECT * FROM users WHERE username = ?\";\nPreparedStatement statement = connection.prepareStatement(sql);\nstatement.setString(1, username);\nResultSet results = statement.executeQuery();\n```\n\nIn this example, the `?` is a placeholder that gets replaced with the value of `username` when the query is executed. Because the value is set using the `setString()` method, it is automatically sanitized and escaped, preventing SQL injection.\n\n## Library Dependencies\n\nThe code example requires the following library dependencies:\n\n- `java.sql.Connection`\n- `java.sql.PreparedStatement`\n- `java.sql.ResultSet`\n\n## OWASP Resources\n\n- [OWASP SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)\n- [OWASP Java Encoder Project](https://owasp.org/www-project-java-encoder/)\n\n## Common Weakness Enumeration (CWE)\n\n- [CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')](https://cwe.mitre.org/data/definitions/89.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-89",
+                    "url": "https://cwe.mitre.org/data/definitions/89.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "8.0",
+                "tags": [
+                  "security",
+                  "CWE-89"
+                ]
+              }
+            },
+            {
+              "id": "f106d05d-5e66-3bae-bb6d-1f5b840f79d7",
+              "name": "'HttpOnly' flag not set for cookie vulnerability",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe 'HttpOnly' flag not set for cookie vulnerability in Java programming language refers to a situation where a cookie is created without the 'HttpOnly' flag. This makes the cookie accessible via client-side scripts, which could potentially lead to unauthorized access or cookie theft through cross-site scripting (XSS) attacks.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to set the 'HttpOnly' flag for all cookies. This will make the cookie inaccessible to client-side scripts, thus reducing the risk of XSS attacks.\n\n## Source Code Fix Recommendation\n\nHere is how you can set the 'HttpOnly' flag for a cookie in Java:\n\n```java\nimport javax.servlet.http.Cookie;\n\nCookie cookie = new Cookie(\"key\", \"value\");\ncookie.setHttpOnly(true);\nresponse.addCookie(cookie);\n```\n\n## Library Dependencies\n\nThe above code example requires the following library dependency:\n\n- `javax.servlet-api` for `javax.servlet.http.Cookie` and `javax.servlet.http.HttpServletResponse`.\n\n## References\n\n- [OWASP Testing for Cookies attributes](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes)\n\n## Matching CWE\n\n- [CWE-1004: Sensitive Cookie Without 'HttpOnly' Flag](https://cwe.mitre.org/data/definitions/1004.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-1004",
+                    "url": "https://cwe.mitre.org/data/definitions/1004.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-1004"
+                ]
+              }
+            },
+            {
+              "id": "f171bf4c-5d7e-3486-9179-d3b19c27ce56",
+              "name": "'HttpOnly' flag not set for cookie vulnerability",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe 'HttpOnly' flag not set for cookie vulnerability in Java programming language refers to a situation where a cookie is created without the 'HttpOnly' flag. This makes the cookie accessible via client-side scripts, which could potentially lead to unauthorized access or cookie theft through cross-site scripting (XSS) attacks.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to set the 'HttpOnly' flag for all cookies. This will make the cookie inaccessible to client-side scripts, thus reducing the risk of XSS attacks.\n\n## Source Code Fix Recommendation\n\nHere is how you can set the 'HttpOnly' flag for a cookie in Java:\n\n```java\nimport javax.servlet.http.Cookie;\n\nCookie cookie = new Cookie(\"key\", \"value\");\ncookie.setHttpOnly(true);\nresponse.addCookie(cookie);\n```\n\n## Library Dependencies\n\nThe above code example requires the following library dependency:\n\n- `javax.servlet-api` for `javax.servlet.http.Cookie` and `javax.servlet.http.HttpServletResponse`.\n\n## References\n\n- [OWASP Testing for Cookies attributes](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes)\n\n## Matching CWE\n\n- [CWE-1004: Sensitive Cookie Without 'HttpOnly' Flag](https://cwe.mitre.org/data/definitions/1004.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-1004",
+                    "url": "https://cwe.mitre.org/data/definitions/1004.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-1004"
+                ]
+              }
+            },
+            {
+              "id": "f59adc95-018b-3799-9be9-e4cbd898ef96",
+              "name": "User Input Manipulation Vulnerability in File Path Control",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"User Input Manipulation Vulnerability in File Path Control\" is a security vulnerability that occurs when an application does not properly validate user-supplied input before using it in file operations. This can lead to various security issues such as path traversal attacks, arbitrary file read/write operations, and code execution.\n\nIn the provided Java code, the application is using the original filename from a multipart file upload request to create a new file. If an attacker can control the filename, they could potentially manipulate the file path to overwrite any file on the system that the application has access to.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should always validate and sanitize user-supplied input before using it in file operations. This includes:\n\n- Checking the input against a whitelist of allowed characters.\n- Rejecting input that contains special characters or sequences that could be used in a path traversal attack (e.g., \"../\").\n- Using a library or built-in function that creates safe file paths.\n\n## Source Code Fix Recommendation\n\nHere is a recommended fix for the provided code:\n\n```java\nimport org.apache.commons.io.FilenameUtils;\n\n// ...\n\nString baseName = FilenameUtils.getBaseName(multipartFile.getOriginalFilename());\nString extension = FilenameUtils.getExtension(multipartFile.getOriginalFilename());\n\n// Use a whitelist for extension\nif (!extension.matches(\"[a-zA-Z0-9]+\")) {\n    throw new IllegalArgumentException(\"Invalid file extension\");\n}\n\nFile file = new File(destinationDir, baseName + \".\" + extension);\nlog.debug(\"File saved to {}\", file);\n```\n\nIn this fix, we're using the `FilenameUtils` class from the Apache Commons IO library to extract the base name and extension from the original filename. We then validate the extension against a whitelist of allowed characters before creating the new file.\n\n## Library Dependencies\n\nThe provided code and the recommended fix require the following library dependencies:\n\n- Apache Commons IO\n- SLF4J (for the `log.debug` statement)\n\n## OWASP Resources\n\n- [OWASP Unrestricted File Upload](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload)\n\n## Common Weakness Enumeration (CWE)\n\n- [CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')](https://cwe.mitre.org/data/definitions/22.html)\n- [CWE-73: External Control of File Name or Path](https://cwe.mitre.org/data/definitions/73.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-23",
+                    "url": "https://cwe.mitre.org/data/definitions/23.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "8.0",
+                "tags": [
+                  "security",
+                  "CWE-23"
+                ]
+              }
+            },
+            {
+              "id": "f60e13a8-fb27-376c-9aae-0aaa4a5ad073",
+              "name": "Potential SQL Injection Vulnerability in Manually-Constructed SQL Strings",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe code snippet provided is vulnerable to SQL Injection attacks. This is because it constructs a SQL query by concatenating user-supplied input directly into the query string. An attacker could manipulate the `username_login` or `password_login` variables to alter the SQL query, potentially gaining unauthorized access to data or performing other malicious actions.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should use parameterized queries or prepared statements, which can ensure that user-supplied input is always treated as literal data, not part of the SQL command. This prevents an attacker from being able to manipulate the SQL query.\n\n## Source Code Fix Recommendation\n\nHere is a fixed version of the code using `PreparedStatement`:\n\n```java\nString query = \"select password from challenge_users where userid = ? and password = ?\";\nPreparedStatement pstmt = connection.prepareStatement(query);\npstmt.setString(1, username_login);\npstmt.setString(2, password_login);\nResultSet rs = pstmt.executeQuery();\n```\n\nThis code assumes that you have a valid `java.sql.Connection` object named `connection`.\n\n## Library Dependencies\n\nThe code example requires the following library dependencies:\n\n- `java.sql.Connection`\n- `java.sql.PreparedStatement`\n- `java.sql.ResultSet`\n\n## OWASP Resources\n\n- [OWASP SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)\n\n## Common Weakness Enumeration (CWE)\n\n- [CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')](https://cwe.mitre.org/data/definitions/89.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-89",
+                    "url": "https://cwe.mitre.org/data/definitions/89.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "8.0",
+                "tags": [
+                  "security",
+                  "CWE-89"
+                ]
+              }
+            },
+            {
+              "id": "fe423ad0-43a7-3ae5-9815-d6927fe19940",
+              "name": "SQL Injection Risk Detected due to Formatted String in SQL Statement",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"SQL Injection Risk Detected due to Formatted String in SQL Statement\" is a vulnerability that occurs when an application uses user input to construct SQL queries without properly sanitizing or escaping the input. This can allow an attacker to manipulate the SQL query to perform unauthorized actions, such as viewing, modifying, or deleting data.\n\nIn the provided code snippet, the `query` variable is passed directly to the `executeQuery` method of the `statement` object. If the `query` variable contains user input, this could lead to a SQL injection vulnerability.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should use parameterized queries or prepared statements, which can ensure that user input is properly escaped and cannot be used to manipulate the SQL query. You should also validate and sanitize user input to ensure it does not contain malicious data.\n\n## Source Code Fix Recommendation\n\nHere is a recommended fix using a `PreparedStatement`:\n\n```java\nString query = \"SELECT * FROM table WHERE column = ?\";\nPreparedStatement pstmt = connection.prepareStatement(query);\npstmt.setString(1, userInput);\nResultSet results = pstmt.executeQuery();\n```\n\nIn this code, `?` is a placeholder that is replaced by the `userInput` variable using the `setString` method. This ensures that the user input is properly escaped and cannot be used to manipulate the SQL query.\n\n## Library Dependencies\n\nThe code example requires the following library dependencies:\n\n- `java.sql.Connection`\n- `java.sql.PreparedStatement`\n- `java.sql.ResultSet`\n\n## OWASP Resources\n\n- [OWASP SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)\n- [OWASP Java Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Java_Security_Cheat_Sheet.html)\n\n## Common Weakness Enumeration (CWE)\n\n- [CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')](https://cwe.mitre.org/data/definitions/89.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-89",
+                    "url": "https://cwe.mitre.org/data/definitions/89.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "8.0",
+                "tags": [
+                  "security",
+                  "CWE-89"
+                ]
+              }
+            },
+            {
+              "id": "ff90fcae-fdb4-39b5-b8f7-3b2522285268",
+              "name": "SQL Injection Risk Detected due to Formatted String in SQL Statement",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"SQL Injection Risk Detected due to Formatted String in SQL Statement\" is a vulnerability that occurs when an application uses user input to construct SQL queries without properly sanitizing or escaping the input. This can allow an attacker to manipulate the SQL query to perform unauthorized actions, such as viewing, modifying, or deleting data.\n\nIn the provided code snippet, the `query` variable is passed directly to the `executeQuery` method of the `statement` object. If the `query` variable contains user input, this could lead to a SQL injection vulnerability.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should use parameterized queries or prepared statements, which can ensure that user input is properly escaped and cannot be used to manipulate the SQL query. You should also validate and sanitize user input to ensure it does not contain malicious data.\n\n## Source Code Fix Recommendation\n\nHere is a recommended fix using a `PreparedStatement`:\n\n```java\nString query = \"SELECT * FROM table WHERE column = ?\";\nPreparedStatement pstmt = connection.prepareStatement(query);\npstmt.setString(1, userInput);\nResultSet results = pstmt.executeQuery();\n```\n\nIn this code, `?` is a placeholder that is replaced by the `userInput` variable using the `setString` method. This ensures that the user input is properly escaped and cannot be used to manipulate the SQL query.\n\n## Library Dependencies\n\nThe code example requires the following library dependencies:\n\n- `java.sql.Connection`\n- `java.sql.PreparedStatement`\n- `java.sql.ResultSet`\n\n## OWASP Resources\n\n- [OWASP SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)\n- [OWASP Java Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Java_Security_Cheat_Sheet.html)\n\n## Common Weakness Enumeration (CWE)\n\n- [CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')](https://cwe.mitre.org/data/definitions/89.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-89",
+                    "url": "https://cwe.mitre.org/data/definitions/89.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-89"
+                ]
+              }
+            }
+          ],
+          "language": "en-US",
+          "contents": [
+            "localizedData",
+            "nonLocalizedData"
+          ],
+          "isComprehensive": false
+        }
+      },
+      "language": "en-US",
+      "results": [
+        {
+          "ruleId": "bf081a1b-9e78-31ab-9baf-1286c3e58629",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "JWT Token Vulnerability Identified"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/it/java/org/owasp/webgoat/playwright/webwolf/JwtUITest.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 10,
+                  "endLine": 31,
+                  "endColumn": 122,
+                  "snippet": {
+                    "text": "        \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\";"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "e78fdb76634552d3ff9c9e11963b28603ba0b1a455d078fa0d8163e122d4b741",
+            "glog-pfp-ruleFileCode/v1": "5eb3cad6b2f4d6758bbc7f58c3b7aed456a9b88134e37cc1690ad90e44c13d56"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "5eb3cad6b2f4d6758bbc7f58c3b7aed456a9b88134e37cc1690ad90e44c13d56"
+          }
+        },
+        {
+          "ruleId": "645d0e84-4587-3ab6-94c2-d54f702248c4",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/container/service/LabelDebugService.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 35,
+                  "startColumn": 4,
+                  "endLine": 35,
+                  "endColumn": 18,
+                  "snippet": {
+                    "text": "  @RequestMapping(path = URL_DEBUG_LABELS_MVC, produces = MediaType.APPLICATION_JSON_VALUE)"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "5269fe1d7264b8d9723273e08e4bfce81baecd76d03f0df6f6fe455875e7cc35",
+            "glog-pfp-ruleFileCode/v1": "7a2077989825a0550240a29bc7d6bbe1c9e20c00adb18f99cddc19318872c2d0"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "7a2077989825a0550240a29bc7d6bbe1c9e20c00adb18f99cddc19318872c2d0"
+          }
+        },
+        {
+          "ruleId": "1dc6dd7f-bbf4-3044-b095-0c59991fd8a3",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/container/service/LabelDebugService.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 48,
+                  "startColumn": 4,
+                  "endLine": 48,
+                  "endColumn": 18,
+                  "snippet": {
+                    "text": "  @RequestMapping("
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "55143c66544ddff8e8d35996e1b2fb6dd3327e44891d401f5d581378ff2bdd0d",
+            "glog-pfp-ruleFileCode/v1": "dddff662d998d8e40733126d677452ba67007a00e99cb1418b98fde11a9441ad"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "dddff662d998d8e40733126d677452ba67007a00e99cb1418b98fde11a9441ad"
+          }
+        },
+        {
+          "ruleId": "99e96353-6596-3524-bc66-428e593739c7",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/container/service/LessonMenuService.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 45,
+                  "startColumn": 4,
+                  "endLine": 45,
+                  "endColumn": 18,
+                  "snippet": {
+                    "text": "  @RequestMapping(path = URL_LESSONMENU_MVC, produces = \"application/json\")"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "3831d460f39cc0c1260dd0cd6eba3f37c8c8cd2a5b22ff43d252991beeb79b85",
+            "glog-pfp-ruleFileCode/v1": "e33d1529261bb0ba4e5213cfa72d457cd326fb89a3ee3164f774994b0dde19fc"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "e33d1529261bb0ba4e5213cfa72d457cd326fb89a3ee3164f774994b0dde19fc"
+          }
+        },
+        {
+          "ruleId": "08004c3b-1592-32f7-b6b8-e86bd4d23f99",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Method with 'RequestMapping' annotation lacks specified HTTP method, potentially exposing it to CSRF attacks."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/container/service/SessionService.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 22,
+                  "startColumn": 4,
+                  "endLine": 22,
+                  "endColumn": 18,
+                  "snippet": {
+                    "text": "  @RequestMapping(path = \"/service/enable-security.mvc\", produces = \"application/json\")"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "f6de077ed73e355117e37f0d2ebbf60123a1d36992db0877351dfb033396f548",
+            "glog-pfp-ruleFileCode/v1": "7cadfed26588bc1d477f807415ed8823bc53121d7a0281aba8fb74d8c1349a36"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "7cadfed26588bc1d477f807415ed8823bc53121d7a0281aba8fb74d8c1349a36"
+          }
+        },
+        {
+          "ruleId": "285fbcbd-72c5-389b-923c-98511520a773",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Insecure Use of Non-Cryptographically Strong RNGs in Password or Token Generation"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/challenges/challenge1/ImageServlet.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 37,
+                  "endLine": 21,
+                  "endColumn": 64,
+                  "snippet": {
+                    "text": "  public static final int PINCODE = new Random().nextInt(10000);"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "437591cedb999ed384992059ff6795a0beb197ad7e0251444b4bb0b2a7348652",
+            "glog-pfp-ruleFileCode/v1": "1119dca062aa8eb2d4fb15c3d3e2859552e9a980426191e66ff7f406e5305957"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "1119dca062aa8eb2d4fb15c3d3e2859552e9a980426191e66ff7f406e5305957"
+          }
+        },
+        {
+          "ruleId": "f60e13a8-fb27-376c-9aae-0aaa4a5ad073",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Potential SQL Injection Vulnerability in Manually-Constructed SQL Strings"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/challenges/challenge5/Assignment5.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 45,
+                  "startColumn": 15,
+                  "endLine": 49,
+                  "endColumn": 24,
+                  "snippet": {
+                    "text": "              \"select password from challenge_users where userid = '\"\n                  + username_login\n                  + \"' and password = '\"\n                  + password_login\n                  + \"'\");"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "fbb53d5218d725f70b5c61959addf9efa5da100a59d5f818994e72f2458812aa",
+            "glog-pfp-ruleFileCode/v1": "fc3c1825e778d145a4e5e7136b9ee21b2ffcdefe8f6c2559252c942ba8b0a662"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "fc3c1825e778d145a4e5e7136b9ee21b2ffcdefe8f6c2559252c942ba8b0a662"
+          }
+        },
+        {
+          "ruleId": "0d0990a8-eecd-35fc-8695-769fa373ae34",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "SQL Injection Risk Detected due to Formatted String in SQL Statement"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/challenges/challenge5/Assignment5.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 50,
+                  "startColumn": 29,
+                  "endLine": 50,
+                  "endColumn": 53,
+                  "snippet": {
+                    "text": "      ResultSet resultSet = statement.executeQuery();"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "0a3b1a576a310506c140278f5a334a00f57088a5be4dc9d79dedb04000ec4faf",
+            "glog-pfp-ruleFileCode/v1": "305188302392a42784418a81a93fdff4a368d937de5dd475531d469c8645b156"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "305188302392a42784418a81a93fdff4a368d937de5dd475531d469c8645b156"
+          }
+        },
+        {
+          "ruleId": "ea20e753-0245-3527-8640-4e14fac43f24",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Insecure Use of Non-Cryptographically Strong RNGs in Password or Token Generation"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/cryptography/EncodingAssignment.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 37,
+                  "startColumn": 37,
+                  "endLine": 37,
+                  "endColumn": 91,
+                  "snippet": {
+                    "text": "          HashingAssignment.SECRETS[new Random().nextInt(HashingAssignment.SECRETS.length)];"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "c29c564b6efb6c81c93632bda2ac08e58fb2b435f15de5f09204c855e3cb72f1",
+            "glog-pfp-ruleFileCode/v1": "9a47d2f145ed33a2c30b5af5f20c07460ea12fd29019a81a956d7f5af5c4ef77"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "9a47d2f145ed33a2c30b5af5f20c07460ea12fd29019a81a956d7f5af5c4ef77"
+          }
+        },
+        {
+          "ruleId": "b60a43c3-5c03-392f-8fd8-8dad4f4a5f32",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "HTTPServletRequest User Input Trust Boundary Violation Vulnerability"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/cryptography/EncodingAssignment.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 39,
+                  "startColumn": 54,
+                  "endLine": 39,
+                  "endColumn": 63,
+                  "snippet": {
+                    "text": "      request.getSession().setAttribute(\"basicAuth\", basicAuth);"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "244d9681735bff8fc38a734616f4d942d5fda4c7a7486f5baf525f9dc69392f9",
+            "glog-pfp-ruleFileCode/v1": "36f9d1391245dce7c2d3649e8ca9cf73d93df8b0c4a2cc3d25daae836817c8bf"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "36f9d1391245dce7c2d3649e8ca9cf73d93df8b0c4a2cc3d25daae836817c8bf"
+          }
+        },
+        {
+          "ruleId": "389c8fff-77d1-31cd-a5c5-5f46c84a12ab",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/cryptography/HashingAssignment.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 30,
+                  "startColumn": 4,
+                  "endLine": 30,
+                  "endColumn": 18,
+                  "snippet": {
+                    "text": "  @RequestMapping(path = \"/crypto/hashing/md5\", produces = MediaType.TEXT_HTML_VALUE)"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "fbf8f9a903e0205ea42e39fa90843e35e7e488efd2987a877c9b44dd66f871a3",
+            "glog-pfp-ruleFileCode/v1": "783dd7d41478f165cfe555d280bba57c18e0ef11f6af8266f88683f35c2c9538"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "783dd7d41478f165cfe555d280bba57c18e0ef11f6af8266f88683f35c2c9538"
+          }
+        },
+        {
+          "ruleId": "9b06e4d4-7ba3-33f6-ba8b-fd632aa230d4",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Insecure Use of Non-Cryptographically Strong RNGs in Password or Token Generation"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/cryptography/HashingAssignment.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 37,
+                  "startColumn": 31,
+                  "endLine": 37,
+                  "endColumn": 67,
+                  "snippet": {
+                    "text": "      String secret = SECRETS[new Random().nextInt(SECRETS.length)];"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "e2d45bcdff1233ff897c3e7d327a748f89debcc0645e270d86487423eb7f3d1b",
+            "glog-pfp-ruleFileCode/v1": "d626408a2e9b23cdc77b233ade6c633bfd5dc3734463212877a3ccb80911d109"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "d626408a2e9b23cdc77b233ade6c633bfd5dc3734463212877a3ccb80911d109"
+          }
+        },
+        {
+          "ruleId": "9cac4438-8319-3972-af93-e1203c6e6f67",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Insecure MD5 Hash Algorithm Detected, Use HMAC Instead"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/cryptography/HashingAssignment.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 39,
+                  "startColumn": 52,
+                  "endLine": 39,
+                  "endColumn": 57,
+                  "snippet": {
+                    "text": "      MessageDigest md = MessageDigest.getInstance(\"MD5\");"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "905adf43ec8328c7ed7651cddde8ca5bfc45cb650f0ab4cf9fe6ffcd1c4d7a16",
+            "glog-pfp-ruleFileCode/v1": "6e6e68e0e698e9c915d1fed41be6d69a00eacab7b40204a7d6016d1376cead45"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "6e6e68e0e698e9c915d1fed41be6d69a00eacab7b40204a7d6016d1376cead45"
+          }
+        },
+        {
+          "ruleId": "6f3b5309-25a1-30c4-a651-0a6d18a86c97",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/cryptography/HashingAssignment.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 49,
+                  "startColumn": 4,
+                  "endLine": 49,
+                  "endColumn": 18,
+                  "snippet": {
+                    "text": "  @RequestMapping(path = \"/crypto/hashing/sha256\", produces = MediaType.TEXT_HTML_VALUE)"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "7964ca69644a846517729b3b2d691b069a8584aa722ccfc977c4b8da56c26625",
+            "glog-pfp-ruleFileCode/v1": "a90fd572ff65ec311bd3f996aac8dce7fadbe1805e4b53eca177b7d6e1aec31f"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "a90fd572ff65ec311bd3f996aac8dce7fadbe1805e4b53eca177b7d6e1aec31f"
+          }
+        },
+        {
+          "ruleId": "c80576a7-8f4b-3010-b2e4-a2b4aec0e70b",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Insecure Use of Non-Cryptographically Strong RNGs in Password or Token Generation"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/cryptography/HashingAssignment.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 55,
+                  "startColumn": 31,
+                  "endLine": 55,
+                  "endColumn": 67,
+                  "snippet": {
+                    "text": "      String secret = SECRETS[new Random().nextInt(SECRETS.length)];"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "1e009319c69294aa2166961c72769d7d6e12508970f5f4e1df68d354e32cb52f",
+            "glog-pfp-ruleFileCode/v1": "b91a3fe4fe68012b41b791d8ea2d924ead1f10bf67c2e646fe4b43b52e3626e8"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "b91a3fe4fe68012b41b791d8ea2d924ead1f10bf67c2e646fe4b43b52e3626e8"
+          }
+        },
+        {
+          "ruleId": "997d943f-05bc-349b-bd9a-ebd0dde133dc",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/cryptography/SigningAssignment.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 37,
+                  "startColumn": 4,
+                  "endLine": 37,
+                  "endColumn": 18,
+                  "snippet": {
+                    "text": "  @RequestMapping(path = \"/crypto/signing/getprivate\", produces = MediaType.TEXT_HTML_VALUE)"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "43b016b9f3c8012d143af3fd444f6961bf1d552596f32150665e63af55682d9d",
+            "glog-pfp-ruleFileCode/v1": "188c5a2b4efa4ad049589e71ca442d2e384135286e93254f4f8f1c196bc3c705"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "188c5a2b4efa4ad049589e71ca442d2e384135286e93254f4f8f1c196bc3c705"
+          }
+        },
+        {
+          "ruleId": "313ec6ef-d951-32cc-a23c-0d9adf846ca1",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "\"Java Object Deserialization Vulnerability with ObjectInputStream\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/deserialization/InsecureDeserializationTask.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 42,
+                  "startColumn": 10,
+                  "endLine": 43,
+                  "endColumn": 94,
+                  "snippet": {
+                    "text": "    try (ObjectInputStream ois =\n        new ObjectInputStream(new ByteArrayInputStream(Base64.getDecoder().decode(b64token)))) {"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "7eee2f970fd5aaaeb55985c9e9786a05b361ef1826b515b33db20e3b0a4f3816",
+            "glog-pfp-ruleFileCode/v1": "2d6c1703eaee86e14bcdfece09c554cfd94c71bcc1a35bf810e117181a7b7756"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "2d6c1703eaee86e14bcdfece09c554cfd94c71bcc1a35bf810e117181a7b7756"
+          }
+        },
+        {
+          "ruleId": "e50535f2-9ad0-3c5b-9658-3543ed701a81",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "\"Java Object Deserialization Vulnerability with ObjectInputStream\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/deserialization/SerializationHelper.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 22,
+                  "startColumn": 5,
+                  "endLine": 22,
+                  "endColumn": 83,
+                  "snippet": {
+                    "text": "    ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(data));"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "f179b93cb8fa2d9252d88f891edc0901f45b2cd925e284a7c61c5e5227b5342e",
+            "glog-pfp-ruleFileCode/v1": "92c1aa2f56120646b5d5bb9f4607eb2a24075ed3bf96077be2bf8f2490caa865"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "92c1aa2f56120646b5d5bb9f4607eb2a24075ed3bf96077be2bf8f2490caa865"
+          }
+        },
+        {
+          "ruleId": "b217c1fe-3a82-3c27-b200-106220625f36",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "'HttpOnly' flag not set for cookie vulnerability"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/hijacksession/HijackSessionAssignment.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 70,
+                  "startColumn": 5,
+                  "endLine": 70,
+                  "endColumn": 32,
+                  "snippet": {
+                    "text": "    response.addCookie(cookie);"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "0626893dca5f9b409a014252e36391ab001c6ca74e374cb1cd4dcf3de3565467",
+            "glog-pfp-ruleFileCode/v1": "6e340d3a4e30af851a907d9bb07f2b548b280f22dc9bf9bf5d3809417d7bc22a"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "6e340d3a4e30af851a907d9bb07f2b548b280f22dc9bf9bf5d3809417d7bc22a"
+          }
+        },
+        {
+          "ruleId": "a930a319-20d8-3226-b9a8-a29a5fcad543",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Insecure Use of `Math.random()` or `java.util.Random()` for Passwords or Secret Tokens Generation"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/hijacksession/cas/HijackSessionAuthenticationProvider.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 25,
+                  "startColumn": 28,
+                  "endLine": 25,
+                  "endColumn": 51,
+                  "snippet": {
+                    "text": "  private static long id = new Random().nextLong() & Long.MAX_VALUE;"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "6581819fa594bc971d80bcabd09be000d68b1d84b299695784db4796f53e63e6",
+            "glog-pfp-ruleFileCode/v1": "f2212a79c965cad04f274176dfa115cc65770fa993a89ee488088abebf37c0d8"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "f2212a79c965cad04f274176dfa115cc65770fa993a89ee488088abebf37c0d8"
+          }
+        },
+        {
+          "ruleId": "0dfe3bee-2aef-3e89-872a-60cd19384634",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Insecure Use of Non-Cryptographically Strong RNGs in Password or Token Generation"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/jwt/JWTSecretKeyEndpoint.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 38,
+                  "startColumn": 39,
+                  "endLine": 38,
+                  "endColumn": 75,
+                  "snippet": {
+                    "text": "      TextCodec.BASE64.encode(SECRETS[new Random().nextInt(SECRETS.length)]);"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "8c871b7f45f0ca443f14766bb3c1412527f5910652a70dbdb9b7b3146bc39645",
+            "glog-pfp-ruleFileCode/v1": "b3fca4b6eb262e8548f9c2a2bdc145dca4b973eb026ce140a2c993957bb6f32a"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "b3fca4b6eb262e8548f9c2a2bdc145dca4b973eb026ce140a2c993957bb6f32a"
+          }
+        },
+        {
+          "ruleId": "afd3d049-5458-30a1-91b2-765ede940b54",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/jwt/JWTSecretKeyEndpoint.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 43,
+                  "startColumn": 4,
+                  "endLine": 43,
+                  "endColumn": 18,
+                  "snippet": {
+                    "text": "  @RequestMapping(path = \"/JWT/secret/gettoken\", produces = MediaType.TEXT_HTML_VALUE)"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "1072f1a7dd350a1e4a015a80abbdd7202ead322a4f0dfb58dd2a3041ec77d0f1",
+            "glog-pfp-ruleFileCode/v1": "d3b34f43fe820e4905e2a857536a545b3ded91561a7976b4e1682f8af062e8d5"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "d3b34f43fe820e4905e2a857536a545b3ded91561a7976b4e1682f8af062e8d5"
+          }
+        },
+        {
+          "ruleId": "2790dc71-7e0f-39ee-9905-2fd52d66c189",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "\"Unsecured Default Session Middleware: Vulnerable to Cross-Site Scripting Attacks\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/jwt/JWTVotesEndpoint.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 114,
+                  "startColumn": 7,
+                  "endLine": 114,
+                  "endColumn": 57,
+                  "snippet": {
+                    "text": "      Cookie cookie = new Cookie(\"access_token\", token);"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "866c165acb294f2e39882e5aa04a85d312ccbc85f76b8e4ec1c1021fe25bd1bd",
+            "glog-pfp-ruleFileCode/v1": "90a259eec8701c89a3ea82fdf04c41a6258303e933f1854d0b61df289dc04adc"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "90a259eec8701c89a3ea82fdf04c41a6258303e933f1854d0b61df289dc04adc"
+          }
+        },
+        {
+          "ruleId": "f106d05d-5e66-3bae-bb6d-1f5b840f79d7",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "'HttpOnly' flag not set for cookie vulnerability"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/jwt/JWTVotesEndpoint.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 115,
+                  "startColumn": 7,
+                  "endLine": 115,
+                  "endColumn": 34,
+                  "snippet": {
+                    "text": "      response.addCookie(cookie);"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "2062acb3274b0caec6ec8ce2f1393d329ed35437daae831bcdbcb9b8f343938a",
+            "glog-pfp-ruleFileCode/v1": "9c263884b24b82c6acc6c1e2cea4a9305b6a2f3fb9cf1149707140086ee291d6"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "9c263884b24b82c6acc6c1e2cea4a9305b6a2f3fb9cf1149707140086ee291d6"
+          }
+        },
+        {
+          "ruleId": "0af9c2e6-0040-3ec9-991f-87b7e467245d",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Unsecured Cookie Detected"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/jwt/JWTVotesEndpoint.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 115,
+                  "startColumn": 7,
+                  "endLine": 115,
+                  "endColumn": 34,
+                  "snippet": {
+                    "text": "      response.addCookie(cookie);"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "093162ab90589238e735ee7b00ce317c8bf48e032b11fef34f84d9e346e9e7f2",
+            "glog-pfp-ruleFileCode/v1": "abe113b5797c92127de724994665bb2510dbe515b131b46ade016280f85d3de0"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "abe113b5797c92127de724994665bb2510dbe515b131b46ade016280f85d3de0"
+          }
+        },
+        {
+          "ruleId": "7a7f602f-6c4b-346b-8b18-2f44739ee4cb",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "\"Unsecured Default Session Middleware: Vulnerable to Cross-Site Scripting Attacks\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/jwt/JWTVotesEndpoint.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 119,
+                  "startColumn": 7,
+                  "endLine": 119,
+                  "endColumn": 54,
+                  "snippet": {
+                    "text": "      Cookie cookie = new Cookie(\"access_token\", \"\");"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "227ff002edb8b7c3191227b7bb3e1544fcd757dad17133ea97da521b93533e28",
+            "glog-pfp-ruleFileCode/v1": "e6880ea4f71200245de6bc5ccf6baf06d1945f3854845113f822fbc0458d2103"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "e6880ea4f71200245de6bc5ccf6baf06d1945f3854845113f822fbc0458d2103"
+          }
+        },
+        {
+          "ruleId": "f171bf4c-5d7e-3486-9179-d3b19c27ce56",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "'HttpOnly' flag not set for cookie vulnerability"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/jwt/JWTVotesEndpoint.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 120,
+                  "startColumn": 7,
+                  "endLine": 120,
+                  "endColumn": 34,
+                  "snippet": {
+                    "text": "      response.addCookie(cookie);"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "da3670a57624ede7bb04ef08d828e08dd521ca46b5be46ada4c3344a7cd4968e",
+            "glog-pfp-ruleFileCode/v1": "712229a4266903743fb5aee75134268eed11ebb5af8e11072f242ee1208d0d45"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "712229a4266903743fb5aee75134268eed11ebb5af8e11072f242ee1208d0d45"
+          }
+        },
+        {
+          "ruleId": "6fe2993e-58b2-3d9c-b2c2-aab5dadf4678",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Unsecured Cookie Detected"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/jwt/JWTVotesEndpoint.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 120,
+                  "startColumn": 7,
+                  "endLine": 120,
+                  "endColumn": 34,
+                  "snippet": {
+                    "text": "      response.addCookie(cookie);"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "b4f51bc3feeac979f48ad919327f546bbbbb5565293a8c0b6d26c270555d821b",
+            "glog-pfp-ruleFileCode/v1": "7b3a6d5939e4247df8637eb1ac671b31489e82f20f96016a362a347a0f722e81"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "7b3a6d5939e4247df8637eb1ac671b31489e82f20f96016a362a347a0f722e81"
+          }
+        },
+        {
+          "ruleId": "2bfd22b5-832f-35bd-91e5-4e373457c362",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Server-Side Request Forgery (SSRF) Vulnerability in Manually-Constructed URL"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/jwt/claimmisuse/JWTHeaderJKUEndpoint.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 57,
+                  "startColumn": 50,
+                  "endLine": 57,
+                  "endColumn": 73,
+                  "snippet": {
+                    "text": "        var jwkProvider = new JwkProviderBuilder(new URL(jku.asString())).build();"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "6d10f4ae1de29ac8aa724c15ca8066d7306cfd8ee7cffd4b876e24cc5feaa251",
+            "glog-pfp-ruleFileCode/v1": "6d5fefdfcc03e40b991ebf5ddc704f1090d1d0308966da8d4fab2f3f903d6b5f"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "6d5fefdfcc03e40b991ebf5ddc704f1090d1d0308966da8d4fab2f3f903d6b5f"
+          }
+        },
+        {
+          "ruleId": "12c0ff9b-35e3-347d-8125-24903a0cbe16",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Unvalidated Redirect Vulnerability"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/openredirect/OpenRedirectRealRedirect.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 18,
+                  "startColumn": 3,
+                  "endLine": 22,
+                  "endColumn": 4,
+                  "snippet": {
+                    "text": "  @GetMapping(\"/OpenRedirect/realRedirect\")\n  public ModelAndView real(@RequestParam(\"url\") String url) {\n    // Intentionally vulnerable: no validation\n    return new ModelAndView(\"redirect:\" + url);\n  }"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "655b2f54043b173b2999f79a2fb20b908f83e1a5f775fa3173f97a761f7433ae",
+            "glog-pfp-ruleFileCode/v1": "590b1332f6cf85c1187c5abdf78eab0185bd7ba53d0b3753fe74bfa6723990cd"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "590b1332f6cf85c1187c5abdf78eab0185bd7ba53d0b3753fe74bfa6723990cd"
+          }
+        },
+        {
+          "ruleId": "5564023f-c3f8-3228-bb9c-a4895c7e8494",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Potential Path Traversal Vulnerability Detected"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/pathtraversal/ProfileUploadRetrieval.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 100,
+                  "startColumn": 11,
+                  "endLine": 101,
+                  "endColumn": 98,
+                  "snippet": {
+                    "text": "      var catPicture =\n          new File(catPicturesDirectory, (id == null ? RandomUtils.nextInt(1, 11) : id) + \".jpg\");"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "f2bed53e2f4c02ce31cc99fdb0c9e584b4b0d9922fe0cc326ca354581254f443",
+            "glog-pfp-ruleFileCode/v1": "3b6fdd871bece3fc9fbd9cb154ce4e38dcb28ec7016ec4b8007389e96dadeac4"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "3b6fdd871bece3fc9fbd9cb154ce4e38dcb28ec7016ec4b8007389e96dadeac4"
+          }
+        },
+        {
+          "ruleId": "e50e7256-f55a-36b8-ba14-7fdb6d28c7c5",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "\"Unsecured Default Session Middleware: Vulnerable to Cross-Site Scripting Attacks\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/spoofcookie/SpoofCookieAssignment.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 58,
+                  "startColumn": 5,
+                  "endLine": 58,
+                  "endColumn": 49,
+                  "snippet": {
+                    "text": "    Cookie cookie = new Cookie(COOKIE_NAME, \"\");"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "711097150db0f940709dc80581d5bfd130baf511ca1f6cfcc50c1149868fa6d3",
+            "glog-pfp-ruleFileCode/v1": "e06fbb286f5fe024bf95561a80f5781ec87a7f8d8e82b591b72249271f007aa9"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "e06fbb286f5fe024bf95561a80f5781ec87a7f8d8e82b591b72249271f007aa9"
+          }
+        },
+        {
+          "ruleId": "5f077266-d7b7-36c4-9a78-54c3ea8c64bd",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "'HttpOnly' flag not set for cookie vulnerability"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/spoofcookie/SpoofCookieAssignment.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 60,
+                  "startColumn": 5,
+                  "endLine": 60,
+                  "endColumn": 32,
+                  "snippet": {
+                    "text": "    response.addCookie(cookie);"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "61504e6797a88903e1e19866b861c26ea38b0f2775486b4acd496a80e703beec",
+            "glog-pfp-ruleFileCode/v1": "cc8f81264f09450a9c8dc8fe1eb5a8c514ce1406aeec15df06f41eb2b1ca30aa"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "cc8f81264f09450a9c8dc8fe1eb5a8c514ce1406aeec15df06f41eb2b1ca30aa"
+          }
+        },
+        {
+          "ruleId": "b10608b2-c776-308b-8475-dd215d3ef518",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Unsecured Cookie Detected"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/spoofcookie/SpoofCookieAssignment.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 60,
+                  "startColumn": 5,
+                  "endLine": 60,
+                  "endColumn": 32,
+                  "snippet": {
+                    "text": "    response.addCookie(cookie);"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "773457ff19fbb6e737b9dd6bb05125b94ece90aaf018bacab47a779c801f10e0",
+            "glog-pfp-ruleFileCode/v1": "c8ee63872ab8aa720ceadf4501d7c96f5746766f891d204e609efb120cb26841"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "c8ee63872ab8aa720ceadf4501d7c96f5746766f891d204e609efb120cb26841"
+          }
+        },
+        {
+          "ruleId": "68d9be1c-2f71-3d72-ad80-9280545b8102",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "'HttpOnly' flag not set for cookie vulnerability"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/spoofcookie/SpoofCookieAssignment.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 77,
+                  "startColumn": 7,
+                  "endLine": 77,
+                  "endColumn": 37,
+                  "snippet": {
+                    "text": "      response.addCookie(newCookie);"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "616c34658681fd8eca5a5bd0cacf4862b6aa99a3dcd147b5a5628946bf91c8d5",
+            "glog-pfp-ruleFileCode/v1": "d4d6f84586fd9d34975154ca0241db67604235d3aa852a19a947b6700312aa09"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "d4d6f84586fd9d34975154ca0241db67604235d3aa852a19a947b6700312aa09"
+          }
+        },
+        {
+          "ruleId": "a356b939-c928-3b67-9afb-f91c6bb40464",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "\"Potential SQL Injection Vulnerability in Manually-Constructed SQL Strings\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/advanced/SqlInjectionChallenge.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 55,
+                  "startColumn": 13,
+                  "endLine": 55,
+                  "endColumn": 87,
+                  "snippet": {
+                    "text": "            \"select userid from sql_challenge_users where userid = '\" + username + \"'\";"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "bc6bfef4f427ccf3960346a307b07981483a3916b5c05962d333275a7e0bf519",
+            "glog-pfp-ruleFileCode/v1": "91e856e48fc23da35db756351fa3ed6cba58d920dda09fb016011a36cf19dc98"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "91e856e48fc23da35db756351fa3ed6cba58d920dda09fb016011a36cf19dc98"
+          }
+        },
+        {
+          "ruleId": "2b0f7807-1e5e-3b6d-8a69-188887fb1986",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Potential SQL Injection Detected: Use Prepared Statements for SQL Queries"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/advanced/SqlInjectionChallenge.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 57,
+                  "startColumn": 31,
+                  "endLine": 57,
+                  "endColumn": 69,
+                  "snippet": {
+                    "text": "        ResultSet resultSet = statement.executeQuery(checkUserQuery);"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "218876e97be4c2a91a77969b6085398c7f8e8b7f362a32d2d04c7bc239f7e3ea",
+            "glog-pfp-ruleFileCode/v1": "03bdd7e9ad57f5213e870a0001cb11f680d1f5fc6af0bf784368b6c5745b95b9"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "03bdd7e9ad57f5213e870a0001cb11f680d1f5fc6af0bf784368b6c5745b95b9"
+          }
+        },
+        {
+          "ruleId": "fe423ad0-43a7-3ae5-9815-d6927fe19940",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "SQL Injection Risk Detected due to Formatted String in SQL Statement"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/introduction/SqlInjectionLesson10.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 56,
+                  "startColumn": 29,
+                  "endLine": 56,
+                  "endColumn": 58,
+                  "snippet": {
+                    "text": "        ResultSet results = statement.executeQuery(query);"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "abd32d1ad90380eade3f1923735edbda25f21b1df45213ed6b850d2753f3c1d4",
+            "glog-pfp-ruleFileCode/v1": "00bf15e6dd0e432453d22feb058ccaa17ea302ee72f9135c36ec936a1583deb5"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "00bf15e6dd0e432453d22feb058ccaa17ea302ee72f9135c36ec936a1583deb5"
+          }
+        },
+        {
+          "ruleId": "ff90fcae-fdb4-39b5-b8f7-3b2522285268",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "SQL Injection Risk Detected due to Formatted String in SQL Statement"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/introduction/SqlInjectionLesson2.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 49,
+                  "startColumn": 27,
+                  "endLine": 49,
+                  "endColumn": 56,
+                  "snippet": {
+                    "text": "      ResultSet results = statement.executeQuery(query);"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "97b1a77bb838c1a332e0ddf828c9a747761ce3dfd2234745ec29709257ba4500",
+            "glog-pfp-ruleFileCode/v1": "20491629771a79f16ccf65d32eb18d4dcc482e4bdff436f30408e2f47174bc41"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "20491629771a79f16ccf65d32eb18d4dcc482e4bdff436f30408e2f47174bc41"
+          }
+        },
+        {
+          "ruleId": "e9c8963c-149c-31ad-a855-a0a348c8fbf8",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "SQL Injection Risk Detected due to Formatted String in SQL Statement"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/introduction/SqlInjectionLesson5a.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 52,
+                  "startColumn": 29,
+                  "endLine": 52,
+                  "endColumn": 58,
+                  "snippet": {
+                    "text": "        ResultSet results = statement.executeQuery(query);"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "b2a5d9e31dd92df3cd03d9f93e062db41f50e4897db265ceda2233cac95ba4f9",
+            "glog-pfp-ruleFileCode/v1": "fd3c623939d6be44f2f2a7017894e12a87faec5850f9c4df4fa2d67b1f6c092a"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "fd3c623939d6be44f2f2a7017894e12a87faec5850f9c4df4fa2d67b1f6c092a"
+          }
+        },
+        {
+          "ruleId": "ebafa219-321d-33c3-9bb4-e1a5209fbf32",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "SQL Injection Risk Detected due to Formatted String in SQL Statement"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/introduction/SqlInjectionLesson5b.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 69,
+                  "startColumn": 29,
+                  "endLine": 69,
+                  "endColumn": 49,
+                  "snippet": {
+                    "text": "        ResultSet results = query.executeQuery();"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "22d241fbe59e1c5b2e59c6352f62bb4acc44fe108bb7d719c7d14c7eabef15a2",
+            "glog-pfp-ruleFileCode/v1": "135728af8673230b583f1a474eac1e916c3947ce177307ff9b746068b53537ee"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "135728af8673230b583f1a474eac1e916c3947ce177307ff9b746068b53537ee"
+          }
+        },
+        {
+          "ruleId": "0ee8c775-52e9-3e84-af7c-5c05011d756a",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "SQL Injection Risk Detected due to Formatted String in SQL Statement"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/introduction/SqlInjectionLesson8.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 62,
+                  "startColumn": 29,
+                  "endLine": 62,
+                  "endColumn": 58,
+                  "snippet": {
+                    "text": "        ResultSet results = statement.executeQuery(query);"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "32fdf1fcd3f9d8364f7e881a567707568497f83d1b416b75829fd079e5363155",
+            "glog-pfp-ruleFileCode/v1": "481f48dd85da5b9d4b8f118e31168516d428a802967033ee315b26addf0dfd95"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "481f48dd85da5b9d4b8f118e31168516d428a802967033ee315b26addf0dfd95"
+          }
+        },
+        {
+          "ruleId": "aa466f90-5f8b-3e88-af98-f1e8328f0750",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "SQL Injection Risk Detected due to Formatted String in SQL Statement"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/introduction/SqlInjectionLesson8.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 142,
+                  "startColumn": 7,
+                  "endLine": 142,
+                  "endColumn": 40,
+                  "snippet": {
+                    "text": "      statement.executeUpdate(logQuery);"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "15fdd87f0ad9b08b4c6715618160c9235bd79c8111c70aed56558e00c7532cec",
+            "glog-pfp-ruleFileCode/v1": "75e1448427d3916d789417ff41c826a1601340a69222adf2c221a453434bc689"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "75e1448427d3916d789417ff41c826a1601340a69222adf2c221a453434bc689"
+          }
+        },
+        {
+          "ruleId": "ce4af615-c618-3693-9094-7015e59c9176",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Potential SQL Injection Detected: Use Prepared Statements for Sanitization"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/introduction/SqlInjectionLesson9.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 65,
+                  "startColumn": 7,
+                  "endLine": 65,
+                  "endColumn": 40,
+                  "snippet": {
+                    "text": "      statement.execute(queryInjection);"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "4d63b41e3d49cad8700a2d9e930ae5490a1d469113189ea1f0086082a1c4350c",
+            "glog-pfp-ruleFileCode/v1": "87c950ae4776ddfcc6388d64d4d20d1729f0e824cb5ca44a19e44cf1c2e6510d"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "87c950ae4776ddfcc6388d64d4d20d1729f0e824cb5ca44a19e44cf1c2e6510d"
+          }
+        },
+        {
+          "ruleId": "e1d64eb2-df28-3340-9581-d1f9d711210a",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "SQL Injection Risk Detected due to Formatted String in SQL Statement"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/introduction/SqlInjectionLesson9.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 94,
+                  "startColumn": 25,
+                  "endLine": 94,
+                  "endColumn": 54,
+                  "snippet": {
+                    "text": "    ResultSet results = statement.executeQuery(query);"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "ade43ffff61f50e6121510a13130b59ada0bbc388977820c92de24e52853f3bb",
+            "glog-pfp-ruleFileCode/v1": "1ebcff384121d0a97cc440475782a98c6a44ea2737d431b54f3bcee59a146093"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "1ebcff384121d0a97cc440475782a98c6a44ea2737d431b54f3bcee59a146093"
+          }
+        },
+        {
+          "ruleId": "283798a1-25e5-3ef0-8a2b-b8cdb7e2a79a",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "\"Potential SQL Injection Vulnerability in Manually-Constructed SQL Strings\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/mitigation/Servers.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 51,
+                  "startColumn": 15,
+                  "endLine": 53,
+                  "endColumn": 27,
+                  "snippet": {
+                    "text": "              \"select id, hostname, ip, mac, status, description from SERVERS where status <> 'out\"\n                  + \" of order' order by \"\n                  + column)) {"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "9bf3ddc62e3e4bc05e5034f9624c895ce7eaaa972d8badc980efd5d65be051bc",
+            "glog-pfp-ruleFileCode/v1": "f22668fc0549fb740274872dd3a44fad76718d90ddb99466f68db29564043aff"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "f22668fc0549fb740274872dd3a44fad76718d90ddb99466f68db29564043aff"
+          }
+        },
+        {
+          "ruleId": "d70aab63-7f1f-329b-91bf-80275e38b637",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/xxe/SimpleXXE.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 77,
+                  "startColumn": 4,
+                  "endLine": 77,
+                  "endColumn": 18,
+                  "snippet": {
+                    "text": "  @RequestMapping("
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "421f96254d5320b4fdf8ca8ee7d484c8edf6ca7c4e6823538c93dfbb5ba9e3e7",
+            "glog-pfp-ruleFileCode/v1": "2f1ce9f55774e8678202f9273483aaba3db049e4b245b1d5ee4a94376ea9a501"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "2f1ce9f55774e8678202f9273483aaba3db049e4b245b1d5ee4a94376ea9a501"
+          }
+        },
+        {
+          "ruleId": "2d67cdb6-812e-3dc8-be06-0f72a8139e0b",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/webwolf/FileServer.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 56,
+                  "startColumn": 4,
+                  "endLine": 56,
+                  "endColumn": 18,
+                  "snippet": {
+                    "text": "  @RequestMapping("
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "c6b702d6184f4437e6c65f1a31dc2df09f3bae25a91624e27efdb74c484dabd9",
+            "glog-pfp-ruleFileCode/v1": "737632b89cd08904cf1e60a7b8467b6c9fabd653893b432ab64088f33213c337"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "737632b89cd08904cf1e60a7b8467b6c9fabd653893b432ab64088f33213c337"
+          }
+        },
+        {
+          "ruleId": "f59adc95-018b-3799-9be9-e4cbd898ef96",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "User Input Manipulation Vulnerability in File Path Control"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/webwolf/FileServer.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 79,
+                  "startColumn": 35,
+                  "endLine": 79,
+                  "endColumn": 96,
+                  "snippet": {
+                    "text": "    log.debug(\"File saved to {}\", new File(destinationDir, multipartFile.getOriginalFilename()));"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "6e563fb98a82bfe7c336d173bcc943f5e51e29d2fdfd807bcd39188baf04592c",
+            "glog-pfp-ruleFileCode/v1": "f4d9a10cfe73c0081bb7ece86cd8b0d2239ff83d4f4c13487025dee5fc7af8a9"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "f4d9a10cfe73c0081bb7ece86cd8b0d2239ff83d4f4c13487025dee5fc7af8a9"
+          }
+        }
+      ],
+      "newlineSequences": [
+        "\r\n",
+        "\n"
+      ]
+    }
+  ]
+}
