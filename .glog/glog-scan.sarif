@@ -13,7 +13,7 @@
           "rules": [
             {
               "id": "04c35e3a-698d-3dfd-bea8-e4eac9302903",
-              "name": "HTTP Client Directly Receives Stack Trace or Debug Trace String from Controller",
+              "name": "Exposing Stack Traces To HTTP Clients",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -36,7 +36,7 @@
             },
             {
               "id": "07728839-bfea-3016-bf31-f7ebe5bb8d4e",
-              "name": "Vulnerability in Trust Redirection Based on Raw URL String Prefix Checks",
+              "name": "Redirect Trust Based On Raw URL String Prefix Checks",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -59,7 +59,7 @@
             },
             {
               "id": "07e7f5c3-613b-3993-91c0-aa3561c3a8a0",
-              "name": "SQL Injection Vulnerability via JWT 'kid' Header Data Concatenation",
+              "name": "JWT Kid Header Data Flows Into SQL Statement",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -82,7 +82,7 @@
             },
             {
               "id": "08004c3b-1592-32f7-b6b8-e86bd4d23f99",
-              "name": "Method with 'RequestMapping' annotation lacks specified HTTP method, potentially exposing it to CSRF attacks.",
+              "name": "Unrestricted HTTP Method Mapping In Request Handling",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -105,7 +105,7 @@
             },
             {
               "id": "0af9c2e6-0040-3ec9-991f-87b7e467245d",
-              "name": "Unsecured Cookie Detected",
+              "name": "Cookie Lacks Secure Flag",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -128,7 +128,7 @@
             },
             {
               "id": "0c084bee-fcf2-3cf1-8385-98b8e517aa38",
-              "name": "Insufficient Validation of Optional Security Keys Vulnerability",
+              "name": "Missing Validation For Required Security Keys",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -151,7 +151,7 @@
             },
             {
               "id": "0d0990a8-eecd-35fc-8695-769fa373ae34",
-              "name": "SQL Injection Risk Detected due to Formatted String in SQL Statement",
+              "name": "Formatted String In SQL Statement",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -174,7 +174,7 @@
             },
             {
               "id": "0dfe3bee-2aef-3e89-872a-60cd19384634",
-              "name": "Insecure Use of Non-Cryptographically Strong RNGs in Password or Token Generation",
+              "name": "Weak Random Number Generator Used",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -183,21 +183,21 @@
               "properties": {
                 "cwe": [
                   {
-                    "id": "CWE-330",
-                    "url": "https://cwe.mitre.org/data/definitions/330.html"
+                    "id": "CWE-338",
+                    "url": "https://cwe.mitre.org/data/definitions/338.html"
                   }
                 ],
                 "kind": "FAIL",
                 "security-severity": "5.0",
                 "tags": [
                   "security",
-                  "CWE-330"
+                  "CWE-338"
                 ]
               }
             },
             {
               "id": "0e894a47-26f1-35a2-8111-e3fee6300240",
-              "name": "Mismatched Identifier Data Mutation Vulnerability",
+              "name": "Request Body Identifier Mismatch Allows Update",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -220,7 +220,7 @@
             },
             {
               "id": "0ee8c775-52e9-3e84-af7c-5c05011d756a",
-              "name": "SQL Injection Risk Detected due to Formatted String in SQL Statement",
+              "name": "Formatted String In SQL Statement",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -243,7 +243,7 @@
             },
             {
               "id": "12c0ff9b-35e3-347d-8125-24903a0cbe16",
-              "name": "Unvalidated Redirect Vulnerability",
+              "name": "Unvalidated Redirect To User-Specified URL",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -266,7 +266,7 @@
             },
             {
               "id": "1aca0602-4b30-3f3d-bb65-18dad958e1b6",
-              "name": "\"Host and Referer or Origin Header Comparison Used for CSRF Validation Instead of Anti-CSRF Token\"",
+              "name": "CSRF Validation Lacks Anti-CSRF Token",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -289,7 +289,7 @@
             },
             {
               "id": "1d588413-3ab5-3c91-8e88-abbec1ceb759",
-              "name": "Server-Side URL Fetch Vulnerability with User-Controlled Parameter",
+              "name": "User-Controlled URL Used In Server-Side Fetch",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -312,7 +312,7 @@
             },
             {
               "id": "1dc6dd7f-bbf4-3044-b095-0c59991fd8a3",
-              "name": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks",
+              "name": "Unrestricted HTTP Method Mapping In Request Handling",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -335,7 +335,7 @@
             },
             {
               "id": "2000f219-514b-3dfe-a1d4-186b7a76396c",
-              "name": "Double-Encoding Host Confusion Vulnerability in Redirect Validation",
+              "name": "Redirect Validation Allows Host Confusion",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -358,7 +358,7 @@
             },
             {
               "id": "2790dc71-7e0f-39ee-9905-2fd52d66c189",
-              "name": "\"Unsecured Default Session Middleware: Vulnerable to Cross-Site Scripting Attacks\"",
+              "name": "Insecure Cookie Attributes",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -367,21 +367,21 @@
               "properties": {
                 "cwe": [
                   {
-                    "id": "CWE-319",
-                    "url": "https://cwe.mitre.org/data/definitions/319.html"
+                    "id": "CWE-79",
+                    "url": "https://cwe.mitre.org/data/definitions/79.html"
                   }
                 ],
                 "kind": "FAIL",
                 "security-severity": "5.0",
                 "tags": [
                   "security",
-                  "CWE-319"
+                  "CWE-79"
                 ]
               }
             },
             {
               "id": "27d81c7f-5032-37ea-86c8-a0f02c6ba6a3",
-              "name": "Sensitive Data Exposure in Application Log",
+              "name": "Sensitive Data Written To Application Log",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -404,7 +404,7 @@
             },
             {
               "id": "283798a1-25e5-3ef0-8a2b-b8cdb7e2a79a",
-              "name": "\"Potential SQL Injection Vulnerability in Manually-Constructed SQL Strings\"",
+              "name": "Manually Constructed SQL String",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -427,7 +427,7 @@
             },
             {
               "id": "285fbcbd-72c5-389b-923c-98511520a773",
-              "name": "Insecure Use of Non-Cryptographically Strong RNGs in Password or Token Generation",
+              "name": "Weak Random Number Generator Used",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -436,21 +436,21 @@
               "properties": {
                 "cwe": [
                   {
-                    "id": "CWE-330",
-                    "url": "https://cwe.mitre.org/data/definitions/330.html"
+                    "id": "CWE-338",
+                    "url": "https://cwe.mitre.org/data/definitions/338.html"
                   }
                 ],
                 "kind": "FAIL",
                 "security-severity": "5.0",
                 "tags": [
                   "security",
-                  "CWE-330"
+                  "CWE-338"
                 ]
               }
             },
             {
               "id": "292185db-1a79-35a9-b7e7-83a65c787cab",
-              "name": "\"Unbound Refresh Token Validation Vulnerability\"",
+              "name": "Refresh Token Validation Lacks Subject Binding",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -473,7 +473,7 @@
             },
             {
               "id": "2b0f7807-1e5e-3b6d-8a69-188887fb1986",
-              "name": "Potential SQL Injection Detected: Use Prepared Statements for SQL Queries",
+              "name": "Formatted String In SQL Statement",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -496,7 +496,7 @@
             },
             {
               "id": "2b67312e-3d84-39d3-abeb-0813c3a9eaf6",
-              "name": "\"SQL Injection Protection Through Keyword Stripping and Space Blocking Before Query Execution\"",
+              "name": "SQL Injection Protection Relies On Keyword Stripping",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -519,7 +519,7 @@
             },
             {
               "id": "2bfd22b5-832f-35bd-91e5-4e373457c362",
-              "name": "Server-Side Request Forgery (SSRF) Vulnerability in Manually-Constructed URL",
+              "name": "User Data Flows Into Host Portion Of URL",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -542,7 +542,7 @@
             },
             {
               "id": "2d67cdb6-812e-3dc8-be06-0f72a8139e0b",
-              "name": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks",
+              "name": "Unrestricted HTTP Method Mapping In Request Handling",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -565,7 +565,7 @@
             },
             {
               "id": "2e780d57-4b68-37a0-b8d0-71bd684de485",
-              "name": "Unrestricted User Listing Exposure due to Lack of Authorization Checks",
+              "name": "Exposes User Listing Without Authorization Checks",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -588,7 +588,7 @@
             },
             {
               "id": "313ec6ef-d951-32cc-a23c-0d9adf846ca1",
-              "name": "\"Java Object Deserialization Vulnerability with ObjectInputStream\"",
+              "name": "Insecure Object Deserialization",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -611,7 +611,7 @@
             },
             {
               "id": "3702d7cf-c261-3a5a-ad7f-db0671928bd6",
-              "name": "Unnormalized and unchecked zip entry names written to filesystem vulnerability",
+              "name": "Zip Entry Names Allow Path Traversal",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -634,7 +634,7 @@
             },
             {
               "id": "389c8fff-77d1-31cd-a5c5-5f46c84a12ab",
-              "name": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks",
+              "name": "Unrestricted HTTP Method Mapping In Request Handling",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -657,7 +657,7 @@
             },
             {
               "id": "3ddf75c1-02bc-38b6-9d75-283c3953df9d",
-              "name": "Direct JDBC Execution of Raw SQL in Method Parameter Vulnerability",
+              "name": "Raw SQL Executed Directly Through JDBC",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -679,8 +679,31 @@
               }
             },
             {
+              "id": "3e74485e-0427-3208-8b31-d05c2e8075e2",
+              "name": "SQL Injection Due To Unsanitized Variables",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"Potential SQL Injection Detected: Use Prepared Statements for SQL Queries\" is a vulnerability that arises when a SQL query is constructed using string concatenation of unsanitized user input. This can allow an attacker to alter the structure of the SQL query to gain unauthorized access to data, modify data, or execute commands on the database server.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to use parameterized queries or prepared statements. These methods ensure that user input is always treated as literal data and not part of the SQL command. This effectively prevents SQL injection attacks.\n\n## Source Code Fix Recommendation\n\nHere is how you can fix the vulnerability in the provided code snippet:\n\n```java\nString checkUserQuery = \"SELECT * FROM users WHERE username = ?\";\nPreparedStatement preparedStatement = connection.prepareStatement(checkUserQuery);\npreparedStatement.setString(1, username);\nResultSet resultSet = preparedStatement.executeQuery();\n```\n\nIn this code, `?` is a placeholder that will be replaced by the value of `username`. The `setString` method ensures that `username` is properly escaped, preventing any SQL injection attacks.\n\n## Library Dependencies\n\nThe code example requires the following library dependencies:\n\n- `java.sql.Connection`\n- `java.sql.PreparedStatement`\n- `java.sql.ResultSet`\n\n## OWASP and CWE Links\n\n- [OWASP SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)\n- [CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')](https://cwe.mitre.org/data/definitions/89.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-89",
+                    "url": "https://cwe.mitre.org/data/definitions/89.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-89"
+                ]
+              }
+            },
+            {
               "id": "3ef5f849-ac07-3b2c-ac3d-6ec7f337643d",
-              "name": "\"Host and Referer or Origin Header Comparison Used for CSRF Validation Instead of Anti-CSRF Token\"",
+              "name": "CSRF Validation Lacks Anti-CSRF Token",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -703,7 +726,7 @@
             },
             {
               "id": "3eff988b-9d54-34e1-8800-5605601c94a9",
-              "name": "Client-Supplied Total Trust Vulnerability",
+              "name": "Endpoint Trusts Client-Supplied Total Without Validation",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -730,31 +753,8 @@
               }
             },
             {
-              "id": "3f26ea8b-1c50-3ac5-8544-286f9b413b18",
-              "name": "\"Unsecured Actuator Endpoint in Application Code\"",
-              "helpUri": "https://www.glog.ai/",
-              "help": {
-                "text": "",
-                "markdown": "## Description\n\nThe \"Unsecured Actuator Endpoint in Application Code\" vulnerability refers to the exposure of sensitive information or functionality through actuator endpoints in a Spring Boot application. Actuator endpoints allow you to monitor and interact with your application. Spring Boot includes a number of built-in endpoints and lets you add your own. For example, the `health` endpoint provides basic application health information.\n\nIn the provided code, the `actuatorHealth()` method is mapped to the `/SecurityMisconfiguration/task3/actuator/health` URL and returns a JSON object with the status of the application and some other details. If this endpoint is not secured properly, it can be accessed by unauthorized users, potentially exposing sensitive information or allowing them to perform unwanted actions.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should secure your actuator endpoints. This can be done by restricting access to the endpoints to only authorized users or by disabling certain endpoints entirely if they are not needed. You can use Spring Security to secure your endpoints.\n\n## Source Code Fix Recommendation\n\nYou can secure the actuator endpoints by adding Spring Security to your project and configuring it to restrict access to the endpoints. Here is an example of how to do this:\n\n```java\n@Configuration\npublic class ActuatorSecurity extends WebSecurityConfigurerAdapter {\n\n    @Override\n    protected void configure(HttpSecurity http) throws Exception {\n        http.requestMatcher(EndpointRequest.toAnyEndpoint()).authorizeRequests()\n            .anyRequest().hasRole(\"ACTUATOR\")\n            .and()\n            .httpBasic();\n    }\n\n}\n```\n\nIn this example, access to all actuator endpoints is restricted to users with the \"ACTUATOR\" role.\n\n## Library Dependencies\n\nThe provided code requires the following library dependencies:\n\n- Spring Boot Starter Web\n- Spring Boot Starter Actuator\n- Spring Boot Starter Security\n\n## References\n\n- [OWASP Top 10-2017 A6-Security Misconfiguration](https://owasp.org/www-project-top-ten/2017/A6_2017-Security_Misconfiguration)\n- [CWE-276: Incorrect Default Permissions](https://cwe.mitre.org/data/definitions/276.html)"
-              },
-              "properties": {
-                "cwe": [
-                  {
-                    "id": "CWE-276",
-                    "url": "https://cwe.mitre.org/data/definitions/276.html"
-                  }
-                ],
-                "kind": "FAIL",
-                "security-severity": "5.0",
-                "tags": [
-                  "security",
-                  "CWE-276"
-                ]
-              }
-            },
-            {
               "id": "41f2a4c5-99fa-3da9-9976-7ed35f27ecef",
-              "name": "Username or Email-Based Password Reset Vulnerability",
+              "name": "Predictable Secret Derived From Username or Email",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -777,7 +777,7 @@
             },
             {
               "id": "46225f11-2eee-3252-b7e4-5d0a44e491fb",
-              "name": "Anti-CSRF Token Hardcoding Vulnerability",
+              "name": "Hardcoded Anti-CSRF Token Comparison",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -800,7 +800,7 @@
             },
             {
               "id": "4a70ecbb-a81e-34d2-8067-7cfb779485e5",
-              "name": "\"SQL Injection Protection through Keyword Stripping and Space Blocking\"",
+              "name": "SQL Injection Protection Relies On Keyword Stripping",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -822,8 +822,31 @@
               }
             },
             {
+              "id": "4b0968f3-2dfc-3afa-b40e-636b103b017e",
+              "name": "SQL Injection Due To Unsanitized Variables",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"SQL Injection Risk Detected due to Formatted String in SQL Statement\" is a vulnerability that occurs when an application uses user input to construct SQL queries without properly sanitizing it. This can allow an attacker to manipulate the SQL query to perform unauthorized actions, such as viewing, modifying, or deleting data.\n\nIn Java, this vulnerability can occur when using the `executeUpdate` method of a `Statement` object with a string that includes user input. For example, the following code is vulnerable to SQL injection:\n\n```java\nString logQuery = \"UPDATE logs SET message = '\" + userInput + \"' WHERE id = \" + logId;\nstatement.executeUpdate(logQuery);\n```\n\nIn this code, if `userInput` or `logId` includes malicious SQL code, it could be executed by the database.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should use parameterized queries or prepared statements, which can ensure that user input is properly sanitized and cannot be used to manipulate the SQL query. \n\n## Source Code Fix Recommendation\n\nHere is how you can fix the above code using a `PreparedStatement`:\n\n```java\nString logQuery = \"UPDATE logs SET message = ? WHERE id = ?\";\nPreparedStatement preparedStatement = connection.prepareStatement(logQuery);\npreparedStatement.setString(1, userInput);\npreparedStatement.setInt(2, logId);\npreparedStatement.executeUpdate();\n```\n\nIn this code, `?` is a placeholder that will be replaced with the value provided by the `setString` and `setInt` methods. These methods ensure that the value is properly sanitized and cannot be used to manipulate the SQL query.\n\n## Library Dependencies\n\nThe above code requires the following library dependencies:\n\n- `java.sql.Connection`\n- `java.sql.PreparedStatement`\n\n## OWASP and CWE Links\n\n- [OWASP SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)\n- [CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')](https://cwe.mitre.org/data/definitions/89.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-89",
+                    "url": "https://cwe.mitre.org/data/definitions/89.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-89"
+                ]
+              }
+            },
+            {
               "id": "4eb56178-acb8-3029-a1a8-2b7ae7a0280c",
-              "name": "Vulnerability in Trust Redirection Based on Raw URL String Prefix Checks Instead of Host Validation",
+              "name": "Redirect Trust Based On Raw URL String Prefix Checks",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -846,7 +869,7 @@
             },
             {
               "id": "54680561-59b8-380b-9101-6ec369932865",
-              "name": "\"XML Injection Vulnerability with Disabled Security\"",
+              "name": "Request-Controlled XML Parsing With Security Disabled",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -869,7 +892,7 @@
             },
             {
               "id": "5564023f-c3f8-3228-bb9c-a4895c7e8494",
-              "name": "Potential Path Traversal Vulnerability Detected",
+              "name": "Path Traversal Vulnerability",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -892,7 +915,7 @@
             },
             {
               "id": "5822d952-6162-3f2f-adaf-59813b54e140",
-              "name": "Path Manipulation Vulnerability through User-Controlled Upload Name",
+              "name": "User-Controlled File Path Construction",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -915,7 +938,7 @@
             },
             {
               "id": "593bbfa0-9d0a-3545-834a-45a8b553f9f7",
-              "name": "Unrestricted User Listing Exposure by Controller",
+              "name": "Exposes User Listing Without Authorization Checks",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -943,7 +966,7 @@
             },
             {
               "id": "5abefe1f-0e5f-3bd8-ae87-e236aa97ee7f",
-              "name": "Direct JDBC Execution of Raw SQL in Method Parameter",
+              "name": "Raw SQL Executed Directly Through JDBC",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -966,7 +989,7 @@
             },
             {
               "id": "5b4a9cf5-57a4-3901-a9bd-ffce8de502ba",
-              "name": "Direct JDBC Execution of Raw SQL in Method Parameter Vulnerability",
+              "name": "Raw SQL Executed Directly Through JDBC",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -989,7 +1012,7 @@
             },
             {
               "id": "5f077266-d7b7-36c4-9a78-54c3ea8c64bd",
-              "name": "'HttpOnly' flag not set for cookie vulnerability",
+              "name": "Cookie Lacks HttpOnly Flag",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1011,31 +1034,31 @@
               }
             },
             {
-              "id": "645d0e84-4587-3ab6-94c2-d54f702248c4",
-              "name": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks",
+              "id": "62667bcd-3c9c-3ce7-ad2b-c19599ddf96d",
+              "name": "SQL Injection Due To Unsanitized Variables",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
-                "markdown": "## Description\n\nThe `@RequestMapping` annotation in Spring MVC is used to map web requests onto specific handler classes and/or handler methods. If the HTTP method is not specified in the `@RequestMapping` annotation, it means that the endpoint is open to all HTTP methods (GET, POST, PUT, DELETE, etc.). This can potentially make the application vulnerable to Cross-Site Request Forgery (CSRF) attacks.\n\nIn a CSRF attack, an attacker tricks a victim into performing actions on their behalf on a web application in which they're authenticated. With a little help of social engineering (like sending a link via email or chat), an attacker may trick the users of a web application into executing actions of the attacker's choosing.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to specify the HTTP method in the `@RequestMapping` annotation. This can be done by using the `method` attribute of the `@RequestMapping` annotation and setting it to the appropriate `RequestMethod` enum (like `RequestMethod.GET`, `RequestMethod.POST`, etc.).\n\nAdditionally, Spring Security provides built-in CSRF protection that can be enabled in your application. It is recommended to use this feature to protect your application from CSRF attacks.\n\n## Source Code Fix Recommendation\n\nHere is an example of how to specify the HTTP method in the `@RequestMapping` annotation:\n\n```java\n@RequestMapping(path = URL_DEBUG_LABELS_MVC, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)\n```\n\nIn this example, the endpoint is only open to HTTP GET requests.\n\n## Library Dependencies\n\nThe following libraries are required by the code example:\n\n- Spring Web MVC (spring-webmvc)\n- Spring Security (spring-security-web)\n\n## References\n\n- [OWASP CSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html)\n- [CWE-352: Cross-Site Request Forgery (CSRF)](https://cwe.mitre.org/data/definitions/352.html)"
+                "markdown": "## Description\n\n\"SQL Injection Risk Detected due to Formatted String in SQL Statement\" is a vulnerability that occurs when an application uses user input to construct SQL queries without properly sanitizing or escaping the input. This can allow an attacker to manipulate the SQL query to perform unauthorized actions, such as viewing, modifying, or deleting data.\n\nIn the provided code snippet, the `query` variable is passed directly to the `executeQuery` method of the `statement` object. If the `query` variable contains user input, this could lead to a SQL injection vulnerability.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should use parameterized queries or prepared statements, which can ensure that user input is properly escaped and cannot be used to manipulate the SQL query. You should also validate and sanitize user input to ensure it does not contain malicious data.\n\n## Source Code Fix Recommendation\n\nHere is a recommended fix using a `PreparedStatement`:\n\n```java\nString query = \"SELECT * FROM table WHERE column = ?\";\nPreparedStatement pstmt = connection.prepareStatement(query);\npstmt.setString(1, userInput);\nResultSet results = pstmt.executeQuery();\n```\n\nIn this code, `?` is a placeholder that is replaced by the `userInput` variable using the `setString` method. This ensures that the user input is properly escaped and cannot be used to manipulate the SQL query.\n\n## Library Dependencies\n\nThe code example requires the following library dependencies:\n\n- `java.sql.Connection`\n- `java.sql.PreparedStatement`\n- `java.sql.ResultSet`\n\n## OWASP Resources\n\n- [OWASP SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)\n- [OWASP Java Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Java_Security_Cheat_Sheet.html)\n\n## Common Weakness Enumeration (CWE)\n\n- [CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')](https://cwe.mitre.org/data/definitions/89.html)"
               },
               "properties": {
                 "cwe": [
                   {
-                    "id": "CWE-352",
-                    "url": "https://cwe.mitre.org/data/definitions/352.html"
+                    "id": "CWE-89",
+                    "url": "https://cwe.mitre.org/data/definitions/89.html"
                   }
                 ],
                 "kind": "FAIL",
                 "security-severity": "5.0",
                 "tags": [
                   "security",
-                  "CWE-352"
+                  "CWE-89"
                 ]
               }
             },
             {
               "id": "68d9be1c-2f71-3d72-ad80-9280545b8102",
-              "name": "'HttpOnly' flag not set for cookie vulnerability",
+              "name": "Cookie Lacks HttpOnly Flag",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1057,31 +1080,8 @@
               }
             },
             {
-              "id": "6cddcebe-88f8-35b5-a59a-9c9ea1351864",
-              "name": "Inverted Server-Side Validation Vulnerability",
-              "helpUri": "https://www.glog.ai/",
-              "help": {
-                "text": "",
-                "markdown": "## Description\n\nInverted Server-Side Validation Vulnerability refers to a situation where the server-side validation is done in a reverse manner. Instead of checking if the input matches the expected format (which is the correct way), the code checks if the input does not match the expected format. This can lead to unexpected behavior and potential security risks as it allows inputs that should have been rejected.\n\nIn the provided code, the validation is done correctly. The code checks if the fields match the expected format using regular expressions. If they do, an error is returned. This is the correct way to perform server-side validation.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, always perform server-side validation in the correct manner. Check if the input matches the expected format, not the other way around. Use regular expressions to define the expected format and use the `matches()` method to check if the input matches this format.\n\n## Source Code Fix Recommendation\n\nThe provided code does not have the Inverted Server-Side Validation Vulnerability. The validation is done correctly. The code checks if the fields match the expected format using regular expressions. If they do, an error is returned. This is the correct way to perform server-side validation.\n\n## Library Dependencies\n\nThe provided code does not require any specific library dependencies to execute properly.\n\n## OWASP and CWE Resources\n\n- [OWASP Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)\n- [CWE-20: Improper Input Validation](https://cwe.mitre.org/data/definitions/20.html)\n\nPlease note that the links are valid and active for anonymous users at the time of writing this report."
-              },
-              "properties": {
-                "cwe": [
-                  {
-                    "id": "CWE-20",
-                    "url": "https://cwe.mitre.org/data/definitions/20.html"
-                  }
-                ],
-                "kind": "FAIL",
-                "security-severity": "8.0",
-                "tags": [
-                  "security",
-                  "CWE-20"
-                ]
-              }
-            },
-            {
               "id": "6eeb49b4-761b-3450-aff8-6095319e2cf2",
-              "name": "Unnormalized Path Vulnerability",
+              "name": "Original Filename Used In Path Construction",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1109,7 +1109,7 @@
             },
             {
               "id": "6f3b5309-25a1-30c4-a651-0a6d18a86c97",
-              "name": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks",
+              "name": "Unrestricted HTTP Method Mapping In Request Handling",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1132,7 +1132,7 @@
             },
             {
               "id": "6fe2993e-58b2-3d9c-b2c2-aab5dadf4678",
-              "name": "Unsecured Cookie Detected",
+              "name": "Cookie Lacks Secure Flag",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1155,7 +1155,7 @@
             },
             {
               "id": "700accfc-555b-3216-a4c2-31d13e7a4e2d",
-              "name": "Hardcoded Credential Vulnerability in Authentication Logic",
+              "name": "Controller Accepts Hardcoded Credentials",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1178,7 +1178,7 @@
             },
             {
               "id": "71604b5f-40bc-31ce-be01-006315f79f56",
-              "name": "Direct JDBC Execution of Raw SQL in Method Parameter",
+              "name": "Raw SQL Executed Directly Through JDBC",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1201,7 +1201,7 @@
             },
             {
               "id": "79928727-f668-346c-a619-4006fe3bbad9",
-              "name": "Hardcoded Default Credentials Vulnerability in Authentication Logic",
+              "name": "Controller Accepts Hardcoded Default Credentials",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1224,7 +1224,7 @@
             },
             {
               "id": "7a7f602f-6c4b-346b-8b18-2f44739ee4cb",
-              "name": "\"Unsecured Default Session Middleware: Vulnerable to Cross-Site Scripting Attacks\"",
+              "name": "Insecure Cookie Attributes",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1233,21 +1233,21 @@
               "properties": {
                 "cwe": [
                   {
-                    "id": "CWE-319",
-                    "url": "https://cwe.mitre.org/data/definitions/319.html"
+                    "id": "CWE-79",
+                    "url": "https://cwe.mitre.org/data/definitions/79.html"
                   }
                 ],
                 "kind": "FAIL",
                 "security-severity": "5.0",
                 "tags": [
                   "security",
-                  "CWE-319"
+                  "CWE-79"
                 ]
               }
             },
             {
               "id": "7c288fd9-fed4-3269-95a5-3f9b0bbb42a9",
-              "name": "\"Use of Host Header in Constructing Password Reset or Email Links\"",
+              "name": "Insecure Host Header In Password Reset Links",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1275,7 +1275,7 @@
             },
             {
               "id": "7d52e729-2d31-3c48-9792-5c35db982cf6",
-              "name": "\"Exposure of Server-Side Coupon and Promo Codes\"",
+              "name": "Endpoint Exposes Internal Promo Codes",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1298,7 +1298,7 @@
             },
             {
               "id": "7fc7160a-a366-38f9-b469-f24262f6a5ee",
-              "name": "\"Host and Referer or Origin Header Comparison Used for CSRF Validation Instead of Anti-CSRF Token\"",
+              "name": "CSRF Validation Lacks Anti-CSRF Token",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1321,7 +1321,7 @@
             },
             {
               "id": "89164205-100f-33f1-bf2c-dab53b8bcfca",
-              "name": "Unrestricted User-Controlled Target Redirection Vulnerability",
+              "name": "Open Redirect To User-Controlled Target Without Allowlist",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1344,7 +1344,7 @@
             },
             {
               "id": "8f745816-bbfc-3d0f-921a-9db7d342714d",
-              "name": "Direct JDBC Execution of Raw SQL in Method Parameter Vulnerability",
+              "name": "Raw SQL Executed Directly Through JDBC",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1367,7 +1367,7 @@
             },
             {
               "id": "90617087-7eb3-34eb-8ca5-4716a67e0379",
-              "name": "Username or Email-Based Password Reset or Recovery Vulnerability",
+              "name": "Predictable Secret Derived From Username or Email",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1389,8 +1389,31 @@
               }
             },
             {
+              "id": "909cced9-5075-39df-906d-f38140fab706",
+              "name": "SQL Injection Due To Unsanitized Variables",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"SQL Injection Risk Detected due to Formatted String in SQL Statement\" is a vulnerability that occurs when an application uses user input to construct SQL queries without properly sanitizing or escaping the input. This can allow an attacker to manipulate the SQL query to perform unauthorized actions, such as viewing, modifying, or deleting data.\n\nIn the provided code snippet, the `query` variable is passed directly to the `executeQuery` method of the `statement` object. If the `query` variable contains user input, this could lead to a SQL injection vulnerability.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should use parameterized queries or prepared statements, which can ensure that user input is properly escaped and cannot be used to manipulate the SQL query. You should also validate and sanitize user input to ensure it does not contain malicious data.\n\n## Source Code Fix Recommendation\n\nHere is a recommended fix using a `PreparedStatement`:\n\n```java\nString query = \"SELECT * FROM table WHERE column = ?\";\nPreparedStatement pstmt = connection.prepareStatement(query);\npstmt.setString(1, userInput);\nResultSet results = pstmt.executeQuery();\n```\n\nIn this code, `?` is a placeholder that is replaced by the `userInput` variable using the `setString` method. This ensures that the user input is properly escaped and cannot be used to manipulate the SQL query.\n\n## Library Dependencies\n\nThe code example requires the following library dependencies:\n\n- `java.sql.Connection`\n- `java.sql.PreparedStatement`\n- `java.sql.ResultSet`\n\n## OWASP Resources\n\n- [OWASP SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)\n- [OWASP Java Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Java_Security_Cheat_Sheet.html)\n\n## Common Weakness Enumeration (CWE)\n\n- [CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')](https://cwe.mitre.org/data/definitions/89.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-89",
+                    "url": "https://cwe.mitre.org/data/definitions/89.html"
+                  }
+                ],
+                "kind": "FAIL",
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "CWE-89"
+                ]
+              }
+            },
+            {
               "id": "90c1577c-c040-32ce-acfc-970dd4af9b31",
-              "name": "'jku' Header Claim JWT Vulnerability Allows Key Fetching from URL Without Visible Allowlist",
+              "name": "JWT Jku Claim Fetches Key From Unrestricted URL",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1418,7 +1441,7 @@
             },
             {
               "id": "97153270-115f-3a36-a551-78a0c319bc0e",
-              "name": "Unencoded HTML Response Data Vulnerability",
+              "name": "Request Data Concatenated Into HTML Response Without Encoding",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1441,7 +1464,7 @@
             },
             {
               "id": "97cae28f-4ac9-31ab-8ba2-b46c64d0265e",
-              "name": "\"Unsecured Actuator Endpoint Defined in Application Code\"",
+              "name": "Actuator-Like Endpoint Lacks Method-Level Authorization",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1464,7 +1487,7 @@
             },
             {
               "id": "97e8efd5-6883-38f4-ba9f-899da2a6a81e",
-              "name": "Host and Referer/Origin header comparison used for CSRF protection instead of anti-CSRF token.",
+              "name": "CSRF Protection Lacks Anti-CSRF Token",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1487,7 +1510,7 @@
             },
             {
               "id": "99161671-a964-3ac6-84fd-1c1fbe5fa169",
-              "name": "\"Sensitive PII or Compensation Data Exposed in HTTP Endpoint Query Response\"",
+              "name": "HTTP Endpoint Exposes Sensitive PII In Response",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1510,7 +1533,7 @@
             },
             {
               "id": "997d943f-05bc-349b-bd9a-ebd0dde133dc",
-              "name": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks",
+              "name": "Unrestricted HTTP Method Mapping In Request Handling",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1533,7 +1556,7 @@
             },
             {
               "id": "99e96353-6596-3524-bc66-428e593739c7",
-              "name": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks",
+              "name": "Unrestricted HTTP Method Mapping In Request Handling",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1556,7 +1579,7 @@
             },
             {
               "id": "9b06e4d4-7ba3-33f6-ba8b-fd632aa230d4",
-              "name": "Insecure Use of Non-Cryptographically Strong RNGs in Password or Token Generation",
+              "name": "Weak Random Number Generator Used",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1565,21 +1588,21 @@
               "properties": {
                 "cwe": [
                   {
-                    "id": "CWE-330",
-                    "url": "https://cwe.mitre.org/data/definitions/330.html"
+                    "id": "CWE-338",
+                    "url": "https://cwe.mitre.org/data/definitions/338.html"
                   }
                 ],
                 "kind": "FAIL",
                 "security-severity": "5.0",
                 "tags": [
                   "security",
-                  "CWE-330"
+                  "CWE-338"
                 ]
               }
             },
             {
               "id": "9cac4438-8319-3972-af93-e1203c6e6f67",
-              "name": "Insecure MD5 Hash Algorithm Detected, Use HMAC Instead",
+              "name": "Insecure MD5 Hash Algorithm",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1588,21 +1611,21 @@
               "properties": {
                 "cwe": [
                   {
-                    "id": "CWE-328",
-                    "url": "https://cwe.mitre.org/data/definitions/328.html"
+                    "id": "CWE-327",
+                    "url": "https://cwe.mitre.org/data/definitions/327.html"
                   }
                 ],
                 "kind": "FAIL",
                 "security-severity": "5.0",
                 "tags": [
                   "security",
-                  "CWE-328"
+                  "CWE-327"
                 ]
               }
             },
             {
               "id": "9f7216ca-9228-39bd-bc7e-193d4e607d5a",
-              "name": "\"JWT Vulnerability: Acceptance of alg=none Header Value\"",
+              "name": "JWT Handling Accepts Alg=None Header Value",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1625,7 +1648,7 @@
             },
             {
               "id": "a356b939-c928-3b67-9afb-f91c6bb40464",
-              "name": "\"Potential SQL Injection Vulnerability in Manually-Constructed SQL Strings\"",
+              "name": "Manually Constructed SQL String",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1648,7 +1671,7 @@
             },
             {
               "id": "a930a319-20d8-3226-b9a8-a29a5fcad543",
-              "name": "Insecure Use of `Math.random()` or `java.util.Random()` for Passwords or Secret Tokens Generation",
+              "name": "Weak Random Number Generator Used",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1671,7 +1694,7 @@
             },
             {
               "id": "aa466f90-5f8b-3e88-af98-f1e8328f0750",
-              "name": "SQL Injection Risk Detected due to Formatted String in SQL Statement",
+              "name": "Formatted String In SQL Statement",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1694,7 +1717,7 @@
             },
             {
               "id": "afd3d049-5458-30a1-91b2-765ede940b54",
-              "name": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks",
+              "name": "Unrestricted HTTP Method Mapping In Request Handling",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1717,7 +1740,7 @@
             },
             {
               "id": "b10608b2-c776-308b-8475-dd215d3ef518",
-              "name": "Unsecured Cookie Detected",
+              "name": "Cookie Lacks Secure Flag",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1740,7 +1763,7 @@
             },
             {
               "id": "b1bd657e-7263-304e-925b-876139cb9dd4",
-              "name": "Direct JDBC Execution of Raw SQL in Method Parameter",
+              "name": "Raw SQL Executed Directly Through JDBC",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1763,7 +1786,7 @@
             },
             {
               "id": "b217c1fe-3a82-3c27-b200-106220625f36",
-              "name": "'HttpOnly' flag not set for cookie vulnerability",
+              "name": "Cookie Lacks HttpOnly Flag",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1786,7 +1809,7 @@
             },
             {
               "id": "b2dd9e79-af4f-3d37-a95a-508971f1001c",
-              "name": "Non-Allowlisted External Host Redirect Vulnerability in URL Handling",
+              "name": "Open Redirect To Non-Allowlisted External Hosts",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1809,7 +1832,7 @@
             },
             {
               "id": "b60a43c3-5c03-392f-8fd8-8dad4f4a5f32",
-              "name": "HTTPServletRequest User Input Trust Boundary Violation Vulnerability",
+              "name": "Trust Boundary Violation From Unvalidated Input",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1818,21 +1841,21 @@
               "properties": {
                 "cwe": [
                   {
-                    "id": "CWE-501",
-                    "url": "https://cwe.mitre.org/data/definitions/501.html"
+                    "id": "CWE-20",
+                    "url": "https://cwe.mitre.org/data/definitions/20.html"
                   }
                 ],
                 "kind": "FAIL",
                 "security-severity": "5.0",
                 "tags": [
                   "security",
-                  "CWE-501"
+                  "CWE-20"
                 ]
               }
             },
             {
               "id": "b945ddb1-a0bf-3481-bb96-96236443f99b",
-              "name": "Hardcoded Username-to-Answer Map Vulnerability in Password Reset/Recovery Logic",
+              "name": "Hardcoded Security Answers In Password Reset Logic",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1855,7 +1878,7 @@
             },
             {
               "id": "bf081a1b-9e78-31ab-9baf-1286c3e58629",
-              "name": "JWT Token Vulnerability Identified",
+              "name": "Hardcoded JWT Token",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1864,21 +1887,21 @@
               "properties": {
                 "cwe": [
                   {
-                    "id": "CWE-321",
-                    "url": "https://cwe.mitre.org/data/definitions/321.html"
+                    "id": "CWE-347",
+                    "url": "https://cwe.mitre.org/data/definitions/347.html"
                   }
                 ],
                 "kind": "FAIL",
                 "security-severity": "8.0",
                 "tags": [
                   "security",
-                  "CWE-321"
+                  "CWE-347"
                 ]
               }
             },
             {
               "id": "c601cdcc-7551-3c42-8b49-91692d3c1bb5",
-              "name": "Server-Side Trusts Client-Side Restrictions Vulnerability",
+              "name": "Insecure Input Validation On Endpoint",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1901,7 +1924,7 @@
             },
             {
               "id": "c80576a7-8f4b-3010-b2e4-a2b4aec0e70b",
-              "name": "Insecure Use of Non-Cryptographically Strong RNGs in Password or Token Generation",
+              "name": "Weak Random Number Generator Used",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1910,44 +1933,21 @@
               "properties": {
                 "cwe": [
                   {
-                    "id": "CWE-330",
-                    "url": "https://cwe.mitre.org/data/definitions/330.html"
+                    "id": "CWE-338",
+                    "url": "https://cwe.mitre.org/data/definitions/338.html"
                   }
                 ],
                 "kind": "FAIL",
                 "security-severity": "5.0",
                 "tags": [
                   "security",
-                  "CWE-330"
-                ]
-              }
-            },
-            {
-              "id": "ce4af615-c618-3693-9094-7015e59c9176",
-              "name": "Potential SQL Injection Detected: Use Prepared Statements for Sanitization",
-              "helpUri": "https://www.glog.ai/",
-              "help": {
-                "text": "",
-                "markdown": "## Description\n\n\"Potential SQL Injection Detected: Use Prepared Statements for Sanitization\" is a vulnerability that occurs when an application includes untrusted data in a SQL query. This can allow an attacker to manipulate the query, leading to unauthorized data access, data corruption, or data loss. In Java, this vulnerability can occur when using the `execute` method of a `Statement` object with a string that includes untrusted data.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, use Prepared Statements or Parameterized Queries. These methods ensure that untrusted data is properly escaped, preventing it from being interpreted as part of the SQL query. Avoid using string concatenation to build SQL queries.\n\n## Source Code Fix Recommendation\n\nInstead of:\n\n```java\nString queryInjection = \"SELECT * FROM users WHERE name = '\" + userName + \"'\";\nstatement.execute(queryInjection);\n```\n\nUse:\n\n```java\nString query = \"SELECT * FROM users WHERE name = ?\";\nPreparedStatement preparedStatement = connection.prepareStatement(query);\npreparedStatement.setString(1, userName);\npreparedStatement.executeQuery();\n```\n\n## Library Dependencies\n\nThe code example requires the following library dependencies:\n\n- `java.sql.Connection`\n- `java.sql.PreparedStatement`\n\n## OWASP Resources\n\n- [OWASP SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)\n- [OWASP Java Encoder library](https://owasp.org/www-project-java-encoder/)\n\n## Common Weakness Enumeration (CWE)\n\n- [CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')](https://cwe.mitre.org/data/definitions/89.html)"
-              },
-              "properties": {
-                "cwe": [
-                  {
-                    "id": "CWE-89",
-                    "url": "https://cwe.mitre.org/data/definitions/89.html"
-                  }
-                ],
-                "kind": "FAIL",
-                "security-severity": "8.0",
-                "tags": [
-                  "security",
-                  "CWE-89"
+                  "CWE-338"
                 ]
               }
             },
             {
               "id": "d2bf7399-d551-3bfa-8ab9-0be6950a54e9",
-              "name": "Host and Referer/Origin header comparison used for CSRF protection instead of anti-CSRF token.",
+              "name": "CSRF Protection Lacks Anti-CSRF Token",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1970,7 +1970,7 @@
             },
             {
               "id": "d70aab63-7f1f-329b-91bf-80275e38b637",
-              "name": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks",
+              "name": "Unrestricted HTTP Method Mapping In Request Handling",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -1993,7 +1993,7 @@
             },
             {
               "id": "e0d56bb8-4ec7-3ae1-bce4-65591418f08b",
-              "name": "Unnormalized Path Vulnerability",
+              "name": "Original Filename Used In Path Construction",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -2016,7 +2016,7 @@
             },
             {
               "id": "e1f43931-4d9a-3e46-84c4-13ee865eb7f1",
-              "name": "Non-Allowlisted External Host Redirect Vulnerability in URL Handling",
+              "name": "Open Redirect To Non-Allowlisted External Hosts",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -2039,7 +2039,7 @@
             },
             {
               "id": "e50535f2-9ad0-3c5b-9658-3543ed701a81",
-              "name": "\"Java Object Deserialization Vulnerability with ObjectInputStream\"",
+              "name": "Insecure Object Deserialization",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -2061,31 +2061,8 @@
               }
             },
             {
-              "id": "e50e7256-f55a-36b8-ba14-7fdb6d28c7c5",
-              "name": "\"Unsecured Default Session Middleware: Vulnerable to Cross-Site Scripting Attacks\"",
-              "helpUri": "https://www.glog.ai/",
-              "help": {
-                "text": "",
-                "markdown": "## Description\n\nUnsecured Default Session Middleware: Vulnerable to Cross-Site Scripting Attacks is a vulnerability that occurs when an application does not properly validate input before returning it to the user. This can allow an attacker to inject malicious scripts into the web page viewed by the user, leading to Cross-Site Scripting (XSS) attacks. In Java, this vulnerability can occur when using the `Cookie` class to set cookies without proper sanitization or encoding.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to:\n\n- Always validate and sanitize user input before using it.\n- Use HTTPOnly cookies to prevent scripts from accessing the cookies.\n- Use secure cookies (transmitted over HTTPS only) to prevent interception of the cookie data.\n- Encode the output to ensure that any input is safe to display.\n\n## Source Code Fix Recommendation\n\nHere is a simple fix for the given code:\n\n```java\nimport javax.servlet.http.Cookie;\nimport java.net.URLEncoder;\nimport java.nio.charset.StandardCharsets;\n\nString cookieValue = URLEncoder.encode(\"\", StandardCharsets.UTF_8.toString());\nCookie cookie = new Cookie(COOKIE_NAME, cookieValue);\ncookie.setHttpOnly(true);\ncookie.setSecure(true);\n```\n\n## Library Dependencies\n\nThe code example requires the following library dependencies:\n\n- `javax.servlet-api` for the `Cookie` class.\n\n## References\n\n- [OWASP XSS (Cross Site Scripting) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)\n- [OWASP Java Encoding Project](https://owasp.org/www-project-java-encoder/)\n- [CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')](https://cwe.mitre.org/data/definitions/79.html)"
-              },
-              "properties": {
-                "cwe": [
-                  {
-                    "id": "CWE-319",
-                    "url": "https://cwe.mitre.org/data/definitions/319.html"
-                  }
-                ],
-                "kind": "FAIL",
-                "security-severity": "5.0",
-                "tags": [
-                  "security",
-                  "CWE-319"
-                ]
-              }
-            },
-            {
               "id": "e9c8963c-149c-31ad-a855-a0a348c8fbf8",
-              "name": "SQL Injection Risk Detected due to Formatted String in SQL Statement",
+              "name": "Formatted String In SQL Statement",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -2108,7 +2085,7 @@
             },
             {
               "id": "ea20e753-0245-3527-8640-4e14fac43f24",
-              "name": "Insecure Use of Non-Cryptographically Strong RNGs in Password or Token Generation",
+              "name": "Weak Random Number Generator Used",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -2117,44 +2094,21 @@
               "properties": {
                 "cwe": [
                   {
-                    "id": "CWE-330",
-                    "url": "https://cwe.mitre.org/data/definitions/330.html"
+                    "id": "CWE-338",
+                    "url": "https://cwe.mitre.org/data/definitions/338.html"
                   }
                 ],
                 "kind": "FAIL",
                 "security-severity": "5.0",
                 "tags": [
                   "security",
-                  "CWE-330"
-                ]
-              }
-            },
-            {
-              "id": "ebafa219-321d-33c3-9bb4-e1a5209fbf32",
-              "name": "SQL Injection Risk Detected due to Formatted String in SQL Statement",
-              "helpUri": "https://www.glog.ai/",
-              "help": {
-                "text": "",
-                "markdown": "## Description\n\n\"SQL Injection Risk Detected due to Formatted String in SQL Statement\" is a vulnerability that occurs when an application uses user input to construct SQL queries without properly sanitizing or escaping it. This can allow an attacker to manipulate the SQL query to perform unauthorized actions, such as viewing, modifying, or deleting data.\n\nIn the provided code snippet, the `executeQuery()` method is called without any input sanitization or parameterization, which could potentially allow for SQL injection if the query string includes user input.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to use parameterized queries or prepared statements, which can ensure that user input is properly sanitized and escaped before it is included in a SQL query. This can prevent an attacker from being able to manipulate the SQL query.\n\n## Source Code Fix Recommendation\n\nHere is an example of how you can modify the provided code snippet to use a prepared statement:\n\n```java\nString sql = \"SELECT * FROM users WHERE username = ?\";\nPreparedStatement statement = connection.prepareStatement(sql);\nstatement.setString(1, username);\nResultSet results = statement.executeQuery();\n```\n\nIn this example, the `?` is a placeholder that gets replaced with the value of `username` when the query is executed. Because the value is set using the `setString()` method, it is automatically sanitized and escaped, preventing SQL injection.\n\n## Library Dependencies\n\nThe code example requires the following library dependencies:\n\n- `java.sql.Connection`\n- `java.sql.PreparedStatement`\n- `java.sql.ResultSet`\n\n## OWASP Resources\n\n- [OWASP SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)\n- [OWASP Java Encoder Project](https://owasp.org/www-project-java-encoder/)\n\n## Common Weakness Enumeration (CWE)\n\n- [CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')](https://cwe.mitre.org/data/definitions/89.html)"
-              },
-              "properties": {
-                "cwe": [
-                  {
-                    "id": "CWE-89",
-                    "url": "https://cwe.mitre.org/data/definitions/89.html"
-                  }
-                ],
-                "kind": "FAIL",
-                "security-severity": "8.0",
-                "tags": [
-                  "security",
-                  "CWE-89"
+                  "CWE-338"
                 ]
               }
             },
             {
               "id": "ebb16838-4caa-3cd2-bb75-e7d11dfcb2dc",
-              "name": "Password Reset Link Vulnerability from Unconfigured Base URL",
+              "name": "Insecure Password Reset Link Construction",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -2177,7 +2131,7 @@
             },
             {
               "id": "f106d05d-5e66-3bae-bb6d-1f5b840f79d7",
-              "name": "'HttpOnly' flag not set for cookie vulnerability",
+              "name": "Cookie Lacks HttpOnly Flag",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -2200,7 +2154,7 @@
             },
             {
               "id": "f171bf4c-5d7e-3486-9179-d3b19c27ce56",
-              "name": "'HttpOnly' flag not set for cookie vulnerability",
+              "name": "Cookie Lacks HttpOnly Flag",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -2223,7 +2177,7 @@
             },
             {
               "id": "f2969a84-f931-3b93-83b1-d4add2abbfb0",
-              "name": "\"XML Injection Vulnerability with Disabled Security\"",
+              "name": "Request-Controlled XML Parsing With Security Disabled",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -2246,7 +2200,7 @@
             },
             {
               "id": "f2f42e61-6997-3696-a2bc-a6d42e3ace9a",
-              "name": "\"XML Injection Vulnerability with Disabled Security\"",
+              "name": "Request-Controlled XML Parsing With Security Disabled",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -2269,7 +2223,7 @@
             },
             {
               "id": "f4b894a1-54a8-34d5-9411-13e4ce181861",
-              "name": "XML External Entity (XXE) Vulnerability in XStream Deserialization",
+              "name": "Insecure Deserialization Of Request-Controlled XML",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -2292,7 +2246,7 @@
             },
             {
               "id": "f59adc95-018b-3799-9be9-e4cbd898ef96",
-              "name": "User Input Manipulation Vulnerability in File Path Control",
+              "name": "User Input Controls File Path",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -2301,21 +2255,26 @@
               "properties": {
                 "cwe": [
                   {
-                    "id": "CWE-23",
-                    "url": "https://cwe.mitre.org/data/definitions/23.html"
+                    "id": "CWE-22",
+                    "url": "https://cwe.mitre.org/data/definitions/22.html"
+                  },
+                  {
+                    "id": "CWE-73",
+                    "url": "https://cwe.mitre.org/data/definitions/73.html"
                   }
                 ],
                 "kind": "FAIL",
                 "security-severity": "8.0",
                 "tags": [
                   "security",
-                  "CWE-23"
+                  "CWE-22",
+                  "CWE-73"
                 ]
               }
             },
             {
               "id": "f60e13a8-fb27-376c-9aae-0aaa4a5ad073",
-              "name": "Potential SQL Injection Vulnerability in Manually-Constructed SQL Strings",
+              "name": "Manually Constructed SQL String",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -2338,7 +2297,7 @@
             },
             {
               "id": "faacb945-3751-3567-a894-49a8163222e1",
-              "name": "\"Conditional XMLInputFactory Hardening and Independent XXE Protections\"",
+              "name": "Conditional XXE Protection Hardening",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -2361,7 +2320,7 @@
             },
             {
               "id": "fbc4b2ec-6f9e-3bc6-a87f-b675b7b7bd7e",
-              "name": "Inconsistent Identifier Access Grant Vulnerability",
+              "name": "Insecure Access Control Based On Resource Identifier",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -2384,7 +2343,7 @@
             },
             {
               "id": "fe423ad0-43a7-3ae5-9815-d6927fe19940",
-              "name": "SQL Injection Risk Detected due to Formatted String in SQL Statement",
+              "name": "Formatted String In SQL Statement",
               "helpUri": "https://www.glog.ai/",
               "help": {
                 "text": "",
@@ -2421,7 +2380,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "JWT Token Vulnerability Identified"
+            "text": "Hardcoded JWT Token"
           },
           "locations": [
             {
@@ -2452,46 +2411,11 @@
           }
         },
         {
-          "ruleId": "645d0e84-4587-3ab6-94c2-d54f702248c4",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "src/main/java/org/owasp/webgoat/container/service/LabelDebugService.java",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 35,
-                  "startColumn": 4,
-                  "endLine": 35,
-                  "endColumn": 18,
-                  "snippet": {
-                    "text": "  @RequestMapping(path = URL_DEBUG_LABELS_MVC, produces = MediaType.APPLICATION_JSON_VALUE)"
-                  },
-                  "sourceLanguage": "java"
-                }
-              }
-            }
-          ],
-          "partialFingerprints": {
-            "glog-pfp-ruleFileLineCode/v1": "5269fe1d7264b8d9723273e08e4bfce81baecd76d03f0df6f6fe455875e7cc35",
-            "glog-pfp-ruleFileCode/v1": "7a2077989825a0550240a29bc7d6bbe1c9e20c00adb18f99cddc19318872c2d0"
-          },
-          "fingerprints": {
-            "glog-fp-ruleFileCode/v1": "7a2077989825a0550240a29bc7d6bbe1c9e20c00adb18f99cddc19318872c2d0"
-          }
-        },
-        {
           "ruleId": "1dc6dd7f-bbf4-3044-b095-0c59991fd8a3",
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks"
+            "text": "Unrestricted HTTP Method Mapping In Request Handling"
           },
           "locations": [
             {
@@ -2526,7 +2450,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks"
+            "text": "Unrestricted HTTP Method Mapping In Request Handling"
           },
           "locations": [
             {
@@ -2561,7 +2485,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Method with 'RequestMapping' annotation lacks specified HTTP method, potentially exposing it to CSRF attacks."
+            "text": "Unrestricted HTTP Method Mapping In Request Handling"
           },
           "locations": [
             {
@@ -2596,7 +2520,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Insufficient Validation of Optional Security Keys Vulnerability"
+            "text": "Missing Validation For Required Security Keys"
           },
           "locations": [
             {
@@ -2631,7 +2555,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Server-Side Trusts Client-Side Restrictions Vulnerability"
+            "text": "Insecure Input Validation On Endpoint"
           },
           "locations": [
             {
@@ -2662,46 +2586,11 @@
           }
         },
         {
-          "ruleId": "6cddcebe-88f8-35b5-a59a-9c9ea1351864",
-          "kind": "fail",
-          "level": "error",
-          "message": {
-            "text": "Inverted Server-Side Validation Vulnerability"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "src/main/java/org/owasp/webgoat/lessons/bypassrestrictions/BypassRestrictionsFrontendValidation.java",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 31,
-                  "startColumn": 5,
-                  "endLine": 62,
-                  "endColumn": 34,
-                  "snippet": {
-                    "text": "    final String regex1 = \"^[a-z]{3}$\";\n    final String regex2 = \"^[0-9]{3}$\";\n    final String regex3 = \"^[a-zA-Z0-9 ]*$\";\n    final String regex4 = \"^(one|two|three|four|five|six|seven|eight|nine)$\";\n    final String regex5 = \"^\\\\d{5}$\";\n    final String regex6 = \"^\\\\d{5}(-\\\\d{4})?$\";\n    final String regex7 = \"^[2-9]\\\\d{2}-?\\\\d{3}-?\\\\d{4}$\";\n    if (error > 0) {\n      return failed(this).build();\n    }\n    if (field1.matches(regex1)) {\n      return failed(this).build();\n    }\n    if (field2.matches(regex2)) {\n      return failed(this).build();\n    }\n    if (field3.matches(regex3)) {\n      return failed(this).build();\n    }\n    if (field4.matches(regex4)) {\n      return failed(this).build();\n    }\n    if (field5.matches(regex5)) {\n      return failed(this).build();\n    }\n    if (field6.matches(regex6)) {\n      return failed(this).build();\n    }\n    if (field7.matches(regex7)) {\n      return failed(this).build();\n    }\n    return success(this).build();"
-                  },
-                  "sourceLanguage": "java"
-                }
-              }
-            }
-          ],
-          "partialFingerprints": {
-            "glog-pfp-ruleFileLineCode/v1": "d9d8a7924b45422d2ca41bc415115df7911e28dfda09d5ccc927777f435f3cda",
-            "glog-pfp-ruleFileCode/v1": "d58a4ff0b99451dd3d89fad84f597cf8d37c51a091da0cc4757ab019dd80b796"
-          },
-          "fingerprints": {
-            "glog-fp-ruleFileCode/v1": "d58a4ff0b99451dd3d89fad84f597cf8d37c51a091da0cc4757ab019dd80b796"
-          }
-        },
-        {
           "ruleId": "285fbcbd-72c5-389b-923c-98511520a773",
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Insecure Use of Non-Cryptographically Strong RNGs in Password or Token Generation"
+            "text": "Weak Random Number Generator Used"
           },
           "locations": [
             {
@@ -2736,7 +2625,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Potential SQL Injection Vulnerability in Manually-Constructed SQL Strings"
+            "text": "Manually Constructed SQL String"
           },
           "locations": [
             {
@@ -2771,7 +2660,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "SQL Injection Risk Detected due to Formatted String in SQL Statement"
+            "text": "Formatted String In SQL Statement"
           },
           "locations": [
             {
@@ -2806,7 +2695,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Password Reset Link Vulnerability from Unconfigured Base URL"
+            "text": "Insecure Password Reset Link Construction"
           },
           "locations": [
             {
@@ -2841,7 +2730,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "\"Sensitive PII or Compensation Data Exposed in HTTP Endpoint Query Response\""
+            "text": "HTTP Endpoint Exposes Sensitive PII In Response"
           },
           "locations": [
             {
@@ -2876,7 +2765,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "\"Exposure of Server-Side Coupon and Promo Codes\""
+            "text": "Endpoint Exposes Internal Promo Codes"
           },
           "locations": [
             {
@@ -2911,7 +2800,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Insecure Use of Non-Cryptographically Strong RNGs in Password or Token Generation"
+            "text": "Weak Random Number Generator Used"
           },
           "locations": [
             {
@@ -2946,7 +2835,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "HTTPServletRequest User Input Trust Boundary Violation Vulnerability"
+            "text": "Trust Boundary Violation From Unvalidated Input"
           },
           "locations": [
             {
@@ -2981,7 +2870,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks"
+            "text": "Unrestricted HTTP Method Mapping In Request Handling"
           },
           "locations": [
             {
@@ -3016,7 +2905,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Insecure Use of Non-Cryptographically Strong RNGs in Password or Token Generation"
+            "text": "Weak Random Number Generator Used"
           },
           "locations": [
             {
@@ -3051,7 +2940,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Insecure MD5 Hash Algorithm Detected, Use HMAC Instead"
+            "text": "Insecure MD5 Hash Algorithm"
           },
           "locations": [
             {
@@ -3086,7 +2975,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks"
+            "text": "Unrestricted HTTP Method Mapping In Request Handling"
           },
           "locations": [
             {
@@ -3121,7 +3010,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Insecure Use of Non-Cryptographically Strong RNGs in Password or Token Generation"
+            "text": "Weak Random Number Generator Used"
           },
           "locations": [
             {
@@ -3156,7 +3045,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks"
+            "text": "Unrestricted HTTP Method Mapping In Request Handling"
           },
           "locations": [
             {
@@ -3191,7 +3080,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "\"Host and Referer or Origin Header Comparison Used for CSRF Validation Instead of Anti-CSRF Token\""
+            "text": "CSRF Validation Lacks Anti-CSRF Token"
           },
           "locations": [
             {
@@ -3226,7 +3115,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "\"Host and Referer or Origin Header Comparison Used for CSRF Validation Instead of Anti-CSRF Token\""
+            "text": "CSRF Validation Lacks Anti-CSRF Token"
           },
           "locations": [
             {
@@ -3261,7 +3150,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Host and Referer/Origin header comparison used for CSRF protection instead of anti-CSRF token."
+            "text": "CSRF Protection Lacks Anti-CSRF Token"
           },
           "locations": [
             {
@@ -3296,7 +3185,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "\"Host and Referer or Origin Header Comparison Used for CSRF Validation Instead of Anti-CSRF Token\""
+            "text": "CSRF Validation Lacks Anti-CSRF Token"
           },
           "locations": [
             {
@@ -3331,7 +3220,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Host and Referer/Origin header comparison used for CSRF protection instead of anti-CSRF token."
+            "text": "CSRF Protection Lacks Anti-CSRF Token"
           },
           "locations": [
             {
@@ -3366,7 +3255,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Anti-CSRF Token Hardcoding Vulnerability"
+            "text": "Hardcoded Anti-CSRF Token Comparison"
           },
           "locations": [
             {
@@ -3401,7 +3290,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "\"Java Object Deserialization Vulnerability with ObjectInputStream\""
+            "text": "Insecure Object Deserialization"
           },
           "locations": [
             {
@@ -3436,7 +3325,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "\"Java Object Deserialization Vulnerability with ObjectInputStream\""
+            "text": "Insecure Object Deserialization"
           },
           "locations": [
             {
@@ -3471,7 +3360,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "'HttpOnly' flag not set for cookie vulnerability"
+            "text": "Cookie Lacks HttpOnly Flag"
           },
           "locations": [
             {
@@ -3506,7 +3395,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Insecure Use of `Math.random()` or `java.util.Random()` for Passwords or Secret Tokens Generation"
+            "text": "Weak Random Number Generator Used"
           },
           "locations": [
             {
@@ -3541,7 +3430,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Client-Supplied Total Trust Vulnerability"
+            "text": "Endpoint Trusts Client-Supplied Total Without Validation"
           },
           "locations": [
             {
@@ -3576,7 +3465,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Mismatched Identifier Data Mutation Vulnerability"
+            "text": "Request Body Identifier Mismatch Allows Update"
           },
           "locations": [
             {
@@ -3611,7 +3500,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Inconsistent Identifier Access Grant Vulnerability"
+            "text": "Insecure Access Control Based On Resource Identifier"
           },
           "locations": [
             {
@@ -3646,7 +3535,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Hardcoded Credential Vulnerability in Authentication Logic"
+            "text": "Controller Accepts Hardcoded Credentials"
           },
           "locations": [
             {
@@ -3681,7 +3570,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "\"JWT Vulnerability: Acceptance of alg=none Header Value\""
+            "text": "JWT Handling Accepts Alg=None Header Value"
           },
           "locations": [
             {
@@ -3716,7 +3605,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "\"Unbound Refresh Token Validation Vulnerability\""
+            "text": "Refresh Token Validation Lacks Subject Binding"
           },
           "locations": [
             {
@@ -3751,7 +3640,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Insecure Use of Non-Cryptographically Strong RNGs in Password or Token Generation"
+            "text": "Weak Random Number Generator Used"
           },
           "locations": [
             {
@@ -3786,7 +3675,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks"
+            "text": "Unrestricted HTTP Method Mapping In Request Handling"
           },
           "locations": [
             {
@@ -3821,7 +3710,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "\"Unsecured Default Session Middleware: Vulnerable to Cross-Site Scripting Attacks\""
+            "text": "Insecure Cookie Attributes"
           },
           "locations": [
             {
@@ -3856,7 +3745,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "'HttpOnly' flag not set for cookie vulnerability"
+            "text": "Cookie Lacks HttpOnly Flag"
           },
           "locations": [
             {
@@ -3891,7 +3780,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Unsecured Cookie Detected"
+            "text": "Cookie Lacks Secure Flag"
           },
           "locations": [
             {
@@ -3926,7 +3815,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "\"Unsecured Default Session Middleware: Vulnerable to Cross-Site Scripting Attacks\""
+            "text": "Insecure Cookie Attributes"
           },
           "locations": [
             {
@@ -3961,7 +3850,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "'HttpOnly' flag not set for cookie vulnerability"
+            "text": "Cookie Lacks HttpOnly Flag"
           },
           "locations": [
             {
@@ -3996,7 +3885,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Unsecured Cookie Detected"
+            "text": "Cookie Lacks Secure Flag"
           },
           "locations": [
             {
@@ -4031,7 +3920,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "'jku' Header Claim JWT Vulnerability Allows Key Fetching from URL Without Visible Allowlist"
+            "text": "JWT Jku Claim Fetches Key From Unrestricted URL"
           },
           "locations": [
             {
@@ -4066,7 +3955,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Server-Side Request Forgery (SSRF) Vulnerability in Manually-Constructed URL"
+            "text": "User Data Flows Into Host Portion Of URL"
           },
           "locations": [
             {
@@ -4101,7 +3990,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "SQL Injection Vulnerability via JWT 'kid' Header Data Concatenation"
+            "text": "JWT Kid Header Data Flows Into SQL Statement"
           },
           "locations": [
             {
@@ -4136,7 +4025,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Sensitive Data Exposure in Application Log"
+            "text": "Sensitive Data Written To Application Log"
           },
           "locations": [
             {
@@ -4171,7 +4060,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Unrestricted User Listing Exposure due to Lack of Authorization Checks"
+            "text": "Exposes User Listing Without Authorization Checks"
           },
           "locations": [
             {
@@ -4206,7 +4095,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Unrestricted User Listing Exposure by Controller"
+            "text": "Exposes User Listing Without Authorization Checks"
           },
           "locations": [
             {
@@ -4241,7 +4130,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Unvalidated Redirect Vulnerability"
+            "text": "Unvalidated Redirect To User-Specified URL"
           },
           "locations": [
             {
@@ -4276,7 +4165,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Unrestricted User-Controlled Target Redirection Vulnerability"
+            "text": "Open Redirect To User-Controlled Target Without Allowlist"
           },
           "locations": [
             {
@@ -4311,7 +4200,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Non-Allowlisted External Host Redirect Vulnerability in URL Handling"
+            "text": "Open Redirect To Non-Allowlisted External Hosts"
           },
           "locations": [
             {
@@ -4346,7 +4235,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Non-Allowlisted External Host Redirect Vulnerability in URL Handling"
+            "text": "Open Redirect To Non-Allowlisted External Hosts"
           },
           "locations": [
             {
@@ -4381,7 +4270,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Vulnerability in Trust Redirection Based on Raw URL String Prefix Checks"
+            "text": "Redirect Trust Based On Raw URL String Prefix Checks"
           },
           "locations": [
             {
@@ -4416,7 +4305,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Vulnerability in Trust Redirection Based on Raw URL String Prefix Checks Instead of Host Validation"
+            "text": "Redirect Trust Based On Raw URL String Prefix Checks"
           },
           "locations": [
             {
@@ -4451,7 +4340,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Double-Encoding Host Confusion Vulnerability in Redirect Validation"
+            "text": "Redirect Validation Allows Host Confusion"
           },
           "locations": [
             {
@@ -4486,7 +4375,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Hardcoded Username-to-Answer Map Vulnerability in Password Reset/Recovery Logic"
+            "text": "Hardcoded Security Answers In Password Reset Logic"
           },
           "locations": [
             {
@@ -4521,7 +4410,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "\"Use of Host Header in Constructing Password Reset or Email Links\""
+            "text": "Insecure Host Header In Password Reset Links"
           },
           "locations": [
             {
@@ -4556,7 +4445,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Username or Email-Based Password Reset or Recovery Vulnerability"
+            "text": "Predictable Secret Derived From Username or Email"
           },
           "locations": [
             {
@@ -4591,7 +4480,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Path Manipulation Vulnerability through User-Controlled Upload Name"
+            "text": "User-Controlled File Path Construction"
           },
           "locations": [
             {
@@ -4626,7 +4515,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Unnormalized Path Vulnerability"
+            "text": "Original Filename Used In Path Construction"
           },
           "locations": [
             {
@@ -4661,7 +4550,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Potential Path Traversal Vulnerability Detected"
+            "text": "Path Traversal Vulnerability"
           },
           "locations": [
             {
@@ -4696,7 +4585,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Unnormalized Path Vulnerability"
+            "text": "Original Filename Used In Path Construction"
           },
           "locations": [
             {
@@ -4731,7 +4620,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Unnormalized and unchecked zip entry names written to filesystem vulnerability"
+            "text": "Zip Entry Names Allow Path Traversal"
           },
           "locations": [
             {
@@ -4766,7 +4655,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "\"Unsecured Actuator Endpoint Defined in Application Code\""
+            "text": "Actuator-Like Endpoint Lacks Method-Level Authorization"
           },
           "locations": [
             {
@@ -4797,46 +4686,11 @@
           }
         },
         {
-          "ruleId": "3f26ea8b-1c50-3ac5-8544-286f9b413b18",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "\"Unsecured Actuator Endpoint in Application Code\""
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "src/main/java/org/owasp/webgoat/lessons/securitymisconfiguration/ActuatorExposureTask.java",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 41,
-                  "startColumn": 3,
-                  "endLine": 51,
-                  "endColumn": 4,
-                  "snippet": {
-                    "text": "  @GetMapping(\n      value = \"/SecurityMisconfiguration/task3/actuator/health\",\n      produces = MediaType.APPLICATION_JSON_VALUE)\n  public Map<String, Object> actuatorHealth() {\n    return Map.of(\n        \"status\", \"UP\",\n        \"checks\",\n            Map.of(\n                \"database\", Map.of(\"status\", \"UP\", \"responseTimeMs\", 12),\n                \"cache\", Map.of(\"status\", \"UP\", \"hitRatio\", 0.91)));\n  }"
-                  },
-                  "sourceLanguage": "java"
-                }
-              }
-            }
-          ],
-          "partialFingerprints": {
-            "glog-pfp-ruleFileLineCode/v1": "e97cc8b854391bd4d61fc5e2235c06214515c9671b3aa1c87ece92ab42793364",
-            "glog-pfp-ruleFileCode/v1": "b2ce310a2753113355ef4cd5aa872b0a199840b1a44b47c12822caad827c80c9"
-          },
-          "fingerprints": {
-            "glog-fp-ruleFileCode/v1": "b2ce310a2753113355ef4cd5aa872b0a199840b1a44b47c12822caad827c80c9"
-          }
-        },
-        {
           "ruleId": "79928727-f668-346c-a619-4006fe3bbad9",
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Hardcoded Default Credentials Vulnerability in Authentication Logic"
+            "text": "Controller Accepts Hardcoded Default Credentials"
           },
           "locations": [
             {
@@ -4871,7 +4725,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "HTTP Client Directly Receives Stack Trace or Debug Trace String from Controller"
+            "text": "Exposing Stack Traces To HTTP Clients"
           },
           "locations": [
             {
@@ -4902,46 +4756,11 @@
           }
         },
         {
-          "ruleId": "e50e7256-f55a-36b8-ba14-7fdb6d28c7c5",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "\"Unsecured Default Session Middleware: Vulnerable to Cross-Site Scripting Attacks\""
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "src/main/java/org/owasp/webgoat/lessons/spoofcookie/SpoofCookieAssignment.java",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 58,
-                  "startColumn": 5,
-                  "endLine": 58,
-                  "endColumn": 49,
-                  "snippet": {
-                    "text": "    Cookie cookie = new Cookie(COOKIE_NAME, \"\");"
-                  },
-                  "sourceLanguage": "java"
-                }
-              }
-            }
-          ],
-          "partialFingerprints": {
-            "glog-pfp-ruleFileLineCode/v1": "711097150db0f940709dc80581d5bfd130baf511ca1f6cfcc50c1149868fa6d3",
-            "glog-pfp-ruleFileCode/v1": "e06fbb286f5fe024bf95561a80f5781ec87a7f8d8e82b591b72249271f007aa9"
-          },
-          "fingerprints": {
-            "glog-fp-ruleFileCode/v1": "e06fbb286f5fe024bf95561a80f5781ec87a7f8d8e82b591b72249271f007aa9"
-          }
-        },
-        {
           "ruleId": "5f077266-d7b7-36c4-9a78-54c3ea8c64bd",
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "'HttpOnly' flag not set for cookie vulnerability"
+            "text": "Cookie Lacks HttpOnly Flag"
           },
           "locations": [
             {
@@ -4976,7 +4795,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Unsecured Cookie Detected"
+            "text": "Cookie Lacks Secure Flag"
           },
           "locations": [
             {
@@ -5011,7 +4830,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "'HttpOnly' flag not set for cookie vulnerability"
+            "text": "Cookie Lacks HttpOnly Flag"
           },
           "locations": [
             {
@@ -5046,7 +4865,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "\"Potential SQL Injection Vulnerability in Manually-Constructed SQL Strings\""
+            "text": "Manually Constructed SQL String"
           },
           "locations": [
             {
@@ -5081,7 +4900,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Potential SQL Injection Detected: Use Prepared Statements for SQL Queries"
+            "text": "Formatted String In SQL Statement"
           },
           "locations": [
             {
@@ -5112,11 +4931,46 @@
           }
         },
         {
+          "ruleId": "3e74485e-0427-3208-8b31-d05c2e8075e2",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "SQL Injection Due To Unsanitized Variables"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/advanced/SqlInjectionChallenge.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 57,
+                  "startColumn": 31,
+                  "endLine": 57,
+                  "endColumn": 69,
+                  "snippet": {
+                    "text": "        ResultSet resultSet = statement.executeQuery(checkUserQuery);"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "52e7cc59d87befc3ba7cc1538f80e2563e422ae47803ed84afb1d156e561bc35",
+            "glog-pfp-ruleFileCode/v1": "d4ff298f939470d9e2cddbb361bc58b0a2a61c006541487c2d07898b136efd5c"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "d4ff298f939470d9e2cddbb361bc58b0a2a61c006541487c2d07898b136efd5c"
+          }
+        },
+        {
           "ruleId": "b1bd657e-7263-304e-925b-876139cb9dd4",
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Direct JDBC Execution of Raw SQL in Method Parameter"
+            "text": "Raw SQL Executed Directly Through JDBC"
           },
           "locations": [
             {
@@ -5151,7 +5005,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "SQL Injection Risk Detected due to Formatted String in SQL Statement"
+            "text": "Formatted String In SQL Statement"
           },
           "locations": [
             {
@@ -5182,11 +5036,46 @@
           }
         },
         {
+          "ruleId": "909cced9-5075-39df-906d-f38140fab706",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "SQL Injection Due To Unsanitized Variables"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/introduction/SqlInjectionLesson10.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 56,
+                  "startColumn": 29,
+                  "endLine": 56,
+                  "endColumn": 58,
+                  "snippet": {
+                    "text": "        ResultSet results = statement.executeQuery(query);"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "0b938e0f0adcf3f23ea44a1201faa208a70ea70639e89fbfd7b4d339ad97306c",
+            "glog-pfp-ruleFileCode/v1": "7ec9bd2488654a275dae22ca6e47edb4f7d73b8b9ee5b38dc3d5b549bf9e6810"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "7ec9bd2488654a275dae22ca6e47edb4f7d73b8b9ee5b38dc3d5b549bf9e6810"
+          }
+        },
+        {
           "ruleId": "71604b5f-40bc-31ce-be01-006315f79f56",
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Direct JDBC Execution of Raw SQL in Method Parameter"
+            "text": "Raw SQL Executed Directly Through JDBC"
           },
           "locations": [
             {
@@ -5221,7 +5110,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Direct JDBC Execution of Raw SQL in Method Parameter Vulnerability"
+            "text": "Raw SQL Executed Directly Through JDBC"
           },
           "locations": [
             {
@@ -5256,7 +5145,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Direct JDBC Execution of Raw SQL in Method Parameter Vulnerability"
+            "text": "Raw SQL Executed Directly Through JDBC"
           },
           "locations": [
             {
@@ -5291,7 +5180,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Direct JDBC Execution of Raw SQL in Method Parameter Vulnerability"
+            "text": "Raw SQL Executed Directly Through JDBC"
           },
           "locations": [
             {
@@ -5326,7 +5215,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "SQL Injection Risk Detected due to Formatted String in SQL Statement"
+            "text": "Formatted String In SQL Statement"
           },
           "locations": [
             {
@@ -5357,46 +5246,11 @@
           }
         },
         {
-          "ruleId": "ebafa219-321d-33c3-9bb4-e1a5209fbf32",
-          "kind": "fail",
-          "level": "error",
-          "message": {
-            "text": "SQL Injection Risk Detected due to Formatted String in SQL Statement"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/introduction/SqlInjectionLesson5b.java",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 69,
-                  "startColumn": 29,
-                  "endLine": 69,
-                  "endColumn": 49,
-                  "snippet": {
-                    "text": "        ResultSet results = query.executeQuery();"
-                  },
-                  "sourceLanguage": "java"
-                }
-              }
-            }
-          ],
-          "partialFingerprints": {
-            "glog-pfp-ruleFileLineCode/v1": "22d241fbe59e1c5b2e59c6352f62bb4acc44fe108bb7d719c7d14c7eabef15a2",
-            "glog-pfp-ruleFileCode/v1": "135728af8673230b583f1a474eac1e916c3947ce177307ff9b746068b53537ee"
-          },
-          "fingerprints": {
-            "glog-fp-ruleFileCode/v1": "135728af8673230b583f1a474eac1e916c3947ce177307ff9b746068b53537ee"
-          }
-        },
-        {
           "ruleId": "0ee8c775-52e9-3e84-af7c-5c05011d756a",
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "SQL Injection Risk Detected due to Formatted String in SQL Statement"
+            "text": "Formatted String In SQL Statement"
           },
           "locations": [
             {
@@ -5427,11 +5281,46 @@
           }
         },
         {
+          "ruleId": "62667bcd-3c9c-3ce7-ad2b-c19599ddf96d",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "SQL Injection Due To Unsanitized Variables"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/introduction/SqlInjectionLesson8.java",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 62,
+                  "startColumn": 29,
+                  "endLine": 62,
+                  "endColumn": 58,
+                  "snippet": {
+                    "text": "        ResultSet results = statement.executeQuery(query);"
+                  },
+                  "sourceLanguage": "java"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "b38c0b464e12c5e3537821053440cd84b5da08384eedfa80f8eaca50cfceab40",
+            "glog-pfp-ruleFileCode/v1": "12e5620ff690cba44a37bc5db3a0bdbf55a00ab36fd4fcfe8bbcd121a50d83c3"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "12e5620ff690cba44a37bc5db3a0bdbf55a00ab36fd4fcfe8bbcd121a50d83c3"
+          }
+        },
+        {
           "ruleId": "aa466f90-5f8b-3e88-af98-f1e8328f0750",
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "SQL Injection Risk Detected due to Formatted String in SQL Statement"
+            "text": "Formatted String In SQL Statement"
           },
           "locations": [
             {
@@ -5462,26 +5351,26 @@
           }
         },
         {
-          "ruleId": "ce4af615-c618-3693-9094-7015e59c9176",
+          "ruleId": "4b0968f3-2dfc-3afa-b40e-636b103b017e",
           "kind": "fail",
-          "level": "error",
+          "level": "warning",
           "message": {
-            "text": "Potential SQL Injection Detected: Use Prepared Statements for Sanitization"
+            "text": "SQL Injection Due To Unsanitized Variables"
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/introduction/SqlInjectionLesson9.java",
+                  "uri": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/introduction/SqlInjectionLesson8.java",
                   "uriBaseId": "%SRCROOT%"
                 },
                 "region": {
-                  "startLine": 65,
+                  "startLine": 142,
                   "startColumn": 7,
-                  "endLine": 65,
+                  "endLine": 142,
                   "endColumn": 40,
                   "snippet": {
-                    "text": "      statement.execute(queryInjection);"
+                    "text": "      statement.executeUpdate(logQuery);"
                   },
                   "sourceLanguage": "java"
                 }
@@ -5489,11 +5378,11 @@
             }
           ],
           "partialFingerprints": {
-            "glog-pfp-ruleFileLineCode/v1": "4d63b41e3d49cad8700a2d9e930ae5490a1d469113189ea1f0086082a1c4350c",
-            "glog-pfp-ruleFileCode/v1": "87c950ae4776ddfcc6388d64d4d20d1729f0e824cb5ca44a19e44cf1c2e6510d"
+            "glog-pfp-ruleFileLineCode/v1": "18f3f9656633c4cf528dc406540b3136951df973e734a3c84e38457ecf6d2a9d",
+            "glog-pfp-ruleFileCode/v1": "21738b9b5476d8cbe90a2a069ad69690914f24227cceade18ce685c4c7db6dbf"
           },
           "fingerprints": {
-            "glog-fp-ruleFileCode/v1": "87c950ae4776ddfcc6388d64d4d20d1729f0e824cb5ca44a19e44cf1c2e6510d"
+            "glog-fp-ruleFileCode/v1": "21738b9b5476d8cbe90a2a069ad69690914f24227cceade18ce685c4c7db6dbf"
           }
         },
         {
@@ -5501,7 +5390,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Direct JDBC Execution of Raw SQL in Method Parameter"
+            "text": "Raw SQL Executed Directly Through JDBC"
           },
           "locations": [
             {
@@ -5536,7 +5425,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "\"Potential SQL Injection Vulnerability in Manually-Constructed SQL Strings\""
+            "text": "Manually Constructed SQL String"
           },
           "locations": [
             {
@@ -5571,7 +5460,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "\"SQL Injection Protection Through Keyword Stripping and Space Blocking Before Query Execution\""
+            "text": "SQL Injection Protection Relies On Keyword Stripping"
           },
           "locations": [
             {
@@ -5606,7 +5495,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "\"SQL Injection Protection through Keyword Stripping and Space Blocking\""
+            "text": "SQL Injection Protection Relies On Keyword Stripping"
           },
           "locations": [
             {
@@ -5641,7 +5530,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Server-Side URL Fetch Vulnerability with User-Controlled Parameter"
+            "text": "User-Controlled URL Used In Server-Side Fetch"
           },
           "locations": [
             {
@@ -5676,7 +5565,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "XML External Entity (XXE) Vulnerability in XStream Deserialization"
+            "text": "Insecure Deserialization Of Request-Controlled XML"
           },
           "locations": [
             {
@@ -5711,7 +5600,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Username or Email-Based Password Reset Vulnerability"
+            "text": "Predictable Secret Derived From Username or Email"
           },
           "locations": [
             {
@@ -5746,7 +5635,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "Unencoded HTML Response Data Vulnerability"
+            "text": "Request Data Concatenated Into HTML Response Without Encoding"
           },
           "locations": [
             {
@@ -5781,7 +5670,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "\"XML Injection Vulnerability with Disabled Security\""
+            "text": "Request-Controlled XML Parsing With Security Disabled"
           },
           "locations": [
             {
@@ -5816,7 +5705,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "\"Conditional XMLInputFactory Hardening and Independent XXE Protections\""
+            "text": "Conditional XXE Protection Hardening"
           },
           "locations": [
             {
@@ -5851,7 +5740,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "\"XML Injection Vulnerability with Disabled Security\""
+            "text": "Request-Controlled XML Parsing With Security Disabled"
           },
           "locations": [
             {
@@ -5886,7 +5775,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "\"XML Injection Vulnerability with Disabled Security\""
+            "text": "Request-Controlled XML Parsing With Security Disabled"
           },
           "locations": [
             {
@@ -5921,7 +5810,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks"
+            "text": "Unrestricted HTTP Method Mapping In Request Handling"
           },
           "locations": [
             {
@@ -5956,7 +5845,7 @@
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Unspecified HTTP Method in 'RequestMapping' Annotation Potentially Vulnerable to CSRF Attacks"
+            "text": "Unrestricted HTTP Method Mapping In Request Handling"
           },
           "locations": [
             {
@@ -5991,7 +5880,7 @@
           "kind": "fail",
           "level": "error",
           "message": {
-            "text": "User Input Manipulation Vulnerability in File Path Control"
+            "text": "User Input Controls File Path"
           },
           "locations": [
             {
